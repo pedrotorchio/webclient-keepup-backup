@@ -8,9 +8,10 @@ export default {
 }
 </script>
 <template lang="pug">
-  form
+  form#signup-form
     signup-form
 </template>
 <style lang="stylus" scoped>
-
+#signup-form
+  max-width: 400px;
 </style>
