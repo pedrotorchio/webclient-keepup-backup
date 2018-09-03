@@ -36,10 +36,11 @@ export default {
       v-model='formData.password',
       placeholder='Senha'
     )
-    button(
+    h3#call.link(
       @click='submit'
-      v-text="isLogin? 'Entrar' : 'Cadastrar'"
-    )
+    ) Acesse o KeepUp
+
+    
 </template>
 <style lang="stylus" scoped>
 #signup-form
@@ -59,4 +60,9 @@ export default {
     border-bottom: 1px solid lightgrey;
     outline: none;
 
+  #call
+    text-align: center;
+    font-size: 24px;
+    margin-top: 1em;
+    margin-bottom: 0;
 </style>
