@@ -1,25 +1,44 @@
 <script>
 export default {
   name: 'signup-form',
+  props: {
+    isLogin: {
+      type: Boolean,
+      default: true
+    }
+  },
   data: () => ({
-    email: '',
-    password: ''
-  })
+    formData: {
+      email: '',
+      password: '',
+      name: ''
+    }
+  }),
+  methods: {
+    submit() {
+      this.$emit('submitted', { ...this.formData });
+    }
+  }
 }
 </script>
 <template lang="pug">
-  form#signup-form.floating.padded
+  form#signup-form
     input(
-      v-model='email',
+      v-model='formData.name',
+      placeholder='Apelido'
+      v-if='!isLogin'
+    )
+    input(
+      v-model='formData.email',
       placeholder='Email'
     )
     input(
-      v-model='password',
+      v-model='formData.password',
       placeholder='Senha'
     )
-    input(
-      v-model='passwordConfirmation',
-      placeholder='Repetir a senha'
+    button(
+      @click='submit'
+      v-text="isLogin? 'Entrar' : 'Cadastrar'"
     )
 </template>
 <style lang="stylus" scoped>
@@ -28,11 +47,16 @@ export default {
   flex-direction: column;
   align-items: stretch;
   justify-content: stretch;  
-  
-  input
+
+  input, button
     height: 2em;
     margin: .2em 0;
     font-size: 24px;
     text-align: center;
     display: block;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    outline: none;
+
 </style>
