@@ -6,7 +6,7 @@ import router from './router'
 import store from './store'
 import { api } from '@/api';
 
-api.setBaseUrl('http://api.keepup.com.br');
+api.setBaseUrl('http://api.keepup.com.br/api');
 
 Vue.config.productionTip = false
 
