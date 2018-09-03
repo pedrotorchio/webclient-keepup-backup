@@ -1,5 +1,6 @@
 import * as urljoin from 'url-join';
 import axios from 'axios';
+import { responseInterceptor, responseErrorInterceptor } from './interceptors';
 
 export class Api {
 
@@ -7,12 +8,11 @@ export class Api {
     this.previousResponse = null;
     this.baseUrl = "";
     this.axios = axios.create();
-    this.axios.interceptors.response.use(this.responseInterceptor.bind(this), this.responseErrorInterceptor.bind(this));    
+    this.axios.interceptors.response.use(responseInterceptor.bind(this), responseErrorInterceptor.bind(this));
   }
 
   setBaseUrl(url) {
     this.axios.defaults.baseURL = url;
-
   }
   async login(username, password) {
     let { access_token, token_type, expires_at } = await this.create('auth/login', {
@@ -47,20 +47,5 @@ export class Api {
     let url = urljoin(resource, id);
 
     return this.axios.delete(url);
-  }
-
-  responseInterceptor(response) {
-    this.previousResponse = response;
-    
-    const { data } = response;
-
-    return data;
-  }
-  responseErrorInterceptor({ response: { status, statusText, data } }) {
-    throw {
-      status,
-      statusText,
-      data
-    };
   }
 }
