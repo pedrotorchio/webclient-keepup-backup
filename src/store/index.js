@@ -1,11 +1,13 @@
 import Vue from 'vue';
 import Vuex from "vuex";
 
-import { api } from '@/api'; // usar assim
-
-
 Vue.use(Vuex);
 
+
+import auth from './auth';
+
 export default new Vuex.Store({
-  
+  modules: {
+    auth
+  }
 });
