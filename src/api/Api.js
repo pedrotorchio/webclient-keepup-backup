@@ -24,6 +24,9 @@ export class Api {
 
     return true;
   }
+  async signup(data) {
+    return this.create('auth/signup', data);
+  }
   async create(resource, data){
     return this.axios.post(resource, data);
   }
