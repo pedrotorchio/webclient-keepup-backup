@@ -7,6 +7,7 @@ export class Api {
   constructor() {
     this.previousResponse = null;
     this.baseUrl = "";
+    this.token = {};
     this.axios = axios.create();
     this.axios.interceptors.response.use(responseInterceptor.bind(this), responseErrorInterceptor.bind(this));
   }
@@ -14,12 +15,20 @@ export class Api {
   setBaseUrl(url) {
     this.axios.defaults.baseURL = url;
   }
+  getTokenData() {
+    return this.token;
+  }
   async login(username, password) {
     let { access_token, token_type, expires_at } = await this.create('auth/login', {
       email: username,
       password
     });
-    
+    this.token = {
+      hash: access_token,
+      type: token_type,
+      expiration: expires_at
+    };
+
     this.axios.defaults.headers.common['Authorization'] = `${token_type} ${access_token}`;
 
     return true;
