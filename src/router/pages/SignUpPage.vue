@@ -6,19 +6,46 @@ export default {
     SignupForm
   },
   data: () => ({
-    isLogin: true
+    isLogin: true,
+    loading: false
   }),
   methods: {
-    submitted(data) {
-      this.$store.dispatch('signup', data)
-          .then(response => {
-            console.log('Cadastrado!');
-          })
-          .catch(error => {
-            if (error.status === 400) {
-              console.error('Dados inválidos');
-            }
-          });
+    failedLogin(error) {
+
+    },
+    failedSignup(error) {
+
+    },
+    async signupProcedure(data) {
+      await this.$store.dispatch('signup', data)
+      
+      return  true;          
+    },
+    async loginProcedure(data) {
+      return  this.$store.dispatch('login', {
+        email: data.email,
+        password: data.password
+      });
+    },
+    async submitted(data) {
+      this.loading = true;
+      
+      let shouldLogin = true;
+      let login = null;
+
+      if (!this.isLogin) {
+        shouldLogin = await this.signupProcedure(data)
+          .catch(this.failedSignup);
+      }
+
+      if (shouldLogin) {
+        login = await this.loginProcedure(data)
+          .catch(this.failedLogin);
+      }
+      
+      this.loading = false;
+
+      return login;
     }
   }
 }
@@ -37,12 +64,14 @@ export default {
         span.link(
           @click='isLogin=!isLogin'
           v-text="isLogin? 'Cadastrar Usuário' : 'Acessar KeepUp'"
+          v-if='!loading'
         )
 
       signup-form#signup-form(
         @submitted='submitted'
         :isLogin='isLogin'
       )
+      
 </template>
 <style lang="stylus" scoped>
 @import '~@/styles/colors.styl';
@@ -73,7 +102,7 @@ export default {
   width: 400px;
   flex: 0 1 auto;
 
-#signup-btn
+#signup-btn, #call
   text-align: right;
   height: 1em;
   font-size: 16px;
