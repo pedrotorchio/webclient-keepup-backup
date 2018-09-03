@@ -1,5 +1,17 @@
+@import './colors';
+
 .floating
   box-shadow: 0 0 30px #00000012;
 
+base-size = 16px;
 .padded
-  padding: 16px;
+  padding: base-size;
+.padded-large
+  padding: base-size*2;
+
+.link
+  transition: color 500ms ease-in-out;
+  cursor: pointer;
+  &:hover
+    transition: color 100ms ease-in-out;
+    color:  orange;
