@@ -9,7 +9,11 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "@types/url-join": "^0.8.2",
+    "axios": "^0.18.0",
+    "url-join": "^4.0.0"
+  },
   "devDependencies": {
     "typescript": "^3.0.3"
   }
