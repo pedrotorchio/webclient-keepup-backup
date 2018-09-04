@@ -1,3 +1,6 @@
+import Vue from 'vue';
+import { mapState } from "vuex";
+
 import state from './state';
 import actions from './actions';
 import mutations from './mutations';
@@ -10,3 +13,10 @@ export default {
   mutations,
   getters
 };
+
+Vue.mixin({
+  computed: mapState({
+    hasSession: state => Boolean(state.auth.user),
+    userData: state => state.auth.user
+  })
+});
