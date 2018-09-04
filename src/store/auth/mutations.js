@@ -1,3 +1,5 @@
+import { localSessionKey } from "./config";
+
 export default {
   setUserData(state, { id, email, name, created_at, updated_at }) {
     state.user.id = id;
@@ -9,6 +11,6 @@ export default {
   setUserSession(state, login) {
     const session = window.sessionStorage;
     
-    session.setItem("user", JSON.stringify(login));
+    session.setItem(localSessionKey, JSON.stringify(login));
   }
 };
