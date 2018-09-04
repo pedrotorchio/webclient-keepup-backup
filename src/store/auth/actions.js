@@ -6,14 +6,34 @@ export default {
   },
   async login({ commit }, { email, password }) {
     const login = await api.login(email, password);
-    
+    let user;
+
     if (login) {
+      api.setAuthorizationToken(login);
       commit('setUserSession', login);
       
-      const user = await api.get("auth/user");
-      commit('setUserData', user);
+      user = await dispatch('fetchUserData');
     }
 
-    return login;
+    return user;
+  },
+  async fetchUserData({ commit }) {
+    const user = await api.get("auth/user");
+    commit('setUserData', user);
+
+    return user;
+  },
+  async checkSession({ getters, dispatch }) {
+    const { getUserSession } = getters;
+    let user;
+    
+    if (getUserSession && getUserSession.hash) {
+      api.setAuthorizationToken(getUserSession);
+      user = await dispatch("fetchUserData");
+
+      return true;
+    }
+    
+    return false;
   }
 }
