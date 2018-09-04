@@ -7,6 +7,9 @@
 <script>
 export default {
   name: 'App',
+  created() {
+    this.$store.dispatch('checkSession');
+  }
 }
 </script>
 <style lang="stylus" src='@/styles/helper-classes.styl'></style>
