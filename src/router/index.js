@@ -5,11 +5,17 @@ import SignUpPage from './pages/SignUpPage.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: "/",
-      name: "Cadastro",
+      name: "Landing",
       component: SignUpPage
+    },
+    {
+      path: '/painel',
+      name: 'Dashboard',
+      component: null
     }
   ]
 });

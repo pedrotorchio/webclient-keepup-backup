@@ -31,7 +31,7 @@ export default {
         password: data.password
       });
     },
-    async submitted(data) {
+    async submitProcedure(data) {
       this.loading = true;
       
       let shouldLogin = true;
@@ -49,8 +49,19 @@ export default {
       
       this.loading = false;
 
+      login = Boolean(login);
+      
+      if (!login) 
+        throw false;
+
       return login;
+    },
+    submit(data) {
+      this.submitProcedure(data)
+          .then(login => this.$router.push({ name: 'Dashboard' }))
+          .catch(login => null);
     }
+
   }
 }
 </script>
@@ -72,7 +83,7 @@ export default {
         )
 
       signup-form#signup-form(
-        @submitted='submitted'
+        @submit='submit'
         :isLogin='isLogin'
       )
       
