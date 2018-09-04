@@ -1,9 +1,9 @@
 export default {
-  setAccessTokenData(state, { access_token, token_type, expires_at }) {
-
-    state.accessToken.token = access_token;
-    state.accessToken.tokenType = token_type;
-    state.accessToken.expiration = expires_at;
-    
+  setUserData(state, { id, email, name, created_at, updated_at }) {
+    state.user.id = id;
+    state.user.email = email;
+    state.user.name = name;
+    state.user.created = created_at;
+    state.user.updated = updated_at;
   }
 };

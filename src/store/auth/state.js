@@ -1,8 +1,9 @@
 export default {
-  user: null,
-  accessToken: {
-    token: null,
-    tokenType: null,
-    expiration: null
+  user: {
+    id: null,
+    email: null,
+    name: null,
+    created: null,
+    updated: null
   }
 }

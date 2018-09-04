@@ -5,10 +5,13 @@ export default {
     return api.signup(data);
   },
   async login({ commit }, { email, password }) {
-    const login = await api.login(email, password)
-    console.log(login);
-    commit("setAccessTokenData", login);
+    const login = await api.login(email, password);
+    
+    if (login) {
+      const user = await api.read("auth/user");
+      commit('setUserData', user);
+    }
 
-    return true;
+    return login;
   }
 }
