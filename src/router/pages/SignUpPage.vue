@@ -10,11 +10,15 @@ export default {
     loading: false
   }),
   methods: {
-    failedLogin(error) {
-
+    failedLogin({ status, data: { message } }) {
+      if (status === 400) {
+        console.error(JSON.parse(message));
+      }
     },
-    failedSignup(error) {
-
+    failedSignup({ status, data: { message } }) {
+      if (status === 400) {
+        console.error(JSON.parse(message));
+      }
     },
     async signupProcedure(data) {
       await this.$store.dispatch('signup', data)
