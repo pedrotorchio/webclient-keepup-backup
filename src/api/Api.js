@@ -19,7 +19,7 @@ export class Api {
     return this.token;
   }
   async login(username, password) {
-    let { access_token, token_type, expires_at } = await this.create('auth/login', {
+    let { access_token, token_type, expires_at } = await this.post('auth/login', {
       email: username,
       password
     });
@@ -34,12 +34,12 @@ export class Api {
     return true;
   }
   async signup(data) {
-    return this.create('auth/signup', data);
+    return this.post('auth/signup', data);
   }
-  async create(resource, data){
+  async post(resource, data){
     return this.axios.post(resource, data);
   }
-  async read(resource, id) {
+  async get(resource, id) {
     let url = resource;
     
     if (id) {
@@ -49,7 +49,7 @@ export class Api {
     
     return this.axios.get(url);
   }
-  async update(resource, id, data) {
+  async put(resource, id, data) {
     let url = urljoin(resource, id);
 
     return this.axios.put(url, data);

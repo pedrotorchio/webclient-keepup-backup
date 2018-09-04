@@ -8,7 +8,7 @@ export default {
     const login = await api.login(email, password);
     
     if (login) {
-      const user = await api.read("auth/user");
+      const user = await api.get("auth/user");
       commit('setUserData', user);
     }
 
