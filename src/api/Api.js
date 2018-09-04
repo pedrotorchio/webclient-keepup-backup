@@ -31,7 +31,7 @@ export class Api {
 
     this.axios.defaults.headers.common['Authorization'] = `${token_type} ${access_token}`;
 
-    return true;
+    return token;
   }
   async signup(data) {
     return this.post('auth/signup', data);
