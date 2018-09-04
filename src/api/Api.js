@@ -18,20 +18,27 @@ export class Api {
   getTokenData() {
     return this.token;
   }
+  setAuthorizationToken(data) {
+    // hash
+    // type
+    // expiration
+
+    data.type  = data.type || 'Bearer';
+    this.token = data;
+    this.axios.defaults.headers.common["Authorization"] = `${data.type} ${data.hash}`;
+  }
   async login(username, password) {
     let { access_token, token_type, expires_at } = await this.post('auth/login', {
       email: username,
       password
     });
-    this.token = {
+    const token = {
       hash: access_token,
       type: token_type,
       expiration: expires_at
     };
 
-    this.axios.defaults.headers.common['Authorization'] = `${token_type} ${access_token}`;
-
-    return this.token;
+    return token;
   }
   async signup(data) {
     return this.post('auth/signup', data);
