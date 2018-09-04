@@ -6,9 +6,9 @@ export default {
     state.user.created = created_at;
     state.user.updated = updated_at;
   },
-  setUserSession(state, token) {
+  setUserSession(state, login) {
     const session = window.sessionStorage;
-
+    
     session.setItem("user", JSON.stringify(login));
   }
 };
