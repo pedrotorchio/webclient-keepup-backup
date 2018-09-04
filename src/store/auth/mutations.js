@@ -10,7 +10,13 @@ export default {
   },
   setUserSession(state, login) {
     const session = window.sessionStorage;
+    let data = null;
     
-    session.setItem(localSessionKey, JSON.stringify(login));
+    if (login != false) {
+      data = JSON.stringify(login);
+
+    }
+
+    session.setItem(localSessionKey, data);
   }
 };

@@ -23,13 +23,16 @@ export default {
 
     return user;
   },
-  async checkSession({ getters, dispatch }) {
+  async checkSession({ getters, dispatch, commit }) {
     const { getUserSession } = getters;
     let user;
     
     if (getUserSession && getUserSession.hash) {
       api.setAuthorizationToken(getUserSession);
-      user = await dispatch("fetchUserData");
+      user = await dispatch("fetchUserData")
+                    .catch(error => {
+                      commit("setUserSession", false);
+                    })
 
       return true;
     }
