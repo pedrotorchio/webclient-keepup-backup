@@ -4,7 +4,7 @@ export default {
   async signup({}, data) {
     return api.signup(data);
   },
-  async login({ commit }, { email, password }) {
+  async login({ commit, dispatch }, { email, password }) {
     const login = await api.login(email, password);
     let user;
 
