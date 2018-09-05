@@ -1,23 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import SignUpPage from './pages/SignUpPage.vue'
-import Dashboard from './pages/Dashboard.vue'
+import LoginPage from './pages/LoginPage.vue'
+import DashboardPage from './pages/DashboardPage.vue'
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  mode: "history",
   routes: [
     {
       path: "/",
       name: "Landing",
-      component: SignUpPage
+      component: LoginPage
     },
     {
-      path: '/painel',
-      name: 'Dashboard',
-      component: Dashboard
+      path: "/painel",
+      name: "Dashboard",
+      component: DashboardPage
     }
   ]
 });
