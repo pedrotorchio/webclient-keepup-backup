@@ -16,6 +16,7 @@ import store from "./store";
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({
+  name: 'Root',
   el: '#app',
   router,
   store,
