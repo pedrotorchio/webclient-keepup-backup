@@ -5,5 +5,8 @@ export default {
     const session = window.sessionStorage;
 
     return JSON.parse(session.getItem(localSessionKey));
+  },
+  getUserId(state) {
+    return state.user.id;
   }
 }
