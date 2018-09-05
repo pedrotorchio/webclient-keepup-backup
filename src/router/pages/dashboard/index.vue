@@ -6,5 +6,5 @@ export default {
 }
 </script>
 <template lang="pug" src='./template.pug'></template>
-<style lang="stylus" src='./styles.styl'></style>
+<style lang="stylus" src='./styles.styl' scoped></style>
 
