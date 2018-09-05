@@ -1,6 +1,7 @@
 <script>
-import Page from './Page';
+import Page from '../Page';
 export default {
+  name: 'DashboardPage',
   extends: Page,
   methods: {
     onUserFetched() {

@@ -1,7 +1,11 @@
 <script>
+import Page from '../Page';
 import SignupForm from '@/components/signup/form';
+import { loginProcedure, failedLogin, signupProcedure, failedSignup } from './procedures';
 
 export default {
+  name: 'LoginPage',
+  extends: Page,
   components: {
     SignupForm
   },
@@ -10,27 +14,6 @@ export default {
     loading: false
   }),
   methods: {
-    failedLogin({ status, data: { message } }) {
-      if (status === 400) {
-        console.error(JSON.parse(message));
-      }
-    },
-    failedSignup({ status, data: { message } }) {
-      if (status === 400) {
-        console.error(JSON.parse(message));
-      }
-    },
-    async signupProcedure(data) {
-      await this.$store.dispatch('signup', data)
-      
-      return  true;          
-    },
-    async loginProcedure(data) {
-      return  this.$store.dispatch('login', {
-        email: data.email,
-        password: data.password
-      });
-    },
     async submitProcedure(data) {
       this.loading = true;
       
@@ -38,13 +21,13 @@ export default {
       let login = null;
 
       if (!this.isLogin) {
-        shouldLogin = await this.signupProcedure(data)
-          .catch(this.failedSignup);
+        shouldLogin = await signupProcedure.bind(this)(data)
+          .catch(failedSignup.bind(this));
       }
 
       if (shouldLogin) {
-        login = await this.loginProcedure(data)
-          .catch(this.failedLogin);
+        login = await loginProcedure.bind(this)(data)
+          .catch(failedLogin.bind(this));
       }
       
       this.loading = false;

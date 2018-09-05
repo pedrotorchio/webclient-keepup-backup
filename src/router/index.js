@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import LoginPage from './pages/LoginPage.vue'
-import DashboardPage from './pages/DashboardPage.vue'
+import LoginPage from './pages/login'
+import DashboardPage from './pages/dashboard'
 
 Vue.use(Router)
 
