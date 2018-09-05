@@ -1,7 +1,8 @@
+import Vue from 'vue';
 import HookLogger from './HookLogger';
 
-export default {
+Vue.use({
   install(Vue, options) {
     Vue.mixin(HookLogger);
   }
-}
+});
