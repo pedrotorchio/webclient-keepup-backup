@@ -11,6 +11,5 @@ export default {
   }
 }
 </script>
-<template lang="pug">
-  div
-</template>
+<template lang="pug" src='./template.pug'></template>
+<template lang="pug" src='./styles.styl'></template>
