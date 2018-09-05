@@ -1,7 +1,7 @@
 import { api } from "@/api";
 
 export default {
-  async fetchAllPatients({ state, getters }) {
+  async fetchAllPatients({ getters }) {
   
     const id = getters.getUserId;
     
