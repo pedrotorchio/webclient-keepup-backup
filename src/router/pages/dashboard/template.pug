@@ -1,8 +1,14 @@
 main
-  header
+  header.padded
     ul
-      li Alterar dados pessoais
+      li 
+        a Alterar dados pessoais
+    h1(
+      v-text='userData.name'
+    )
+
   div#panel
+    
     h2 Você tem 9 novos avisos
     div
       aside#side-tabs
