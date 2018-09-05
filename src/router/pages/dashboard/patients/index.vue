@@ -11,6 +11,12 @@ export default {
     onUserFetched() {
       this.$store.dispatch('fetchAllPatients');
     },
+    open(index) {
+      console.log(index);
+    },
+    remove(index) {
+      console.log(index);
+    }
   },
   watch: {
     userData: {

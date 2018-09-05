@@ -4,7 +4,7 @@ div
     v-list-tile(
       v-for="(patient, i) in patients"
       :key="i"
-      
+      @click.stop="open(i)"
     )
       v-list-tile-avatar
         img
@@ -13,6 +13,6 @@ div
         v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
 
       v-list-tile-action(
-        
+        @click.stop="remove(i)"
       )
         v-icon delete_forever
