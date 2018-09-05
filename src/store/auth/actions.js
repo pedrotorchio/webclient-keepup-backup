@@ -28,6 +28,7 @@ export default {
     let user;
     
     if (getUserSession && getUserSession.hash) {
+      
       api.setAuthorizationToken(getUserSession);
       user = await dispatch("fetchUserData")
                     .catch(error => {
