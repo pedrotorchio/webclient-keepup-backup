@@ -1,1 +1,18 @@
-h1 PACIENTES
+div
+  v-list
+  
+    v-list-tile(
+      v-for="(patient, i) in patients"
+      :key="i"
+      
+    )
+      v-list-tile-avatar
+        img
+
+      v-list-tile-content
+        v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
+
+      v-list-tile-action(
+        
+      )
+        v-icon delete_forever

@@ -3,16 +3,14 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'PatientsPage',
-  computed: {
-    patients() {
-      
-    }
-  },
+  computed: mapState({
+    patients: state => state.patients.patients,
+
+  }),
   methods: {
     onUserFetched() {
-      this.$store.dispatch('fetchAllPatients')
-              .then(data => console.dir(data));
-    }
+      this.$store.dispatch('fetchAllPatients');
+    },
   },
   watch: {
     userData: {
