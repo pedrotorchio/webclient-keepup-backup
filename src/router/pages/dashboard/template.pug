@@ -2,4 +2,12 @@ main
   header
     ul
       li Alterar dados pessoais
-  router-view
+  div#panel
+    h2 Você tem 9 novos avisos
+    div
+      aside#side-tabs
+        ul
+          li Pacientes
+      section#workspace
+        router-view
+      section#warning-cards
