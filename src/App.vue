@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view ref="route"/>
   </div>
 </template>
 
@@ -8,7 +8,8 @@
 export default {
   name: 'App',
   created() {
-    this.$store.dispatch('checkSession');
+    this.$store.dispatch('checkSession')
+        .then(hasSession => this.$refs['route'].onUserFetched(hasSession));
   }
 }
 </script>
