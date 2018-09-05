@@ -1,7 +1,7 @@
 <template>
-  <div id="app">
+  <v-app id="app">
     <router-view ref="route"/>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -11,22 +11,4 @@ export default {
 </script>
 <style lang="stylus" src='@/styles/helper-classes.styl'></style>
 <style lang="stylus" src='@/styles/reset.styl'></style>
-<style lang="stylus">
-html, body, #app
-  height: 100%;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-
-body
-  font-family: 'Open Sans', sans-serif;
-  max-width: 100%;
-
-  #app
-    height: auto;
-    min-height: 100%;
-    max-width: 100%;
-
-
-</style>
 
