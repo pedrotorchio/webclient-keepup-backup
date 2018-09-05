@@ -1,10 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import LoginPage from './pages/login'
-import DashboardPage from './pages/dashboard'
+import { lazy } from '@/assets/js';
+import Patients from './pages/dashboard/patients';
+import Dashboard from './pages/dashboard';
 
 Vue.use(Router)
+
+function lazyTemplate(template) {
+  return lazy(`router/pages/${template}/index.vue`);
+}
 
 export default new Router({
   mode: "history",
@@ -12,12 +17,18 @@ export default new Router({
     {
       path: "/",
       name: "Landing",
-      component: LoginPage
+      component: lazyTemplate("login")
     },
     {
       path: "/painel",
-      name: "Dashboard",
-      component: DashboardPage
+      component: lazyTemplate("dashboard"),
+      children: [
+        {
+          path: "/pacientes",
+          name: "Pacientes",
+          component: lazyTemplate("dashboard/patients")
+        }
+      ]
     }
   ]
 });
