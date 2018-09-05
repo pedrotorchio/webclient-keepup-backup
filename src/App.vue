@@ -7,10 +7,6 @@
 <script>
 export default {
   name: 'App',
-  created() {
-    this.$store.dispatch('checkSession')
-        .then(hasSession => this.$refs['route'].onUserFetched(hasSession));
-  }
 }
 </script>
 <style lang="stylus" src='@/styles/helper-classes.styl'></style>
