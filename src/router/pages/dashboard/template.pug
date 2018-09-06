@@ -13,12 +13,11 @@ main
       class='error'
     ) Você tem 9 novos avisos
 
-    h2(v-text="title")
-
     div
       aside#side-tabs
         ul
           li.info.font-weight-bold Pacientes
       section#workspace.padded
+        h2.title(v-text="title")
         router-view
       section#warning-cards.padded
