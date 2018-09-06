@@ -25,7 +25,15 @@ export default new Router({
           path: "/pacientes/:patientId?/:patientName?",
           name: "Patients",
           component: lazyTemplate("dashboard/patients"),
-          props: true
+          props: true,
+          meta: {
+            list: {
+              title: "Pacientes"
+            },
+            form: {
+              title: "Novo Paciente"
+            }
+          }
         }
       ]
     }
