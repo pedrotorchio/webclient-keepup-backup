@@ -1,0 +1,51 @@
+<script>
+export default {
+  props: {
+    patients: {
+      type: Array,
+      required: true
+    }
+  },
+  methods: {
+    open(index) {
+      let { first_name, last_name, id } = this.patients[index];
+          last_name = last_name.split(' ').join('-');
+
+      let name = `${first_name} ${last_name}`;
+          name = name.replace(' ', '-');
+
+      this.$router.push(`/pacientes/${id}/${name}`);
+    },
+    remove(index) {
+      console.log(index);
+    }
+  }
+}
+</script>
+
+<style lang="stylus" scoped>
+
+</style>
+
+<template lang="pug">
+  v-list(
+    :style=`{
+        height: patients.length * 100 + "px"
+      }`
+  )
+    v-list-tile.padded(
+      v-for="(patient, i) in patients"
+      :key="i"
+      @click.stop="open(i)"
+    )
+      v-list-tile-avatar
+        img
+
+      v-list-tile-content
+        v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
+
+      v-list-tile-action(
+        @click.stop="remove(i)"
+      )
+        v-icon delete_forever
+</template>
