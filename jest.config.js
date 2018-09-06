@@ -1,19 +1,18 @@
 module.exports = {
-  
-  "moduleFileExtensions": [
+  moduleFileExtensions: [
     "js",
     "json",
     // tell Jest to handle `*.vue` files
     "vue"
   ],
-    "transform": {
+  transform: {
     // process `*.vue` files with `vue-jest`
     ".*\\.(vue)$": "vue-jest",
     // process js with `babel-jest`
     "^.+\\.js$": "<rootDir>/node_modules/babel-jest"
   },
-  "moduleNameMapper": {
+  moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1"
-  }
- 
-}
+  },
+  testURL: "http://localhost"
+};
