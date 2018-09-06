@@ -29,15 +29,8 @@ export default {
       return patient || false;
     },
     isList() {
-      const { meta: {form: { param } } } = this.$route;
-
-      return this.patient === false && this.patientId !== param;
+      return !Boolean(this.patientId);
     },
-    title() {
-      const key = this.isList ? 'list' : 'form';
-      return this.$route[key].title;
- 
-    }
   },
   methods: {
     onUserFetched() {
