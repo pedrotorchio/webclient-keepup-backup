@@ -34,7 +34,9 @@ export default {
       return this.patient === false && this.patientId !== param;
     },
     title() {
-      
+      const key = this.isList ? 'list' : 'form';
+      return this.$route[key].title;
+ 
     }
   },
   methods: {
