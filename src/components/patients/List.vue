@@ -22,6 +22,14 @@ export default {
   }
 }
 </script>
+<style lang="stylus" scoped>
+.v-list
+  background: transparent !important;
+
+.v-list-tile:last-child
+  margin-bottom: 100px;
+
+</style>
 
 <template lang="pug">
   div
