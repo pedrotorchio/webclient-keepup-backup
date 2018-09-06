@@ -31,7 +31,8 @@ export default new Router({
               title: "Pacientes"
             },
             form: {
-              title: "Novo Paciente"
+              title: "Novo Paciente",
+              param: 'novo'
             }
           }
         }

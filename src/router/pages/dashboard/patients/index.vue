@@ -27,6 +27,14 @@ export default {
       }
 
       return patient || false;
+    },
+    isList() {
+      const { meta: {form: { param } } } = this.$route;
+
+      return this.patient === false && this.patientId !== param;
+    },
+    title() {
+      
     }
   },
   methods: {
