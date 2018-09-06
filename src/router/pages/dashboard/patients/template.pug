@@ -1,6 +1,6 @@
 div
   list(
-    v-if='patient === false'
+    v-if="patient === false && patientId !== 'novo'"
     :patients='patients'
   )
   patient-form(
