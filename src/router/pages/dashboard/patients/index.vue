@@ -46,6 +46,12 @@ export default {
       } else {
 
         patient = await createPatient.bind(this)(data);
+        this.$router.push({
+          name: 'Patients',
+          params: {
+            patientId: patient.id
+          }
+        });
 
       }
 
