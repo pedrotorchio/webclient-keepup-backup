@@ -3,27 +3,25 @@ import Vue from 'vue'
 import {
   Vuetify,
   VApp,
-  VNavigationDrawer,
-  VFooter,
+  VForm,
   VList,
   VBtn,
   VIcon,
-  VGrid,
-  VToolbar,
+  VTextField,
+  VSlider,
   transitions
-} from 'vuetify'
+} from "vuetify";
 import 'vuetify/src/stylus/app.styl'
 
 Vue.use(Vuetify, {
   components: {
     VApp,
-    VNavigationDrawer,
-    VFooter,
+    VSlider,
+    VForm,
     VList,
+    VTextField,
     VBtn,
     VIcon,
-    VGrid,
-    VToolbar,
     transitions
   },
   theme: {
