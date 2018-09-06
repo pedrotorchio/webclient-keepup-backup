@@ -2,6 +2,7 @@
 import { mapState } from 'vuex';
 import List from '@/components/patients/List';
 import PatientForm from '@/components/patients/Form';
+import { createPatient, updatePatient } from './procedures';
 
 export default {
   name: 'PatientsPage',
@@ -33,8 +34,25 @@ export default {
     },
   },
   methods: {
+    async submitProcedure(data) {
+      let patient;
+
+      if (this.patient) {
+        patient = await updatePatient.bind(this)(data);
+      
+      } else {
+
+      }
+
+      return patient;
+    },
     onUserFetched() {
       this.$store.dispatch('fetchAllPatients');
+    },
+    submit(data) {
+      this.submitProcedure(data)
+          .then(login => this.$router.push({ name: 'Patients' }))
+          .catch(login => null);
     }
   },
   watch: {
