@@ -2,8 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import { lazy } from '@/assets/js';
-import Patients from './pages/dashboard/patients';
-import Dashboard from './pages/dashboard';
 
 Vue.use(Router)
 
@@ -24,9 +22,10 @@ export default new Router({
       component: lazyTemplate("dashboard"),
       children: [
         {
-          path: "/pacientes",
-          name: "Pacientes",
-          component: lazyTemplate("dashboard/patients")
+          path: "/pacientes/:patientId?/:patientName?",
+          name: "Patients",
+          component: lazyTemplate("dashboard/patients"),
+          props: true
         }
       ]
     }

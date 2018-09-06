@@ -1,21 +1,37 @@
 <script>
 import { mapState } from 'vuex';
+import List from '@/components/patients/List';
+import PatientForm from '@/components/patients/Form';
 
 export default {
   name: 'PatientsPage',
-  computed: mapState({
-    patients: state => state.patients.patients,
+  components: {
+    List,
+    PatientForm
+  },
+  props: {
+    patientId: {
+      type: Number | Boolean,
+      default: false
+    }
+  },
+  computed: {
+    ...mapState({
+      patients: state => state.patients.patients
+    }),
+    patient() {
+      let patient = false;
+      
+      if (this.patientId) {
+        patient = this.patients.find(patient => patient.id == this.patientId)
+      }
 
-  }),
+      return patient || false;
+    }
+  },
   methods: {
     onUserFetched() {
       this.$store.dispatch('fetchAllPatients');
-    },
-    open(index) {
-      console.log(index);
-    },
-    remove(index) {
-      console.log(index);
     }
   },
   watch: {
