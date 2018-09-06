@@ -19,6 +19,17 @@ export default {
     },
     updated_at: ''
   }),
+  methods: {
+    changed(key) {
+      
+      const { first_name, last_name } = this.form;
+      const data = { ...this.form };
+
+      if (first_name && last_name) {
+        this.$emit('change', data);
+      }
+    }
+  },
   computed: {
     textFields() {
       return [
@@ -35,9 +46,15 @@ export default {
       ]
     }
   },
-  created() {
-    if (this.patient !== false) {
-      this.form = {...this.patient};
+  watch: {
+    patient: {
+      immediate: true,
+      deep: true,
+      handler(data) {
+        if (data.id) {
+          this.form = {...this.patient};
+        }
+      }
     }
   }
 }
@@ -54,6 +71,7 @@ export default {
       v-model='form[key]'
       :class="key"
       :label='label'
+      @input="changed(key)"
       required
     )
     v-slider(
@@ -64,6 +82,7 @@ export default {
       step="1"
       min="0"
       max="30"
+      @input="changed('schooling')"
       thumb-label="always"
     )
 
