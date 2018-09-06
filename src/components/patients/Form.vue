@@ -24,9 +24,9 @@ export default {
       return [
         [ 'first_name', 'Nome'],
         [ 'last_name' , 'Sobrenome'],
-        [ 'email' , 'Email'],
         [ 'home_companionship' , 'Companhia em casa'],
         [ 'occupational_field' , 'Ramo de ocupação'],
+        [ 'email' , 'Email'],
       ]
     },
     sliderFields() {
@@ -52,11 +52,12 @@ export default {
     v-text-field( 
       v-for="([key, label], i) in textFields"
       v-model='form[key]'
+      :class="key"
       :label='label'
       required
     )
     v-slider(
-      class='slider'
+      class='slider schooling'
       v-model="form['schooling']"
       label="Anos de escolaridade"
       inverse-label
@@ -77,7 +78,7 @@ export default {
         slot="activator"
         to='/pacientes'
       ) 
-        v-icon( 
+        v-icon(
           dark
         ) list
 
@@ -88,4 +89,17 @@ export default {
 .slider
   margin: 2em;
 
+form
+  display: flex;
+  flex-wrap: wrap;
+
+.v-input
+  flex: 1 1 auto;
+  min-width: 10em;
+
+.email
+  flex-basis: 100%;
+.last_name 
+  flex-grow: 3;
+  flex-basis: 20em;
 </style>
