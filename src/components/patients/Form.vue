@@ -65,6 +65,21 @@ export default {
       max="30"
       thumb-label="always"
     )
+
+    v-tooltip( top )
+      span Listar pacientes
+
+      v-btn(
+        fab dark large 
+        color="purple"
+        slot="activator"
+        to='/pacientes'
+      ) 
+        v-icon( 
+          dark
+        ) list
+
+    
       
 </template>
 <style lang="stylus" scoped>

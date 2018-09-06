@@ -8,6 +8,7 @@ import {
   VBtn,
   VIcon,
   VTextField,
+  VTooltip,
   VSlider,
   transitions
 } from "vuetify";
@@ -22,6 +23,7 @@ Vue.use(Vuetify, {
     VTextField,
     VBtn,
     VIcon,
+    VTooltip,
     transitions
   },
   theme: {
