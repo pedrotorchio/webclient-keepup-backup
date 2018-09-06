@@ -27,13 +27,7 @@ export default new Router({
           component: lazyTemplate("dashboard/patients"),
           props: true,
           meta: {
-            list: {
-              title: "Pacientes"
-            },
-            form: {
-              title: "Novo Paciente",
-              param: 'novo'
-            }
+            title: (route, vm) => route.params.patientId ? 'Paciente' : 'Pacientes'
           }
         }
       ]
