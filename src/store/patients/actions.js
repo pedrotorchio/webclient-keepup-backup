@@ -12,7 +12,7 @@ export default {
 
     return patients;
   },
-  async savePatient({ getters }, data) {
+  async createPatient({ getters }, data) {
   
     const id = getters.getUserId;
     
