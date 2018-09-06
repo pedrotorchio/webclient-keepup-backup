@@ -26,10 +26,11 @@ export default {
   
     const { id } = data;
     
-    const patient = await api.put(`patients/${id}`, data);
+    const response = await api.put(`patients/${id}`, data);
+    const index  = state.patients.findIndex( patient => patient.id == data.id);
     
-    state.patients.push(patient);
+    state.patients[index] = { ...response };
 
-    return patient;
+    return response;
   }
 }
