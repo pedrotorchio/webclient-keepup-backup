@@ -11,4 +11,9 @@ export default {
 </script>
 <style lang="stylus" src='@/styles/helper-classes.styl'></style>
 <style lang="stylus" src='@/styles/reset.styl'></style>
+<style lang="stylus" scoped>
+html, body, .application
+  height: 100%;
+  height: 100vh;
 
+</style>
