@@ -24,6 +24,21 @@
     "test": {
       "presets": [
         [ "env", { "targets": { "node": "current" } } ]
+      ],
+      "plugins": [
+        "dynamic-import-node",
+        "transform-es2015-modules-commonjs",
+        "istanbul",
+        "dynamic-import-node",
+        [
+          "transform-imports",
+          {
+            "vuetify": {
+              "transform": "vuetify/es5/components/${member}",
+              "preventFullImport": false
+            }
+          }
+        ]
       ]
     }
   }
