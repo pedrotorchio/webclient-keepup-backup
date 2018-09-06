@@ -69,9 +69,11 @@ export default {
     v-tooltip( top )
       span Listar pacientes
 
-      v-btn(
-        fab dark large 
-        color="purple"
+      v-btn.patients-btn(
+        fab dark large
+        fixed
+        bottom left 
+        color="info"
         slot="activator"
         to='/pacientes'
       ) 

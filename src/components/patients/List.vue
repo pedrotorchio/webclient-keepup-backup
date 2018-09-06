@@ -23,29 +23,41 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped>
-
-</style>
-
 <template lang="pug">
-  v-list(
-    :style=`{
-        height: patients.length * 100 + "px"
-      }`
-  )
-    v-list-tile.padded(
-      v-for="(patient, i) in patients"
-      :key="i"
-      @click.stop="open(i)"
+  div
+    v-list(
+      :style=`{
+          height: patients.length * 100 + "px"
+        }`
     )
-      v-list-tile-avatar
-        img
-
-      v-list-tile-content
-        v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
-
-      v-list-tile-action(
-        @click.stop="remove(i)"
+      v-list-tile.padded(
+        v-for="(patient, i) in patients"
+        :key="i"
+        @click.stop="open(i)"
       )
-        v-icon delete_forever
+        v-list-tile-avatar
+          img
+
+        v-list-tile-content
+          v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
+
+        v-list-tile-action(
+          @click.stop="remove(i)"
+        )
+          v-icon delete_forever
+
+    v-tooltip( top )
+      span Novo paciente
+
+      v-btn.patients-btn(
+        fab dark large 
+        fixed
+        bottom left
+        color="info"
+        slot="activator"
+        to='/pacientes/novo'
+      ) 
+        v-icon( 
+          dark
+        ) add
 </template>
