@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "node build/build.js",
-    "test": "jest",
+    "test": "export NODE_ENV=test && jest --watchAll --no-cache",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage"
