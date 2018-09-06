@@ -3,7 +3,8 @@ import { mapState } from 'vuex';
 import List from '@/components/patients/List';
 import PatientForm from '@/components/patients/Form';
 import { createPatient, updatePatient } from './procedures';
-
+import { debounce } from 'debounce';
+window.debounce = debounce;
 export default {
   name: 'PatientsPage',
   components: {
@@ -35,12 +36,16 @@ export default {
   },
   methods: {
     async submitProcedure(data) {
+      
       let patient;
 
       if (this.patient) {
+        data.id = this.patient.id;
         patient = await updatePatient.bind(this)(data);
-      
+        
       } else {
+
+        patient = await createPatient.bind(this)(data);
 
       }
 
@@ -49,11 +54,9 @@ export default {
     onUserFetched() {
       this.$store.dispatch('fetchAllPatients');
     },
-    submit(data) {
-      this.submitProcedure(data)
-          .then(login => this.$router.push({ name: 'Patients' }))
-          .catch(login => null);
-    }
+    submit: debounce(function(data) {
+      this.submitProcedure(data);
+    }, 1000),
   },
   watch: {
     userData: {
