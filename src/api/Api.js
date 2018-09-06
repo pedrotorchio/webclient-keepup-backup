@@ -56,8 +56,8 @@ export class Api {
     
     return this.axios.get(url);
   }
-  async put(resource, id, data) {
-    let url = urljoin(resource, id);
+  async put(resource, data) {
+    let url = resource;
 
     return this.axios.put(url, data);
   }
