@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import { lazy } from '@/assets/js';
+import { requireAuth } from './guard';
 
 Vue.use(Router)
 
@@ -14,7 +15,7 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "Landing",
+      name: "Login",
       component: lazyTemplate("login")
     },
     {
@@ -26,6 +27,7 @@ export default new Router({
           name: "Patients",
           component: lazyTemplate("dashboard/patients"),
           props: true,
+          beforeEnter: requireAuth,
           meta: {
             title: (route, vm) => route.params.patientId ? 'Paciente' : 'Pacientes'
           }
