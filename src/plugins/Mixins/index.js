@@ -4,7 +4,7 @@ import RootClass from './RootClass';
 
 Vue.use({
   install(Vue, options) {
-    Vue.mixin(HookLogger);
+    // Vue.mixin(HookLogger);
     Vue.mixin(RootClass);
   }
 });
