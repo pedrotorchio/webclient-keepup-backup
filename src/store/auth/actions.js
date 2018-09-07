@@ -4,7 +4,11 @@ export default {
   async signup({ commit }, data) {
     return api.signup(data);
   },
-  async login({ commit, dispatch }, { email, password }) {
+  async logout({ commit }) {
+    await api.get("auth/logout");
+    commit('reset');
+  },
+  async login({ commit }, { email, password }) {
     /**
      * 1. CHECKS CREDENTIALS
      * 2. SETS USER LOCAL SESSION
