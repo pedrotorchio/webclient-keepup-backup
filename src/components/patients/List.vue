@@ -52,6 +52,6 @@ export default {
         v-list-tile-action(
           @click.stop="remove(patient.id)"
         )
-          v-icon delete_forever
+          v-icon move_to_inbox
 
 </template>
