@@ -30,12 +30,11 @@ export default {
 
     return response;
   },
-  async deletePatient({ state, getters }, patientId) {
-    const id = getters.getUserId;
+  async deletePatient({ state, getters }, id) {
+    
+    await api.delete(`patients/${id}`);
 
-    await api.delete(`users/${id}/patients/${patientId}`);
-
-    const index = state.patients.findIndex(patient => patient.id == patientId);
+    const index = state.patients.findIndex(patient => patient.id == id);
 
     state.patients.splice(index, 1);
 
