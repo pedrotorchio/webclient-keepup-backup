@@ -1,4 +1,3 @@
-import * as urljoin from 'url-join';
 import axios from 'axios';
 import { responseInterceptor, responseErrorInterceptor } from './interceptors';
 
@@ -46,13 +45,8 @@ export class Api {
   async post(resource, data){
     return this.axios.post(resource, data);
   }
-  async get(resource, id) {
+  async get(resource) {
     let url = resource;
-    
-    if (id) {
-      id = ''+ id;
-      url = urljoin(url, id);
-    }
     
     return this.axios.get(url);
   }
@@ -61,9 +55,9 @@ export class Api {
 
     return this.axios.put(url, data);
   }
-  async delete(resource, id) {
+  async delete(resource) {
 
-    let url = urljoin(resource, id);
+    let url = resource;
 
     return this.axios.delete(url);
   }
