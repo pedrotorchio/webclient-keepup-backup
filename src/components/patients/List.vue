@@ -16,8 +16,8 @@ export default {
 
       this.$router.push(`/pacientes/${id}/${name}`);
     },
-    remove(index) {
-      console.log(index);
+    remove(id) {
+      this.$store.dispatch('deletePatient', id);
     }
   }
 }
@@ -41,7 +41,7 @@ export default {
       v-list-tile.padded(
         v-for="(patient, i) in patients"
         :key="i"
-        @click.stop="open(i)"
+        @click.stop="open(patient.id)"
       )
         v-list-tile-avatar
           img
@@ -50,7 +50,7 @@ export default {
           v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
 
         v-list-tile-action(
-          @click.stop="remove(i)"
+          @click.stop="remove(patient.id)"
         )
           v-icon delete_forever
 
