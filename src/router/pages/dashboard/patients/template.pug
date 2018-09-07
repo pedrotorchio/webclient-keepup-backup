@@ -8,3 +8,35 @@ div
     :patient='patient'
     @change="submit"
   )
+
+  div.actions
+    v-tooltip.floating-btn( top )
+        span Novo paciente
+
+        v-btn(
+          fab dark large 
+          fixed
+          bottom left
+          color="primary"
+          slot="activator"
+          to='/pacientes/novo'
+        ) 
+          v-icon( 
+            dark
+          ) add
+
+
+    v-tooltip.floating-btn( top )
+      span Pacientes Arquivados
+
+      v-btn(
+        fab dark large 
+        fixed
+        bottom left
+        color="info"
+        slot="activator"
+        to='/pacientes/novo'
+      ) 
+        v-icon( 
+          dark
+        ) inbox

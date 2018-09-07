@@ -13,5 +13,8 @@
     padding-left: 0;
     padding-right: 0;
 
-.patients-btn
-    left: 100px;
+  .actions
+    for i in (0..3)
+      .floating-btn:nth-of-type({i})
+        .v-btn
+          left: i * 100px !important;

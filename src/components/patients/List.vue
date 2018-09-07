@@ -54,34 +54,4 @@ export default {
         )
           v-icon delete_forever
 
-    v-tooltip( top )
-      span Novo paciente
-
-      v-btn.patients-btn(
-        fab dark large 
-        fixed
-        bottom left
-        color="primary"
-        slot="activator"
-        to='/pacientes/novo'
-      ) 
-        v-icon( 
-          dark
-        ) add
-
-
-    v-tooltip( top )
-      span Novo paciente
-
-      v-btn.archive-btn(
-        fab dark large 
-        fixed
-        bottom left
-        color="info"
-        slot="activator"
-        to='/pacientes/novo'
-      ) 
-        v-icon( 
-          dark
-        ) inbox
 </template>
