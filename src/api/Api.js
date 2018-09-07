@@ -18,9 +18,14 @@ export class Api {
     return this.token;
   }
   setAuthorizationToken(data) {
+    // {
     // hash
     // type
-    // expiration
+    // expiration } || false
+
+    if (data === false) {
+      return this.token = {};
+    }
 
     data.type  = data.type || 'Bearer';
     this.token = data;
