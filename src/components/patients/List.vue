@@ -7,8 +7,8 @@ export default {
     }
   },
   methods: {
-    open(index) {
-      let { first_name, last_name, id } = this.patients[index];
+    open(patient) {
+      let { first_name, last_name, id } = patient;
           last_name = last_name.split(' ').join('-');
 
       let name = `${first_name} ${last_name}`;
@@ -41,7 +41,7 @@ export default {
       v-list-tile.padded(
         v-for="(patient, i) in patients"
         :key="i"
-        @click.stop="open(patient.id)"
+        @click.stop="open(patient)"
       )
         v-list-tile-avatar
           img
