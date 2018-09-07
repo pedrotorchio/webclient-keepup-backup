@@ -1,4 +1,4 @@
-export default {
+export default () => ({
   user: {
     id: null,
     email: null,
@@ -6,4 +6,4 @@ export default {
     created: null,
     updated: null
   }
-}
+});
