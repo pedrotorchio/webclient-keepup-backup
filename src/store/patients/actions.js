@@ -2,7 +2,7 @@ import { api } from "@/api";
 
 export default {
   async fetchAllPatients({ state, getters }) {
-    const id = getters.getUserId;
+    const id = getters.getUserId();
 
     const patients = await api.get(`users/${id}/patients`);
 
@@ -12,7 +12,7 @@ export default {
     return patients;
   },
   async createPatient({ getters, state }, data) {
-    const id = getters.getUserId;
+    const id = getters.getUserId();
 
     const patient = await api.post(`users/${id}/patients`, data);
 
