@@ -29,7 +29,7 @@ export default new Router({
           children: [
             {
               path: "",
-              name: "Patient",
+              name: "Patients",
               component: lazyTemplate("dashboard/patients/list"),
               props: true,
               meta: {
@@ -37,12 +37,21 @@ export default new Router({
               }
             },
             {
-              path: ":patientId/:patientName?",
+              path: ":patientId(\\d+)/:patientName?",
               name: "Patient",
               component: lazyTemplate("dashboard/patients/form"),
               props: true,
               meta: {
-                title: (route, vm) => 'Paciente'
+                title: (route, vm) => 'Editar Paciente'
+              }
+            },
+            {
+              path: "novo",
+              name: "NewPatient",
+              component: lazyTemplate("dashboard/patients/form"),
+              props: true,
+              meta: {
+                title: (route, vm) => 'Novo Paciente'
               }
             },
           ]
