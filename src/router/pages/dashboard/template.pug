@@ -19,7 +19,9 @@ main
       aside#side-tabs
         ul
           li.info.font-weight-bold Pacientes
+
       section#workspace.padded
         h2.title(v-text="title")
-        router-view.inner-route
+        router-view.inner-route.dashboard-view
+
       section#warning-cards.padded
