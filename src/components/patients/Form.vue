@@ -1,5 +1,16 @@
 <script>
+const formData = () => ({
+      first_name: '',
+      last_name: '',
+
+      email: '',
+      home_companionship: '',
+      occupational_field: '',
+      schooling: ''
+});
+
 export default {
+  name: 'Form',
   props: {
     patient: {
       type: Object | Boolean,
@@ -8,27 +19,20 @@ export default {
   },
   data: () => ({
     isValid: false,
-    form: {
-      first_name: '',
-      last_name: '',
-
-      email: '',
-      home_companionship: '',
-      occupational_field: '',
-      schooling: ''
-    },
+    form: formData(),
     updated_at: ''
   }),
   methods: {
     changed(key) {
       
       const { first_name, last_name } = this.form;
-      const data = { ...this.form };
 
       if (first_name && last_name) {
+        
+        const data = { ...this.form };
         this.$emit('change', data);
       }
-    }
+    },
   },
   computed: {
     textFields() {
@@ -51,19 +55,18 @@ export default {
       immediate: true,
       deep: true,
       handler(data) {
-        if (data.id) {
+        if (data) {
           this.form = {...this.patient};
+        } else {
+          this.form = formData();
         }
       }
     }
   }
 }
 </script>
-
-<style lang="stylus" scoped></style>
-
 <template lang="pug">
-  v-form(
+v-form(
     v-model='isValid'
   )
     v-text-field( 
@@ -84,25 +87,7 @@ export default {
       max="30"
       @input="changed('schooling')"
       thumb-label="always"
-    )
-
-    v-tooltip( top )
-      span Listar pacientes
-
-      v-btn.patients-btn(
-        fab dark large
-        fixed
-        bottom left 
-        color="info"
-        slot="activator"
-        to='/pacientes'
-      ) 
-        v-icon(
-          dark
-        ) list
-
-    
-      
+    )  
 </template>
 <style lang="stylus" scoped>
 .slider
@@ -121,4 +106,5 @@ form
 .last_name 
   flex-grow: 3;
   flex-basis: 20em;
+
 </style>
