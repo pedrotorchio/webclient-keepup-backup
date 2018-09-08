@@ -5,14 +5,18 @@ export default {
     patients: {
       type: Array,
       required: true
+    },
+    icon: {
+      type: String,
+      default: 'move_to_inbox'
     }
   },
   methods: {
     open(patient) {
       this.$emit('open', patient);
     },
-    remove(id) {
-      this.$emit('remove', id);
+    action(id) {
+      this.$emit('action', id);
     }
   }
 }
@@ -44,8 +48,10 @@ export default {
         v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
 
       v-list-tile-action(
-        @click.stop="remove(patient.id)"
+        @click.stop="action(patient.id)"
       )
-        v-icon move_to_inbox
+        v-icon(
+          v-text='icon'
+        )
 
 </template>
