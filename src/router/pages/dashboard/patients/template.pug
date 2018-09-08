@@ -1,36 +1,24 @@
 div
   router-view(
-    @change="submit"
+    :actions.sync="childActs"
   )
 
   div.actions
-    v-tooltip.floating-btn( top )
-        span Novo paciente
+    v-tooltip.floating-btn( 
+      v-for="(action, i) in [...parentActs, ...childActs]"
+      top
+    )
+        span(v-text='action.tip')
 
         v-btn(
           fab dark large 
           fixed
           bottom left
-          color="primary"
+          :color="action.color"
           slot="activator"
-          to='/pacientes/novo'
+          :to='action.to'
         ) 
           v-icon( 
             dark
-          ) add
-
-
-    v-tooltip.floating-btn( top )
-      span Pacientes Arquivados
-
-      v-btn(
-        fab dark large 
-        fixed
-        bottom left
-        color="info"
-        slot="activator"
-        to='/pacientes/novo'
-      ) 
-        v-icon( 
-          dark
-        ) inbox
+            v-text='action.icon'
+          )
