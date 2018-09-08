@@ -5,11 +5,11 @@ export default {
   name: 'PatientsPage',
   data: () => ({
     parentActs: [
-      { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
       { tip: 'Lista de Pacientes', to: '/pacientes', color: 'info', icon: 'list' },
+      { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
       { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'warning', icon: 'inbox' },
     ],
-    childActs: []
+    childActs: ['teste']
   }),
   computed: {
     ...mapState({
@@ -25,7 +25,7 @@ export default {
           this.$store.dispatch('fetchAllPatients');
       }
     }
-  }
+  },
 }
 </script>
 <template lang="pug" src='./template.pug'></template>
