@@ -27,7 +27,7 @@ export default {
       deep: true,
       handler(data) {
         if (data)
-          this.$store.dispatch('fetchArchivedData')
+          this.$store.dispatch('fetchArchivedPatients')
               .then(patients => {
                 patients.forEach( patient => {
                   this.archive.push(patient);
