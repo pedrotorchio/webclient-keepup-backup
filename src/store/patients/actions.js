@@ -31,7 +31,6 @@ export default {
     return response;
   },
   async deletePatient({ state, getters }, id) {
-    
     await api.delete(`patients/${id}`);
 
     const index = state.patients.findIndex(patient => patient.id == id);
@@ -39,5 +38,11 @@ export default {
     state.patients.splice(index, 1);
 
     return true;
+  },
+  async fetchArchivedData({ state, getters }) {
+    const id = getters.getUserId();
+    let patients = await api.get(`users/${id}/patients/archive`);
+
+    return patients;
   }
 };
