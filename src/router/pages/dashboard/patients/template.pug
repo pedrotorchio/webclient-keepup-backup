@@ -1,9 +1,7 @@
 div
-  patient-form(
-    :patient='patient'
+  router-view(
     @change="submit"
   )
-  router-view
 
   div.actions
     v-tooltip.floating-btn( top )
