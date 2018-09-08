@@ -11,6 +11,10 @@ export default {
     patientId: {
       type: Number | Boolean,
       default: false
+    },
+    actions: {
+      type: Array,
+      default: []
     }
   },
   methods: {
@@ -54,6 +58,22 @@ export default {
 
       return patient || false;
     },
+  },
+  watch: {
+    patient: {
+      immediate: true,
+      deep: true,
+      handler(data) {
+        if (data) {
+          let name = `${data.first_name} ${data.last_name}`;
+          const tip = `Rotina ${name}`;
+          
+          this.$emit('update:actions', [
+            { tip: tip, to: '/rotinas', color: 'info', icon: 'event' },
+          ])
+        }
+      }
+    }
   },
 }
 </script>
