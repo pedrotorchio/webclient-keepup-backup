@@ -33,7 +33,7 @@ export default {
     list(
       :patients='patients'
       @open='open'
-      @remove='remove'
+      @action='remove'
     )
 
 </template>
