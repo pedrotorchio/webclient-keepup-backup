@@ -1,7 +1,12 @@
 <script>
+import { mapState } from 'vuex';
+
 export default {
   name: 'Page',
   computed: {
+    ...mapState({
+      userData: state => state.auth.user
+    }),
     title() {
       if (this.$route.meta && this.$route.meta.title) {
         const title = this.$route.meta.title;
@@ -17,3 +22,4 @@ export default {
   }
 }
 </script>
+
