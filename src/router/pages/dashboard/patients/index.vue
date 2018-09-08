@@ -1,44 +1,20 @@
 <script>
 import { mapState } from 'vuex';
-import List from '@/components/patients/List';
-import PatientForm from '@/components/patients/Form';
-import { createPatient, updatePatient } from './procedures';
-import { debounce } from 'debounce';
-window.debounce = debounce;
+
 export default {
   name: 'PatientsPage',
-  props: {
-    patientId: {
-      type: Number | Boolean,
-      default: false
-    }
-  },
-  methods: {
-    async submitProcedure(data) {
-      
-      let patient;
-
-      if (this.patient) {
-        data.id = this.patient.id;
-        patient = await updatePatient.bind(this)(data);
-        
-      } else {
-
-        patient = await createPatient.bind(this)(data);
-        this.$router.push({
-          name: 'Patients',
-          params: {
-            patientId: patient.id
-          }
-        });
-
-      }
-
-      return patient;
-    },
-    submit: debounce(function(data) {
-      this.submitProcedure(data);
-    }, 1000),
+  data: () => ({
+    parentActs: [
+      { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
+      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'info', icon: 'list' },
+      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'warning', icon: 'inbox' },
+    ],
+    childActs: []
+  }),
+  computed: {
+    ...mapState({
+      userData: state => state.auth.user
+    })
   },
   watch: {
     userData: {

@@ -1,10 +1,9 @@
 <script>
 import { mapState } from 'vuex';
+import { createPatient, updatePatient } from './procedures';
+import { debounce } from 'debounce';
 
-export default {
-  data: () => ({
-    isValid: false,
-    form: {
+const formData = () => ({
       first_name: '',
       last_name: '',
 
@@ -12,7 +11,19 @@ export default {
       home_companionship: '',
       occupational_field: '',
       schooling: ''
-    },
+});
+
+export default {
+  name: 'Form',
+  props: {
+    patientId: {
+      type: Number | Boolean,
+      default: false
+    }
+  },
+  data: () => ({
+    isValid: false,
+    form: formData(),
     updated_at: ''
   }),
   methods: {
@@ -22,9 +33,34 @@ export default {
       const data = { ...this.form };
 
       if (first_name && last_name) {
-        this.$emit('change', data);
+        this.submit(data);
       }
-    }
+    },
+    submit: debounce(function(data) {
+      this.submitProcedure(data);
+    }, 1000),
+    async submitProcedure(data) {
+      
+      let patient;
+
+      if (this.patient) {
+        data.id = this.patient.id;
+        patient = await updatePatient.bind(this)(data);
+        
+      } else {
+
+        patient = await createPatient.bind(this)(data);
+        this.$router.push({
+          name: 'Patients',
+          params: {
+            patientId: patient.id
+          }
+        });
+
+      }
+
+      return patient;
+    },
   },
   computed: {
     ...mapState({
@@ -33,7 +69,7 @@ export default {
     patient() {
       let patient = false;
       
-      if (this.patientId) {
+      if (this.patientId !== 'novo') {
         patient = this.patients.find(patient => patient.id == this.patientId)
       }
 
@@ -59,8 +95,10 @@ export default {
       immediate: true,
       deep: true,
       handler(data) {
-        if (data.id) {
+        if (data) {
           this.form = {...this.patient};
+        } else {
+          this.form = formData();
         }
       }
     }
@@ -93,24 +131,7 @@ export default {
       @input="changed('schooling')"
       thumb-label="always"
     )
-
-    v-tooltip( top )
-      span Listar pacientes
-
-      v-btn.patients-btn(
-        fab dark large
-        fixed
-        bottom left 
-        color="info"
-        slot="activator"
-        to='/pacientes'
-      ) 
-        v-icon(
-          dark
-        ) list
-
-    
-      
+ 
 </template>
 <style lang="stylus" scoped>
 .slider
