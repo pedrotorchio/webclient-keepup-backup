@@ -9,7 +9,7 @@ export default {
       { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
       { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'warning', icon: 'inbox' },
     ],
-    childActs: ['teste']
+    childActs: []
   }),
   computed: {
     ...mapState({
