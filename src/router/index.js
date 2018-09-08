@@ -36,15 +36,15 @@ export default new Router({
                 title: (route, vm) => 'Pacientes'
               }
             },
-            // {
-            //   path: ":patientId/:patientName?",
-            //   name: "Patient",
-            //   component: lazyTemplate("dashboard/patients/form"),
-            //   props: true,
-            //   meta: {
-            //     title: (route, vm) => `Paciente ${vm.patient}`
-            //   }
-            // },
+            {
+              path: ":patientId/:patientName?",
+              name: "Patient",
+              component: lazyTemplate("dashboard/patients/form"),
+              props: true,
+              meta: {
+                title: (route, vm) => 'Paciente'
+              }
+            },
           ]
         },
 
