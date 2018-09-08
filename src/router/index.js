@@ -54,6 +54,15 @@ export default new Router({
                 title: (route, vm) => 'Novo Paciente'
               }
             },
+            {
+              path: "arquivo",
+              name: "PatientArchive",
+              component: lazyTemplate("dashboard/patients/archive"),
+              props: true,
+              meta: {
+                title: (route, vm) => 'Arquivo de Pacientes'
+              }
+            },
           ]
         },
 
