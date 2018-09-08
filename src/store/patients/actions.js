@@ -39,7 +39,7 @@ export default {
 
     return true;
   },
-  async fetchArchivedData({ state, getters }) {
+  async fetchArchivedPatients({ state, getters }) {
     const id = getters.getUserId();
     let patients = await api.get(`users/${id}/patients/archive`);
 
