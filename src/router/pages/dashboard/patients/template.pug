@@ -1,13 +1,9 @@
 div
-  list(
-    v-if="isList"
-    :patients='patients'
-  )
   patient-form(
-    v-else
     :patient='patient'
     @change="submit"
   )
+  router-view
 
   div.actions
     v-tooltip.floating-btn( top )

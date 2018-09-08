@@ -57,9 +57,6 @@ export default {
 
       return patient;
     },
-    onUserFetched() {
-      this.$store.dispatch('fetchAllPatients');
-    },
     submit: debounce(function(data) {
       this.submitProcedure(data);
     }, 1000),
@@ -69,9 +66,8 @@ export default {
       immediate: true,
       deep: true,
       handler(data) {
-        if (data.id) {
-          this.onUserFetched();
-        }
+        if (data.id)
+          this.$store.dispatch('fetchAllPatients');
       }
     }
   }

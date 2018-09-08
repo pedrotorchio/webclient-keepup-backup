@@ -23,15 +23,31 @@ export default new Router({
       component: lazyTemplate("dashboard"),
       children: [
         {
-          path: "/pacientes/:patientId?/:patientName?",
-          name: "Patients",
+          path: "/pacientes",
           component: lazyTemplate("dashboard/patients"),
-          props: true,
           beforeEnter: requireAuth,
-          meta: {
-            title: (route, vm) => route.params.patientId ? 'Paciente' : 'Pacientes'
-          }
-        }
+          children: [
+            {
+              path: "",
+              name: "Patient",
+              component: lazyTemplate("dashboard/patients/list"),
+              props: true,
+              meta: {
+                title: (route, vm) => 'Pacientes'
+              }
+            },
+            // {
+            //   path: ":patientId/:patientName?",
+            //   name: "Patient",
+            //   component: lazyTemplate("dashboard/patients/form"),
+            //   props: true,
+            //   meta: {
+            //     title: (route, vm) => `Paciente ${vm.patient}`
+            //   }
+            // },
+          ]
+        },
+
       ]
     }
   ]
