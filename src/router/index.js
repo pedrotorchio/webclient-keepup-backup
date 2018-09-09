@@ -71,9 +71,9 @@ export default new Router({
           beforeEnter: requireAuth,
           children: [
             {
-              path: "",
+              path: "paciente/:patientId(\\d+)",
               name: "RoutinesList",
-              component: lazyTemplate("dashboard/routines"),
+              component: lazyTemplate("dashboard/routines/list"),
               props: true,
               meta: {
                 title: (route, vm) => "Rotinas"

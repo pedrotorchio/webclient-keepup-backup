@@ -55,7 +55,7 @@ export default {
           const tip = `Rotina de ${name}`;
           
           this.$emit('update:actions', [
-            { tip: tip, to: '/rotinas', color: 'info', icon: 'event' },
+            { tip: tip, to: `/rotinas/paciente/${data.id}`, color: 'info', icon: 'event' },
           ])
         }
       }
