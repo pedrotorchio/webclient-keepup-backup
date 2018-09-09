@@ -1,7 +1,7 @@
 import { api } from "@/api";
 
 export default {
-  async fetchAllPatients({ state, getters }) {
+  async fetchAllPatients({ state }) {
 
     const patients = await api.get(`patients`);
 
@@ -29,7 +29,8 @@ export default {
 
     return response;
   },
-  async deletePatient({ state, getters }, id) {
+  async deletePatient({ state }, id) {
+    
     await api.delete(`patients/${id}`);
 
     const index = state.patients.findIndex(patient => patient.id == id);
@@ -38,9 +39,9 @@ export default {
 
     return true;
   },
-  async fetchArchivedPatients({ state, getters }) {
-    const id = getters.getUserId();
-    let patients = await api.get(`users/${id}/patients/archive`);
+  async fetchArchivedPatients({ getters }) {
+    
+    let patients = await api.get(`patients/archive`);
 
     return patients;
   }
