@@ -33,7 +33,7 @@ export default new Router({
               component: lazyTemplate("dashboard/patients/list"),
               props: true,
               meta: {
-                title: (route, vm) => 'Pacientes'
+                title: (route, vm) => "Pacientes"
               }
             },
             {
@@ -42,7 +42,7 @@ export default new Router({
               component: lazyTemplate("dashboard/patients/form"),
               props: true,
               meta: {
-                title: (route, vm) => 'Editar Paciente'
+                title: (route, vm) => "Editar Paciente"
               }
             },
             {
@@ -51,7 +51,7 @@ export default new Router({
               component: lazyTemplate("dashboard/patients/form"),
               props: true,
               meta: {
-                title: (route, vm) => 'Novo Paciente'
+                title: (route, vm) => "Novo Paciente"
               }
             },
             {
@@ -60,12 +60,27 @@ export default new Router({
               component: lazyTemplate("dashboard/patients/archive"),
               props: true,
               meta: {
-                title: (route, vm) => 'Arquivo de Pacientes'
+                title: (route, vm) => "Arquivo de Pacientes"
               }
-            },
+            }
           ]
         },
-
+        {
+          path: "/rotinas",
+          component: lazyTemplate("dashboard/routines"),
+          beforeEnter: requireAuth,
+          children: [
+            {
+              path: "",
+              name: "RoutinesList",
+              component: lazyTemplate("dashboard/routines"),
+              props: true,
+              meta: {
+                title: (route, vm) => "Rotinas"
+              }
+            }
+          ]
+        }
       ]
     }
   ]
