@@ -4,16 +4,14 @@ import { createPatient, updatePatient } from './procedures';
 import { debounce } from 'debounce';
 import PatientForm from '@/components/patients/Form';
 import Route from '@/router/pages/Route';
+import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
 
 export default {
   extends: Route,
+  mixins: [ Patient ],
   name: 'Form',
   components: { PatientForm },
   props: {
-    patientId: {
-      type: Number | Boolean,
-      default: false
-    },
     actions: {
       type: Array,
       default: []
@@ -45,20 +43,6 @@ export default {
       }
 
       return patient;
-    },
-  },
-  computed: {
-    ...mapState({
-      patients: state => state.patients.patients,
-    }),
-    patient() {
-      let patient = false;
-      
-      if (this.patientId !== 'novo') {
-        patient = this.patients.find(patient => patient.id == this.patientId)
-      }
-
-      return patient || false;
     },
   },
   watch: {
