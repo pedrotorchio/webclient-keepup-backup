@@ -2,18 +2,18 @@
 
 export default {
   props: {
-    patients: {
+    array: {
       type: Array,
       required: true
     },
     icon: {
-      type: String,
+      type: String | Boolean,
       default: 'move_to_inbox'
     }
   },
   methods: {
-    open(patient) {
-      this.$emit('open', patient);
+    open(item) {
+      this.$emit('open', item);
     },
     action(id) {
       this.$emit('action', id);

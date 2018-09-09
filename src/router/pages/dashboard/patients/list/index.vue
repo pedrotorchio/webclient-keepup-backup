@@ -33,7 +33,7 @@ export default {
 <template lang="pug">
   div
     list(
-      :patients='patients'
+      :array='patients'
       @open='open'
       @action='remove'
     )

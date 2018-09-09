@@ -3,6 +3,11 @@ import List from '@/components/generic/list';
 
 export default {
   extends: List,
+  computed: {
+    patients() {
+      return this.array;
+    }
+  }
 }
 </script>
 <style lang="stylus" src="@/components/generic/list/style.styl" scoped></style>
