@@ -1,11 +1,34 @@
 <script>
-import List from '@/components/generic/list';
 
 export default {
-  extends: List,
+  props: {
+    patients: {
+      type: Array,
+      required: true
+    },
+    icon: {
+      type: String,
+      default: 'move_to_inbox'
+    }
+  },
+  methods: {
+    open(patient) {
+      this.$emit('open', patient);
+    },
+    action(id) {
+      this.$emit('action', id);
+    }
+  }
 }
 </script>
-<style lang="stylus" src="@/components/generic/list/style.styl" scoped></style>
+<style lang="stylus" scoped>
+.v-list
+  background: transparent !important;
+
+.v-list-tile:last-child
+  margin-bottom: 100px;
+
+</style>
 
 <template lang="pug">
   v-list(
