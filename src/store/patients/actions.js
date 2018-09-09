@@ -2,9 +2,8 @@ import { api } from "@/api";
 
 export default {
   async fetchAllPatients({ state, getters }) {
-    const id = getters.getUserId();
-
-    const patients = await api.get(`users/${id}/patients`);
+    
+    const patients = await api.get(`patients`);
 
     state.patients.length = 0;
     patients.forEach(patient => state.patients.push(patient));
