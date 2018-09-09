@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "debounce": "^1.2.0",
+    "moment": "^2.22.2",
     "reset-css": "^4.0.1",
     "url-join": "^4.0.0",
     "vue": "^2.5.2",
