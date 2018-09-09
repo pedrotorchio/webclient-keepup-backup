@@ -66,7 +66,7 @@ export default {
       handler(data) {
         if (data) {
           let name = `${data.first_name} ${data.last_name}`;
-          const tip = `Rotina ${name}`;
+          const tip = `Rotina de ${name}`;
           
           this.$emit('update:actions', [
             { tip: tip, to: '/rotinas', color: 'info', icon: 'event' },
@@ -75,6 +75,9 @@ export default {
       }
     }
   },
+  beforeDestroy() {
+    this.$emit('update:actions', []);
+  }
 }
 </script>
 
