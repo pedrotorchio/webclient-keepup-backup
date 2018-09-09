@@ -1,57 +1,41 @@
 <script>
+import List from '@/components/generic/list';
+import moment from 'moment';
 
 export default {
-  props: {
-    patients: {
-      type: Array,
-      required: true
-    },
-    icon: {
-      type: String,
-      default: 'move_to_inbox'
+  extends: List,
+  computed: {
+    routines() {
+      return this.array;
     }
   },
   methods: {
-    open(patient) {
-      this.$emit('open', patient);
-    },
-    action(id) {
-      this.$emit('action', id);
+    getDescriptor(routine) {
+      const { title, date } = routine;
+      
+      const dateObj = moment(date);
+      
+      const dateDescriptor = dateObj.format('dddd, DD/MMM/YY');
+      
+      return `${title} - ${dateDescriptor}`;
     }
   }
 }
 </script>
-<style lang="stylus" scoped>
-.v-list
-  background: transparent !important;
-
-.v-list-tile:last-child
-  margin-bottom: 100px;
-
-</style>
 
 <template lang="pug">
   v-list(
     :style=`{
-        height: patients.length * 100 + "px"
+        height: routines.length * 100 + "px"
       }`
   )
     v-list-tile.padded(
-      v-for="(patient, i) in patients"
+      v-for="(routine, i) in routines"
       :key="i"
-      @click.stop="open(patient)"
+      @click.stop="open(routine)"
     )
-      v-list-tile-avatar
-        img
-
       v-list-tile-content
-        v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
-
-      v-list-tile-action(
-        @click.stop="action(patient.id)"
-      )
-        v-icon(
-          v-text='icon'
-        )
+        v-list-tile-title(v-text='getDescriptor(routine)')
 
 </template>
+<style lang="stylus" src="@/components/generic/list/style.styl" scoped></style>
