@@ -3,8 +3,10 @@ import { mapState } from 'vuex';
 import { createPatient, updatePatient } from './procedures';
 import { debounce } from 'debounce';
 import PatientForm from '@/components/patients/Form';
+import Route from '@/router/pages/Route';
 
 export default {
+  extends: Route,
   name: 'Form',
   components: { PatientForm },
   props: {

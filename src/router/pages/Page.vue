@@ -1,5 +1,4 @@
 <script>
-import { mapState } from 'vuex';
 import Route from './Route';
 
 export default {

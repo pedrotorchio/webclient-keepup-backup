@@ -1,8 +1,10 @@
 <script>
 import { mapState } from 'vuex';
+import Route from '@/router/pages/Route';
 
 export default {
-  name: 'PatientsPage',
+  extends: Route,
+  name: 'Patients',
   data: () => ({
     parentActs: [
       { tip: 'Lista de Pacientes', to: '/pacientes', color: 'info', icon: 'list' },

@@ -1,8 +1,10 @@
 <script>
 import { mapState } from 'vuex';
 import List from '@/components/patients/List';
+import Route from '@/router/pages/Route';
 
 export default {
+  extends: Route,
   name: 'Arquivo',
   components: {
     List
