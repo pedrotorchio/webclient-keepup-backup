@@ -11,7 +11,6 @@ export default {
       { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
       { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'warning', icon: 'inbox' },
     ],
-    viewActions: [],
   }),
   computed: {
     ...mapState({
@@ -30,5 +29,25 @@ export default {
   },
 }
 </script>
-<template lang="pug" src='./template.pug'></template>
-<style lang="stylus" src='./styles.styl'></style>
+<template lang="pug">
+div
+  router-view(
+    :actions.sync="viewActions"
+  )
+</template>
+<style lang="stylus">
+.Patients
+  height: 100%;
+  overflow-y: auto;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .v-list  
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+  .v-list-tile
+    padding-left: 0;
+    padding-right: 0;
+</style>
