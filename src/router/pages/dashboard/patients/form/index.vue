@@ -54,15 +54,18 @@ export default {
           let name = `${data.first_name} ${data.last_name}`;
           const tip = `Rotina de ${name}`;
           
-          this.$emit('update:actions', [
-            { tip: tip, to: `/rotinas/paciente/${data.id}`, color: 'info', icon: 'event' },
-          ])
+          this.rootActions.push({ 
+            tip: tip, 
+            to: `/rotinas/paciente/${data.id}`, 
+            color: 'info', 
+            icon: 'event' 
+          });
         }
       }
     }
   },
   beforeDestroy() {
-    this.$emit('update:actions', []);
+    this.updateActions([]);
   }
 }
 </script>
