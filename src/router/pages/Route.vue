@@ -14,8 +14,12 @@ export default {
     viewActions: []
   }),
   methods: {
-    updateActions() {
-      this.$emit('update:actions', this.allActions);
+    updateActions(data) {
+      if (typeof data === 'undefined') {
+        data = this.allActions
+      }
+
+      this.$emit('update:actions', data);
     }
   },
   computed: {
