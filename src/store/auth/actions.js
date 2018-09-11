@@ -25,6 +25,22 @@ export default {
 
     return login;
   },
+  async getUserData({ getters, dispatch }) {
+    const {
+      hasUserData,
+      getUserData
+    } = getters;
+
+    let user;
+
+    if (!hasUserData()) {
+      user = await dispatch("fetchUserData");
+    } else {
+      user = getUserData();
+    }
+
+    return user;
+  },
   async fetchUserData({ commit }) {
     const user = await api.get("auth/user");
     commit('setUserData', user);
@@ -40,15 +56,15 @@ export default {
      */
 
     const { 
-      hasSession, 
+      hasSessionData, 
       hasUserData,
-      getUserSession
-
+      getUserSession,
+      getUserData
     } = getters;
 
     let user;
     
-    if (hasSession()) {
+    if (hasSessionData()) {
       
       const token = api.getTokenData();
       const sessn = getUserSession();
@@ -56,12 +72,9 @@ export default {
       if (sessn.hash !== token.hash) {
         api.setAuthorizationToken(sessn);
       }
-      
-      if (!hasUserData()) {
 
-        user = await dispatch("fetchUserData");
-      }
-      
+      user = await dispatch('getUserData');
+
     }
     
     return Boolean(user);
