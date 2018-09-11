@@ -1,8 +1,10 @@
 <script>
 import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
 import List from '@/components/routines/List';
+import Route from '@/router/pages/Route';
 
 export default {
+  extends: Route,
   mixins: [ Patient ],
   components: {
     List
