@@ -78,6 +78,15 @@ export default new Router({
               meta: {
                 title: (route, vm) => "Rotinas"
               }
+            },
+            {
+              path: "paciente/:patientId(\\d+)/nova",
+              name: "RoutinesNew",
+              component: lazyTemplate("dashboard/routines/form"),
+              props: true,
+              meta: {
+                title: (route, vm) => "Novo Dia"
+              }
             }
           ]
         }
