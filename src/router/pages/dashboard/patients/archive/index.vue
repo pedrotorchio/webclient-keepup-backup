@@ -44,7 +44,7 @@ export default {
 <template lang="pug">
 div
   list(
-      :patients='archive'
+      :array='archive'
       icon='how_to_vote'
 
       @open='open'
