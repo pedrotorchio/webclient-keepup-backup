@@ -1,7 +1,7 @@
 import { localSessionKey } from './config';
 
 export default {
-  hasSession: ( state, getters ) => () => {
+  hasSessionData: ( state, getters ) => () => {
     const { getUserSession } = getters;
     const session = getUserSession();
 
