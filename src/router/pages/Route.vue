@@ -3,10 +3,23 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Route',
+  
+  data: () => ({
+    rootActions: [],
+    viewActions: []
+  }),
+  methods: {
+    updateActions() {
+      this.$emit('update:actions', this.allActions);
+    }
+  },
   computed: {
     ...mapState({
       userData: state => state.auth.user
     }),
+    allActions() {
+      return [ ...this.rootActions, ...this.viewActions ];
+    },
     title() {
       if (this.$route.meta && this.$route.meta.title) {
         const title = this.$route.meta.title;
@@ -16,6 +29,22 @@ export default {
 
       return false;
     }
+  },
+  watch: {
+    viewActions: {
+      immediate: true,
+      handler(array) {
+        this.updateActions();
+      
+      }
+    },
+    rootActions: {
+      immediate: true,
+      handler(array) {
+        this.updateActions();
+        
+      }
+    },
   }
 }
 </script>

@@ -1,24 +1,4 @@
 div
   router-view(
-    :actions.sync="childActs"
+    :actions.sync="viewActions"
   )
-
-  div.actions
-    v-tooltip.floating-btn( 
-      v-for="(action, i) in [...parentActs, ...childActs]"
-      top
-    )
-        span(v-text='action.tip')
-
-        v-btn(
-          fab dark large 
-          fixed
-          bottom left
-          :color="action.color"
-          slot="activator"
-          :to='action.to'
-        ) 
-          v-icon( 
-            dark
-            v-text='action.icon'
-          )

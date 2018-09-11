@@ -6,12 +6,12 @@ export default {
   extends: Route,
   name: 'Patients',
   data: () => ({
-    parentActs: [
+    rootActions: [
       { tip: 'Lista de Pacientes', to: '/pacientes', color: 'info', icon: 'list' },
       { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
       { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'warning', icon: 'inbox' },
     ],
-    childActs: []
+    viewActions: [],
   }),
   computed: {
     ...mapState({
