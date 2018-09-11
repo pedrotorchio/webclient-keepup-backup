@@ -35,13 +35,8 @@ div
     :actions.sync="viewActions"
   )
 </template>
-<style lang="stylus">
+<style lang="stylus" scoped>
 .Patients
-  height: 100%;
-  overflow-y: auto;
-  max-width: 600px;
-  margin: 0 auto;
-
   .v-list  
     display: flex;
     flex-direction: column;
@@ -50,4 +45,5 @@ div
   .v-list-tile
     padding-left: 0;
     padding-right: 0;
+
 </style>
