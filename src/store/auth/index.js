@@ -15,8 +15,9 @@ export default {
 };
 
 Vue.mixin({
-  computed: mapState({
-    hasSession: state => Boolean(state.auth.user),
-    userData: state => state.auth.user
-  })
+  computed: {
+    ...mapState({
+      userData: state => state.auth.user
+    })
+  }
 });
