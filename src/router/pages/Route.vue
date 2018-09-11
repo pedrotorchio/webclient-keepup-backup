@@ -3,7 +3,12 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'Route',
-  
+  props: {
+    actions: {
+      type: Array,
+      default: []
+    }
+  },
   data: () => ({
     rootActions: [],
     viewActions: []
