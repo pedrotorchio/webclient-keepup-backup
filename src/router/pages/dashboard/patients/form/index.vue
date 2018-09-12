@@ -18,7 +18,7 @@ export default {
 
       if (this.patient) {
         data.id = this.patient.id;
-        patient = await updatePatient.bind(this)(data);
+      patient = await updatePatient.bind(this)(data);
         
       } else {
 
@@ -56,7 +56,7 @@ export default {
 
 <template lang="pug">
   patient-form(
-    :patient='patient'
+    :model='patient'
     @change='submit'
   )
  
