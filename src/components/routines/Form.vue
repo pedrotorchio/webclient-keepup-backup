@@ -98,7 +98,7 @@ v-form(
       prepend-icon="event" )
       
     v-date-picker( 
-      class='date'
+      class='input-date'
       v-model="form.date" 
       :show-current="now"
       @input="dateChanged"
@@ -107,7 +107,7 @@ v-form(
   v-text-field( 
     v-for="([key, label], i) in textFields"
     v-model='form[key]'
-    :class="key"
+    :class="`input-${key}`"
     class="input"
     :label='label'
     @input="changed(key)"

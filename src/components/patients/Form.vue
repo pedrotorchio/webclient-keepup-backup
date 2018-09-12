@@ -72,13 +72,13 @@ v-form(
     v-text-field( 
       v-for="([key, label], i) in textFields"
       v-model='form[key]'
-      :class="key"
+      :class="`input-${key}`"
       :label='label'
       @input="changed(key)"
       required
     )
     v-slider(
-      class='slider schooling'
+      class='slider input-schooling'
       v-model="form['schooling']"
       label="Anos de escolaridade"
       inverse-label
