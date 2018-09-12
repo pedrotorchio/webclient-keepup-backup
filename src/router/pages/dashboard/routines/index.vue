@@ -15,7 +15,7 @@ export default {
         this.rootActions.push({ 
           tip: 'Lista de Rotinas', 
           to: { name: 'RoutinesList', params: { pacientId: id } }, 
-          color: 'info', 
+          color: 'secondary', 
           icon: 'list' 
         });
         this.rootActions.push({ 
