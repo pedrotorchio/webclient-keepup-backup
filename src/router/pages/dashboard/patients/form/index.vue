@@ -1,26 +1,17 @@
 <script>
 import { mapState } from 'vuex';
 import { createPatient, updatePatient } from './procedures';
-import { debounce } from 'debounce';
+import FormView from '@/components/generic/form/FormView.mixin';
 import PatientForm from '@/components/patients/Form';
 import Route from '@/router/pages/Route';
 import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
 
 export default {
   extends: Route,
-  mixins: [ Patient ],
+  mixins: [ Patient, FormView ],
   name: 'Form',
   components: { PatientForm },
-  props: {
-    actions: {
-      type: Array,
-      default: []
-    }
-  },
   methods: {
-    submit: debounce(function(data) {
-      this.submitProcedure(data);
-    }, 1000),
     async submitProcedure(data) {
       
       let patient;
@@ -44,29 +35,22 @@ export default {
 
       return patient;
     },
-  },
-  watch: {
-    patient: {
-      immediate: true,
-      deep: true,
-      handler(data) {
-        if (data) {
-          let name = `${data.first_name} ${data.last_name}`;
-          const tip = `Rotina de ${name}`;
-          
-          this.rootActions.push({ 
-            tip: tip, 
-            to: `/rotinas/paciente/${data.id}`, 
-            color: 'info', 
-            icon: 'event' 
-          });
-        }
+
+    watchPatient(data) {
+      if (data) {
+        let name = `${data.first_name} ${data.last_name}`;
+        const tip = `Rotina de ${name}`;
+        
+        this.rootActions.push({ 
+          tip: tip, 
+          to: `/rotinas/paciente/${data.id}`, 
+          color: 'info', 
+          icon: 'event' 
+        });
       }
     }
   },
-  beforeDestroy() {
-    this.updateActions([]);
-  }
+  
 }
 </script>
 
