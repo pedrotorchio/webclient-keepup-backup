@@ -89,17 +89,11 @@ v-form(
       thumb-label="always"
     )  
 </template>
+<style lang="stylus" src='@/components/generic/form/styles.styl' scoped></style>
+
 <style lang="stylus" scoped>
 .slider
   margin: 2em;
-
-form
-  display: flex;
-  flex-wrap: wrap;
-
-.v-input
-  flex: 1 1 auto;
-  min-width: 10em;
 
 .email
   flex-basis: 100%;
