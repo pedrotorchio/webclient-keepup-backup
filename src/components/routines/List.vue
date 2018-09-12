@@ -37,5 +37,11 @@ export default {
       v-list-tile-content
         v-list-tile-title(v-text='getDescriptor(routine)')
 
+      v-list-tile-action(
+        @click.stop="action(routine.id)"
+      )
+        v-icon(
+          v-text='icon'
+        )
 </template>
 <style lang="stylus" src="@/components/generic/list/style.styl" scoped></style>
