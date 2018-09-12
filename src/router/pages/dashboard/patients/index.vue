@@ -7,9 +7,9 @@ export default {
   name: 'Patients',
   data: () => ({
     rootActions: [
-      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'info', icon: 'list' },
       { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
-      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'warning', icon: 'inbox' },
+      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'secondary', icon: 'list' },
+      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'secondary', icon: 'inbox' },
     ],
   }),
   computed: {
