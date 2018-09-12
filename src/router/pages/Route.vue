@@ -6,7 +6,7 @@ export default {
   props: {
     actions: {
       type: Array,
-      default: []
+      default: ()=>([])
     }
   },
   data: () => ({
@@ -54,6 +54,9 @@ export default {
         
       }
     },
+  },
+  beforeDestroy() {
+    this.updateActions([]);
   }
 }
 </script>
