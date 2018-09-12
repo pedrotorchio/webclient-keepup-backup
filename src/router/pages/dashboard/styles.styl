@@ -91,10 +91,11 @@ header
   display: flex;
   flex-direction: column;
 
-  .title
-    margin: 2em;
-    text-align: center;
-    flex: 0 0 auto;
+  h1, h2, h3, h4, h5
+    &.title
+      margin: 2em;
+      text-align: center;
+      flex: 0 0 auto;
   
   .inner-route
     flex: 0 1 100%;
