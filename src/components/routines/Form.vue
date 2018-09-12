@@ -1,29 +1,25 @@
 <script>
 import moment from 'moment';
+import Form from '@/components/generic/form/Form.mixin';
 
-const formData = () => ({
-      title: '',
-      comment: '',
-      date: now()
-});
-function now() {
-  return moment().format('YYYY-MM-DD');
-}
 const dateFormats = {
   timestamp: 'YYYY-MM-DD',
   regular: 'DD/MM/YYYY'
 };
+function now() {
+  return moment().format(dateFormats.regular);
+}
+
 export default {
   name: 'Form',
-  props: {
-    patient: {
-      type: Object | Boolean,
-      default: false
-    }
-  },
+  extends: Form,
   data: () => ({
     isValid: false,
-    form: formData(),
+    form: {
+      title: '',
+      comment: '',
+      date: now()
+    },
     updated_at: '',
     dateModal: false
   }),
@@ -33,9 +29,9 @@ export default {
     },
     changed(key) {
       
-      const { date } = this.form;
+      const { date, title } = this.form;
 
-      if (date) {
+      if (date && title) {
 
         const data = { ...this.form };
         this.$emit('change', data);
@@ -43,17 +39,17 @@ export default {
     },
   },
   computed: {
-    dateModel: {
+    dateTimestamp: {
       get() {
-        return moment(this.form.date, dateFormats.timestamp).format(dateFormats.regular);
+        return moment(this.form.date, dateFormats.regular).format(dateFormats.timestamp);
       },
       set(value) {
-        this.form.date = moment(value, dateFormats.regular).format(dateFormats.timestamp);
+        this.form.date = moment(value, dateFormats.timestamp).format(dateFormats.regular);
       }
     },
     textFields() {
       return [
-        [ 'title', 'Título'],
+        [ 'title', 'Título*'],
         [ 'comment' , 'Comentário'],
       ]
     },
@@ -64,19 +60,6 @@ export default {
     },
     now
   },
-  watch: {
-    patient: {
-      immediate: true,
-      deep: true,
-      handler(data) {
-        if (data) {
-          this.form = {...this.patient};
-        } else {
-          this.form = formData();
-        }
-      }
-    }
-  }
 }
 </script>
 <template lang="pug">
@@ -93,13 +76,13 @@ v-form(
       
     v-text-field(
       slot="activator"
-      v-model="dateModel"
+      v-model="form.date"
       label="Data"
       prepend-icon="event" )
       
     v-date-picker( 
       class='input-date'
-      v-model="form.date" 
+      v-model="dateTimestamp" 
       :show-current="now"
       @input="dateChanged"
       scrollable )
@@ -120,5 +103,8 @@ v-form(
 
 .input
   width: 100%;
+.input-title
+  font-weight: bold;
+
 
 </style>
