@@ -22,5 +22,17 @@ export default {
       return patient || false;
     },
   },
+  methods: {
+    watchPatient(data) {}
+  },
+  watch: {
+    patient: {
+      immediate: true,
+      deep: true,
+      handler(data) {
+        this.watchPatient(data);
+      }
+    }
+  },
 }
 </script>
