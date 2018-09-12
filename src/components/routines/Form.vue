@@ -83,12 +83,8 @@ export default {
 v-form(
     v-model='isValid'
   )
-  //- v-date-picker( 
-  //-   v-model="form.date" 
-  //-   :show-current="now"
-  //-   @input="changed(date)"
-  //-   )
   v-dialog(
+    class='date-container input'
     ref="dialog"
     v-model="dateModal"
     lazy
@@ -102,36 +98,27 @@ v-form(
       prepend-icon="event" )
       
     v-date-picker( 
+      class='date'
       v-model="form.date" 
       :show-current="now"
       @input="dateChanged"
       scrollable )
         
-//-   v-text-field( 
-//-     v-for="([key, label], i) in textFields"
-//-     v-model='form[key]'
-//-     :class="key"
-//-     :label='label'
-//-     @input="changed(key)"
-//-     required
-//-   )
+  v-text-field( 
+    v-for="([key, label], i) in textFields"
+    v-model='form[key]'
+    :class="key"
+    class="input"
+    :label='label'
+    @input="changed(key)"
+    required
+  )
 </template>
+<style lang="stylus" src='@/components/generic/form/styles.styl' scoped></style>
+
 <style lang="stylus" scoped>
-.slider
-  margin: 2em;
 
-form
-  display: flex;
-  flex-wrap: wrap;
-
-.v-input
-  flex: 1 1 auto;
-  min-width: 10em;
-
-.email
-  flex-basis: 100%;
-.last_name 
-  flex-grow: 3;
-  flex-basis: 20em;
+.input
+  width: 100%;
 
 </style>
