@@ -20,8 +20,19 @@ export default {
   },
   methods: {
     open(routine) {
+      const { id, title } = routine;
+      const name = title.split(' ').join('-');
+      const patientId = this.patientId;
 
+      this.$router.push(`/rotinas/paciente/${patientId}/${id}/${name}`);
     },
+    remove(id) {
+      this.$store.dispatch('deleteRoutine', id)
+          .then(() => {
+            const index = this.routines.findIndex(r => r.id === id);
+            this.routines.splice(index, 1);
+          });
+    }
     
   }
 }
@@ -31,7 +42,7 @@ export default {
   div
     list(
       :array='routines'
-      :icon='false'
+      @action='remove'
       @open='open'
     )
 </template>
