@@ -1,25 +1,20 @@
 <script>
-const formData = () => ({
+import Form from '@/components/generic/form/Form.mixin';
+
+export default {
+  name: 'Form',
+  extends: Form,
+  data: () => ({
+    isValid: false,
+    form: {
       first_name: '',
       last_name: '',
 
       email: '',
       home_companionship: '',
       occupational_field: '',
-      schooling: ''
-});
-
-export default {
-  name: 'Form',
-  props: {
-    patient: {
-      type: Object | Boolean,
-      default: false
-    }
-  },
-  data: () => ({
-    isValid: false,
-    form: formData(),
+      schooling: 0
+    },
     updated_at: ''
   }),
   methods: {
@@ -48,19 +43,6 @@ export default {
       return [
         [ 'schooling' , 'Anos de escolaridade']
       ]
-    }
-  },
-  watch: {
-    patient: {
-      immediate: true,
-      deep: true,
-      handler(data) {
-        if (data) {
-          this.form = {...this.patient};
-        } else {
-          this.form = formData();
-        }
-      }
     }
   }
 }
