@@ -10,6 +10,8 @@ import {
   VTextField,
   VTooltip,
   VSlider,
+  VDialog,
+  VDatePicker,
   transitions
 } from "vuetify";
 import 'vuetify/src/stylus/app.styl'
@@ -22,7 +24,9 @@ Vue.use(Vuetify, {
     VList,
     VTextField,
     VBtn,
+    VDatePicker,
     VIcon,
+    VDialog,
     VTooltip,
     transitions
   },
