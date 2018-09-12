@@ -85,7 +85,16 @@ export default new Router({
               component: lazyTemplate("dashboard/routines/form"),
               props: true,
               meta: {
-                title: (route, vm) => "Novo Dia"
+                title: (route, vm) => "Nova Rotina"
+              }
+            },
+            {
+              path: "paciente/:patientId(\\d+)/:routineId(\\d+)/:routineTitle?",
+              name: "RoutinesUpdate",
+              component: lazyTemplate("dashboard/routines/form"),
+              props: true,
+              meta: {
+                title: (route, vm) => "Editar Rotina"
               }
             }
           ]
