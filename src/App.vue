@@ -18,4 +18,7 @@ html, body, .application
 
 a
   text-decoration: none !important;
+
+.v-dialog
+  box-shadow: none !important;
 </style>
