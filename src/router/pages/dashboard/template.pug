@@ -3,7 +3,7 @@ main
     ul
       li 
         a Alterar dados pessoais
-      li 
+      li
         a(@click='logout') Sair
     h1(
       v-text='userData.name'
@@ -21,7 +21,7 @@ main
           router-link(
             :to="{ path: '/pacientes' }"
           ) 
-            li.info.font-weight-bold Pacientes
+            li.secondary.font-weight-bold Pacientes
 
       section#workspace.padded
 
