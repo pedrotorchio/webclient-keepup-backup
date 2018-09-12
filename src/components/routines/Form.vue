@@ -4,9 +4,15 @@ import moment from 'moment';
 const formData = () => ({
       title: '',
       comment: '',
-      date: ''
+      date: now()
 });
-
+function now() {
+  return moment().format('YYYY-MM-DD');
+}
+const dateFormats = {
+  timestamp: 'YYYY-MM-DD',
+  regular: 'DD/MM/YYYY'
+};
 export default {
   name: 'Form',
   props: {
@@ -37,6 +43,14 @@ export default {
     },
   },
   computed: {
+    dateModel: {
+      get() {
+        return moment(this.form.date, dateFormats.timestamp).format(dateFormats.regular);
+      },
+      set(value) {
+        this.form.date = moment(value, dateFormats.regular).format(dateFormats.timestamp);
+      }
+    },
     textFields() {
       return [
         [ 'title', 'Título'],
@@ -48,9 +62,7 @@ export default {
         [ 'date' , 'Data'],
       ]
     },
-    now() {
-      return moment().format('YYYY-MM-DD');
-    },
+    now
   },
   watch: {
     patient: {
@@ -85,12 +97,13 @@ v-form(
       
     v-text-field(
       slot="activator"
-      v-model="form.date"
+      v-model="dateModel"
       label="Data"
       prepend-icon="event" )
       
     v-date-picker( 
       v-model="form.date" 
+      :show-current="now"
       @input="dateChanged"
       scrollable )
         
