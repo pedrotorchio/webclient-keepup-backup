@@ -96,7 +96,17 @@ export default new Router({
               meta: {
                 title: (route, vm) => "Editar Rotina"
               }
-            }
+            },
+            {
+              path: ":routineId(\\d+)/:routineTitle?",
+              name: "RoutineView",
+              component: lazyTemplate("dashboard/routines/view"),
+              props: true,
+              meta: {
+                title: (route, vm) => "Visualizar Rotina"
+              }
+            },
+
           ]
         }
       ]
