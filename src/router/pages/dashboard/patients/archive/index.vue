@@ -2,6 +2,7 @@
 import { mapState } from 'vuex';
 import List from '@/components/patients/List';
 import Route from '@/router/pages/Route';
+import { mapActions } from 'vuex';
 
 export default {
   extends: Route,
@@ -13,9 +14,16 @@ export default {
     archive: []
   }),
   methods: {
+    ...mapActions([
+      'restorePatient'
+    ]),
     open(patient) {},
-    restore(id) {
+    async restore(id) {
+      await this.restorePatient(id)
       
+      const i = this.archive.findIndex( p => p.id === id );
+      this.archive.splice(i, 1);
+
     }
   },
   computed: {

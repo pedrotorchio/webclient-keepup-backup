@@ -29,6 +29,13 @@ export default {
 
     return response;
   },
+  async restorePatient({ state }, id) {
+    const patient = await api.delete(`patients/${id}`);
+    
+    state.patients.push(patient);
+
+    return true;
+  },
   async deletePatient({ state }, id) {
     
     await api.delete(`patients/${id}`);
