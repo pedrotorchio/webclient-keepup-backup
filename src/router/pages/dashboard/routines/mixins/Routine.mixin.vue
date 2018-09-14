@@ -38,7 +38,8 @@ export default {
       immediate: true,
       deep: true,
       handler(data) {
-        this.watchRoutine(data);
+        if (data)
+          this.watchRoutine(data);
       }
     },
     routineId: {

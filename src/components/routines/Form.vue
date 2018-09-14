@@ -1,14 +1,7 @@
 <script>
 import moment from 'moment';
 import Form from '@/components/generic/form/Form.mixin';
-
-const dateFormats = {
-  timestamp: 'YYYY-MM-DD',
-  regular: 'DD/MM/YYYY'
-};
-function now() {
-  return moment().format(dateFormats.regular);
-}
+import { dateFormats, now, fromTimestamp, toTimestamp } from '@/visualization/utils/date';
 
 export default {
   name: 'Form',
@@ -26,9 +19,9 @@ export default {
   methods: {
     dateChanged() {
       this.dateModal = false;
+      this.changed('date');
     },
-    changed(key) {
-      
+    changed(key) { 
       const { date, title } = this.form;
 
       if (date && title) {
@@ -41,10 +34,10 @@ export default {
   computed: {
     dateTimestamp: {
       get() {
-        return moment(this.form.date, dateFormats.regular).format(dateFormats.timestamp);
+        return toTimestamp(this.form.date);
       },
       set(value) {
-        this.form.date = moment(value, dateFormats.timestamp).format(dateFormats.regular);
+        this.form.date = fromTimestamp(value);
       }
     },
     textFields() {
