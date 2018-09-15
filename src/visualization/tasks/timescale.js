@@ -1,11 +1,13 @@
-import { timeExtent } from '@/visualization/utils/time';
+import { timeExtent, round, format } from '@/visualization/utils/time';
 import { scaleTime } from 'd3-scale';
 
 export function timescale(tasks, range) {
   
-  let domain = timeExtent(tasks);
+  let [min, max] = timeExtent(tasks);
   
+  let rounded = [round(min), round(max, 'up')];
+
   return scaleTime()
-    .domain(domain)
+    .domain(rounded)
     .range(range);
 }

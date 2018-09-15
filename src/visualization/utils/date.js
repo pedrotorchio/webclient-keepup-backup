@@ -7,6 +7,9 @@ export const dateFormats = {
 export function now() {
   return moment().format(dateFormats.regular);
 }
+export function parseDate(ddmmyy) {
+  return moment(ddmmyy, dateFormats.regular).toDate();
+}
 export function fromTimestamp(timestamp) {
   return moment(timestamp, dateFormats.timestamp).format(dateFormats.regular);
 }
