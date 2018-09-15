@@ -1,14 +1,9 @@
 <script>
+import Route from './Route';
+
 export default {
-  name: 'Page',
-  methods: {
-    onUserFetched() {
-      
-    }
-  },
-  created() {
-    this.$store.dispatch('checkSession')
-        .then(hasSession => this.onUserFetched(hasSession));
-  }
+  extends: Route,
+  name: 'Page'
 }
 </script>
+

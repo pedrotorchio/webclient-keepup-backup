@@ -1,7 +1,12 @@
+import Vue from 'vue';
 import HookLogger from './HookLogger';
+import RootClass from './RootClass';
+import CreatedData from './CreatedData';
 
-export default {
+Vue.use({
   install(Vue, options) {
-    Vue.mixin(HookLogger);
+    // Vue.mixin(HookLogger);
+    Vue.mixin(RootClass);
+    Vue.mixin(CreatedData);
   }
-}
+});

@@ -1,0 +1,20 @@
+div#signup-page.page
+  
+  h1#title KeepUp
+
+  div#login-form-wrapper.floating.padded-large(
+    :class=`[
+      isLogin? 'login' : 'signup'
+    ]`
+  )
+    p#signup-btn
+      span.link(
+        @click='isLogin=!isLogin'
+        v-text="isLogin? 'Cadastrar Usuário' : 'Acessar KeepUp'"
+        v-if='!loading'
+      )
+
+    signup-form#signup-form(
+      @submit='submit'
+      :isLogin='isLogin'
+    )

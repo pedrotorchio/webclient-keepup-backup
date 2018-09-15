@@ -4,13 +4,15 @@ export default {
   name: 'DashboardPage',
   extends: Page,
   methods: {
-    onUserFetched() {
-      this.$store.dispatch('fetchAllPatients')
-              .then(data => console.dir(data));
+    logout() {
+      this.$store.dispatch('logout');
+      this.$router.push({
+        name: 'Login'
+      });
     }
   }
 }
 </script>
-<template lang="pug">
-  div
-</template>
+<template lang="pug" src='./template.pug'></template>
+<style lang="stylus" src='./styles.styl'></style>
+

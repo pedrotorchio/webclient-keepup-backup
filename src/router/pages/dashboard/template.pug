@@ -1,0 +1,53 @@
+main
+  header.padded
+    ul
+      li 
+        a Alterar dados pessoais
+      li
+        a(@click='logout') Sair
+    h1(
+      v-text='userData.name'
+    )
+
+  div#panel
+    
+    h2#message-warning(
+      class='error'
+    ) Você tem 9 novos avisos
+
+    div#workarea
+      aside#side-tabs
+        ul
+          router-link(
+            :to="{ path: '/pacientes' }"
+          ) 
+            li.secondary.font-weight-bold Pacientes
+
+      section#workspace.padded
+
+        h2.ku-title(v-text="title")
+        router-view.inner-route.dashboard-view(
+          :actions.sync='viewActions'
+        )
+
+      section#warning-cards.padded
+    
+    div.actions
+      v-tooltip.floating-btn( 
+        v-for="(action, i) in allActions"
+        top
+      )
+        span(v-text='action.tip')
+
+        v-btn(
+          fab dark large 
+          fixed
+          bottom left
+          :color="action.color"
+          slot="activator"
+          :to='action.to'
+        ) 
+          v-icon( 
+            dark
+              v-text='action.icon'
+            )

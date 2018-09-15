@@ -1,0 +1,150 @@
+@import '~@/styles/colors';
+@import '~@/styles/config';
+
+main
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+header
+  height: 100px;
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items:center;
+  position: relative;
+
+  ul
+    margin: 0 2em
+    margin-right: 4em;
+    font-size: .8em;
+  
+    li
+      display: inline-block;
+      margin: 0 2em;
+
+  h1
+    font-weight: bold;
+    font-size: 1.2em;
+
+  &:after
+    content: '';
+    position: absolute;
+    bottom: 0;
+    height: .2em;
+    width: 80%;
+    width: calc(100% - 200px);
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    background: orange;
+    
+
+#panel
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  font-size: 16px;
+  flex: 1 1 100%;
+
+#message-warning
+  position: relative;
+
+  height = 1.5em;
+  font-size: 1em;
+  
+  line-height: height;
+  height: height;
+  height: 0;
+  max-height: height;
+
+  text-align: center;
+  background-color: crimson;
+  color: white;
+  transition: all .5s;
+
+  &.close
+    max-height: 0;
+
+#workarea
+  padding: padding-size;
+  height: 100%;
+  flex: 1 1 100%;
+  display: flex;
+  align-items: stretch;
+
+  #side-tabs
+    margin-left: -1 * padding-size;
+    min-width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    ul
+      width: 100%;
+      li
+        height = 60px
+        height: height;
+        width: 100%;
+        padding-left: padding-size;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        box-shadow: 0 0 15px 0 lightGrey;
+        color: white;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+      
+#workspace
+  flex: 1 1 100%;
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+
+  h1, h2, h3, h4, h5
+    &.ku-title
+      margin: 2em;
+      text-align: center;
+      flex: 0 0 auto;
+  
+  .inner-route
+    flex: 0 1 100%;
+    height: 100%;
+    overflow-y: auto;
+
+  .dashboard-view
+    &::-webkit-scrollbar
+        width: .1em;
+    
+    &::-webkit-scrollbar-track
+        -webkit-box-shadow: inset 0 0 6px transparent;
+    
+    &::-webkit-scrollbar-thumb
+      background-color: orange;
+      outline: 1px solid slategrey;
+
+#warning-cards
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  flex: 1 0 auto;
+  transition: width .5s;
+  width: 0;
+  // width: 300px;
+  box-shadow: inset 0 0 10px lightGrey;
+  height: 100%;
+  align-self: center;
+
+  &.close
+    max-width: 0;
+
+.actions
+    for i in (0..5)
+      .floating-btn:nth-of-type({i})
+        .v-btn
+          left: i * 100px !important;

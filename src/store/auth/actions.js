@@ -1,18 +1,42 @@
 import { api } from '@/api';
 
 export default {
-  async signup({}, data) {
+  async signup({ commit }, data) {
     return api.signup(data);
   },
-  async login({ commit, dispatch }, { email, password }) {
+  async logout({ commit }) {
+    await api.get("auth/logout");
+    commit('reset');
+  },
+  async login({ commit }, { email, password }) {
+    /**
+     * 1. CHECKS CREDENTIALS
+     * 2. SETS USER LOCAL SESSION
+     */
+    
+    commit("reset");
+
     const login = await api.login(email, password);
-    let user;
+
 
     if (login) {
-      api.setAuthorizationToken(login);
       commit('setUserSession', login);
-      
-      user = await dispatch('fetchUserData');
+    }
+
+    return login;
+  },
+  async getUserData({ getters, dispatch }) {
+    const {
+      hasUserData,
+      getUserData
+    } = getters;
+
+    let user;
+
+    if (!hasUserData()) {
+      user = await dispatch("fetchUserData");
+    } else {
+      user = getUserData();
     }
 
     return user;
@@ -24,20 +48,35 @@ export default {
     return user;
   },
   async checkSession({ getters, dispatch, commit }) {
-    const { getUserSession } = getters;
+    /**
+     * 1. CHECKS IF THERE'S SESSION DATA LOCALLY
+     * 2. UPDATES SESSION TOKEN IN API REQUESTS
+     * 3. IF LACKING, FETCHES USER DATA
+     * 4. RETURNS FALSE IF ANYTHING FAILS, OTHERWISE TRUE
+     */
+
+    const { 
+      hasSessionData, 
+      hasUserData,
+      getUserSession,
+      getUserData
+    } = getters;
+
     let user;
     
-    if (getUserSession && getUserSession.hash) {
+    if (hasSessionData()) {
       
-      api.setAuthorizationToken(getUserSession);
-      user = await dispatch("fetchUserData")
-                    .catch(error => {
-                      commit("setUserSession", false);
-                    })
+      const token = api.getTokenData();
+      const sessn = getUserSession();
+      
+      if (sessn.hash !== token.hash) {
+        api.setAuthorizationToken(sessn);
+      }
 
-      return true;
+      user = await dispatch('getUserData');
+
     }
     
-    return false;
+    return Boolean(user);
   }
 }

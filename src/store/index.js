@@ -6,10 +6,14 @@ Vue.use(Vuex);
 
 import auth from './auth';
 import patients from './patients';
+import routines from './routines';
+import tasks from './tasks';
 
 export default new Vuex.Store({
   modules: {
     auth,
-    patients
+    patients,
+    routines,
+    tasks
   }
 });
