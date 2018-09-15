@@ -1,11 +1,11 @@
-import { extent } from 'd3-array';
-import moment from 'moment';
+import { timeExtent } from '@/visualization/utils/time';
+import { scaleTime } from 'd3-scale';
 
-export function timeExtent(array) {
-  let [min, max] = extent(array, task => task.time);
-
-  min = moment(min).startOf('hour').format('HH:mm');
-  max = moment(max).endOf('hour').format('HH:mm');
-
-  return [min, max];
+export function timescale(tasks, range) {
+  
+  let domain = timeExtent(tasks);
+  
+  return scaleTime()
+    .domain(domain)
+    .range(range);
 }
