@@ -2,9 +2,10 @@
 import Routine from '@/router/pages/dashboard/routines/mixins/Routine.mixin';
 import Route from '@/router/pages/Route';
 import { mapActions } from 'vuex';
-import { timeExtent } from '@/visualization';
+import { timescale } from '@/visualization/tasks';
 
 export default {
+  name: 'Visualization',
   extends: Route,
   mixins: [ Routine ],
   data: () => ({
@@ -14,14 +15,33 @@ export default {
     ...mapActions([
       'fetchRoutineTasks'
     ]),
-    watchRoutine(routine) {
-      this.fetchRoutineTasks(routine.id)
-          .then(this.createVisualization);
-    },
+    
     async createVisualization(tasks) {
-      console.log(timeExtent(tasks));
+      
+      const range = [0, this.$el.clientWidth];
+      console.log(timescale(tasks, range));
+    },
+
+    watchRoutine(routine) {
+      if (!this.$el) 
+        return;
+
+      this.fetchRoutineTasks(routine.id)
+        .then(this.createVisualization);
+    },
+    onMounted() {
+      if (!this.routine)
+        return;
+        
+      this.fetchRoutineTasks(routine.id)
+        .then(this.createVisualization);
     }
+  },
+  mounted() {
+    this.onMounted();
   }
 }
 </script>
 <template lang="pug" src="./template.pug"></template>
+<style lang="stylus" src="./styles.styl" scoped></style>
+
