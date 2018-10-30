@@ -10,8 +10,8 @@ export default {
     }
   },
   data: () => ({
-    rootActions: [],
-    viewActions: []
+    rootActions: [], // actions deste componente
+    viewActions: []  // actions do componente filho
   }),
   methods: {
     updateActions(data) {
