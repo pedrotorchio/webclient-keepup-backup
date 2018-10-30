@@ -43,7 +43,12 @@ export default {
         
         this.rootActions.push({ 
           tip: tip, 
-          to: `/rotinas/paciente/${data.id}`, 
+          to: {
+            name: 'RoutinesList',
+            params: {
+              patientId: data.id
+            }
+          }, 
           color: 'info', 
           icon: 'event' 
         });

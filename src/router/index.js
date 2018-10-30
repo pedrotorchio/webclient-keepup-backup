@@ -71,7 +71,7 @@ export default new Router({
           beforeEnter: requireAuth,
           children: [
             {
-              path: "paciente/:patientId(\\d+)",
+              path: ":patientId(\\d+)",
               name: "RoutinesList",
               component: lazyTemplate("dashboard/routines/list"),
               props: true,
@@ -80,7 +80,7 @@ export default new Router({
               }
             },
             {
-              path: "paciente/:patientId(\\d+)/nova",
+              path: ":patientId(\\d+)/nova",
               name: "RoutinesNew",
               component: lazyTemplate("dashboard/routines/form"),
               props: true,
@@ -89,7 +89,7 @@ export default new Router({
               }
             },
             {
-              path: "paciente/:patientId(\\d+)/:routineId(\\d+)/:routineTitle?",
+              path: ":patientId(\\d+)/:routineId(\\d+)",
               name: "RoutinesUpdate",
               component: lazyTemplate("dashboard/routines/form"),
               props: true,
@@ -98,7 +98,7 @@ export default new Router({
               }
             },
             {
-              path: ":routineId(\\d+)/:routineTitle?",
+              path: ":routineId(\\d+)/visualização",
               name: "RoutineView",
               component: lazyTemplate("dashboard/routines/view"),
               props: true,

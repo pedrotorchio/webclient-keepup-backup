@@ -24,7 +24,13 @@ export default {
       const name = title.split(' ').join('-');
       const patientId = this.patientId;
 
-      this.$router.push(`/rotinas/paciente/${patientId}/${id}/${name}`);
+      this.$router.push({
+        name: 'RoutinesUpdate',
+        params: {
+          patientId: patientId,
+          routineId: id
+        }
+      });
     },
     remove(id) {
       this.$store.dispatch('deleteRoutine', id)
