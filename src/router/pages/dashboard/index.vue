@@ -1,8 +1,15 @@
 <script>
 import Page from '../Page';
+import { mapState } from 'vuex';
+
 export default {
   name: 'DashboardPage',
   extends: Page,
+  computed: {
+    ...mapState({
+      allActions: state => state.system.actions
+    })
+  },
   methods: {
     logout() {
       this.$store.dispatch('logout');
