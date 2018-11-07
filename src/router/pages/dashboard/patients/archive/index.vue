@@ -11,7 +11,10 @@ export default {
     List
   },
   data: () => ({
-    archive: []
+    archive: [],
+    rootActions: [
+      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'secondary', icon: 'list' },
+    ]
   }),
   methods: {
     ...mapActions([

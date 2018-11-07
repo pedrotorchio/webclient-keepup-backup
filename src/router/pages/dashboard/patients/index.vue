@@ -5,13 +5,6 @@ import Route from '@/router/pages/Route';
 export default {
   extends: Route,
   name: 'Patients',
-  data: () => ({
-    rootActions: [
-      { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
-      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'secondary', icon: 'list' },
-      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'secondary', icon: 'inbox' },
-    ],
-  }),
   computed: {
     ...mapState({
       userData: state => state.auth.user
@@ -31,9 +24,7 @@ export default {
 </script>
 <template lang="pug">
 div
-  router-view(
-    :actions.sync="viewActions"
-  )
+  router-view()
 </template>
 <style lang="stylus" scoped>
 .Patients

@@ -26,9 +26,7 @@ main
       section#workspace.padded
 
         h2.ku-title(v-text="title")
-        router-view.inner-route.dashboard-view(
-          :actions.sync='viewActions'
-        )
+        router-view.inner-route.dashboard-view()
 
       section#warning-cards.padded
     
