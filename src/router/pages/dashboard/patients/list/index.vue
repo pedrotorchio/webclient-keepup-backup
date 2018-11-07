@@ -4,10 +4,17 @@ import List from '@/components/patients/List';
 import Route from '@/router/pages/Route';
 
 export default {
+  name: 'Patients-List',
   extends: Route,
   components: {
     List
   },
+  data: () => ({
+    rootActions: [
+      { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
+      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'secondary', icon: 'inbox' },
+    ],
+  }),
   computed: {
     ...mapState({
       patients: state => state.patients.patients

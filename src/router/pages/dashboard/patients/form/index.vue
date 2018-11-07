@@ -9,8 +9,14 @@ import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
 export default {
   extends: Route,
   mixins: [ Patient, FormView ],
-  name: 'Form',
+  name: 'Patient-Form',
   components: { PatientForm },
+  data: () => ({
+    rootActions: [
+      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'secondary', icon: 'list' },
+      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'secondary', icon: 'inbox' },
+    ],
+  }),
   methods: {
     async submitProcedure(data) {
       
