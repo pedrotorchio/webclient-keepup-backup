@@ -11,28 +11,22 @@ export default {
   computed: {
     ...mapState({
       patients: state => state.patients.patients,
+      patient: state => state.patients.patient
     }),
-    patient() {
-      let patient = false;
-      
-      if (this.patientId !== 'novo') {
-        patient = this.patients.find(patient => patient.id == this.patientId)
-      }
-
-      return patient || false;
-    },
   },
   methods: {
     watchPatient(data) {}
   },
   watch: {
     patient: {
-      immediate: true,
       deep: true,
       handler(data) {
         this.watchPatient(data);
       }
     }
   },
+  created() {
+    this.$store.dispatch('patients/fetchPatient');
+  }
 }
 </script>
