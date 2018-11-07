@@ -4,6 +4,7 @@ import List from '@/components/routines/List';
 import Route from '@/router/pages/Route';
 
 export default {
+  name: 'RoutinesList',
   extends: Route,
   mixins: [ Patient ],
   components: {
@@ -19,6 +20,23 @@ export default {
         });
   },
   methods: {
+    
+    watchPatient(patient) {
+      const { id } = patient;
+
+      this.rootActions.push({ 
+        tip: 'Lista de Rotinas', 
+        to: { name: 'RoutinesList', params: { patientId: id } }, 
+        color: 'secondary', 
+        icon: 'list' 
+      });
+      this.rootActions.push({ 
+        tip: 'Adicionar Rotina', 
+        to: { name: 'RoutinesNew', params: { patientId: id } },
+        color: 'primary', 
+        icon: 'add' 
+      });
+    },
     open(routine) {
       const { id, title } = routine;
       const name = title.split(' ').join('-');
