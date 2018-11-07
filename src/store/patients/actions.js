@@ -1,6 +1,13 @@
 import { api } from "@/api";
 
 export default {
+  async fetchPatient({ state }, id) {
+    const patient = await api.get(`patients/${id}`);
+
+    state.patient = patient;
+
+    return patient;
+  },
   async fetchAllPatients({ state }) {
 
     const patients = await api.get(`patients`);
