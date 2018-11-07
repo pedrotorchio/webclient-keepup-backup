@@ -1,34 +1,20 @@
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
   name: 'Route',
-  props: {
-    actions: {
-      type: Array,
-      default: ()=>([])
-    }
-  },
   data: () => ({
-    rootActions: [], // actions deste componente
-    viewActions: []  // actions do componente filho
+    rootActions: []
   }),
   methods: {
-    updateActions(data) {
-      if (typeof data === 'undefined') {
-        data = this.allActions
-      }
-
-      this.$emit('update:actions', data);
-    }
+    ...mapMutations([
+      'setActions'
+    ]),
   },
   computed: {
     ...mapState({
       userData: state => state.auth.user
     }),
-    allActions() {
-      return [ ...this.rootActions, ...this.viewActions ];
-    },
     title() {
       if (this.$route.meta && this.$route.meta.title) {
         const title = this.$route.meta.title;
@@ -40,26 +26,12 @@ export default {
     }
   },
   watch: {
-    viewActions: {
-      immediate: true,
-      handler(array) {
-        this.updateActions();
-      
-      }
-    },
     rootActions: {
       immediate: true,
-      handler(array) {
-        this.updateActions();
-        
+      handler(array) { 
+        this.setActions(array);
       }
-    },
-  },
-  created() {
-    this.updateActions();
-  },
-  beforeDestroy() {
-    this.updateActions([]);
+    }
   }
 }
 </script>
