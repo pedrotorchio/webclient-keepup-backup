@@ -4,7 +4,7 @@ import Form from '@/components/generic/form/Form.mixin';
 import { dateFormats, now, fromTimestamp, toTimestamp } from '@/visualization/utils/date';
 
 export default {
-  name: 'Form',
+  name: 'Routine-Form',
   extends: Form,
   data: () => ({
     isValid: false,

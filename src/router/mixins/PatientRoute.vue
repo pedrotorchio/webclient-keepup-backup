@@ -4,9 +4,8 @@ import { mapState } from 'vuex';
 export default {
   props: {
     patientId: {
-      type: Number | Boolean,
-      default: false
-    },
+      type: Number
+    }
   },
   computed: {
     ...mapState({
@@ -14,8 +13,17 @@ export default {
       patient: state => state.patients.patient
     }),
   },
+  methods: {
+    async loadPatient() {
+      await this.$store.dispatch( 'fetchPatient', this.patientId );
+
+      this.patientLoaded();
+    },
+    patientLoaded() {},
+  },
   created() {
-    this.$store.dispatch('fetchPatient', this.patientId);
+    
+    this.loadPatient();
   }
 }
 </script>

@@ -4,11 +4,11 @@ import { createPatient, updatePatient } from './procedures';
 import FormView from '@/components/generic/form/FormView.mixin';
 import PatientForm from '@/components/patients/Form';
 import Route from '@/router/pages/Route';
-import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
+import PatientRoute from '@/router/mixins/PatientRoute';
 
 export default {
   extends: Route,
-  mixins: [ Patient, FormView ],
+  mixins: [ PatientRoute, FormView ],
   name: 'Patient-Form',
   components: { PatientForm },
   data: () => ({
@@ -24,14 +24,14 @@ export default {
 
       if (this.patient) {
         data.id = this.patient.id;
-      patient = await updatePatient.bind(this)(data);
+        patient = await updatePatient.bind(this)(data);
         
       } else {
 
         patient = await createPatient.bind(this)(data);
 
         this.$router.push({
-          name: 'Patient',
+          name: 'RoutinesList',
           params: {
             patientId: patient.id
           }
@@ -41,27 +41,25 @@ export default {
 
       return patient;
     },
-
-    watchPatient(data) {
-      if (data) {
-        let name = `${data.first_name} ${data.last_name}`;
-        const tip = `Rotina de ${name}`;
-        
-        this.rootActions.push({ 
-          tip: tip, 
-          to: {
-            name: 'RoutinesList',
-            params: {
-              patientId: data.id
-            }
-          }, 
-          color: 'info', 
-          icon: 'event' 
-        });
-      }
-    }
+    patientLoaded() {
+      const name = `${this.patient.first_name} ${this.patient.last_name}`;
+      const tip = `Rotina de ${name}`;
+      
+      this.rootActions.push({
+        tip: tip, 
+        to: {
+          name: 'RoutinesList',
+          params: {
+            patientId: this.patientId
+          }
+        }, 
+        color: 'info', 
+        icon: 'event' 
+      });
+    }  
   },
   
+    
 }
 </script>
 

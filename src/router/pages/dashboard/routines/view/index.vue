@@ -1,44 +1,27 @@
 <script>
-import Routine from '@/router/pages/dashboard/routines/mixins/Routine.mixin';
+
 import Route from '@/router/pages/Route';
 import { mapActions } from 'vuex';
 import { timescale } from '@/visualization/tasks';
 
+import TasksRoute from '@/router/mixins/TasksRoute';
+import RoutineModel from '@/components/routines/RoutineModel';
+import Stats from '@/components/routines/Stats.mixin';
+
+
 export default {
   name: 'Visualization',
   extends: Route,
-  mixins: [ Routine ],
-  data: () => ({
-    tasks: []
-  }),
-  methods: {
-    ...mapActions([
-      'fetchRoutineTasks'
-    ]),
-    
-    async createVisualization(tasks) {
+  mixins: [ TasksRoute, Stats ],
+  methods: {    
+    tasksLoaded() {
+      this.createVisualization();
+    },
+    async createVisualization() {
       
-      const range = [0, this.$el.clientWidth];
-      console.log(timescale(tasks, range));
-    },
-
-    watchRoutine(routine) {
-      if (!this.$el) 
-        return;
-
-      this.fetchRoutineTasks(routine.id)
-        .then(this.createVisualization);
-    },
-    onMounted() {
-      if (!this.routine)
-        return;
-        
-      this.fetchRoutineTasks(routine.id)
-        .then(this.createVisualization);
+      // const range = [0, this.$el.clientWidth];
+      // console.log(timescale(tasks, range));
     }
-  },
-  mounted() {
-    this.onMounted();
   }
 }
 </script>

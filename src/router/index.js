@@ -37,16 +37,20 @@ export default new Router({
               }
             },
             {
-              path: ":patientId(\\d+)/:patientName?",
+              path: "/paciente/:patientId(\\d+)",
               name: "Patient",
               component: lazyTemplate("dashboard/patients/form"),
-              props: true,
+              props: (prop) => {
+                return {
+                  patientId: Number(prop.params.patientId)
+                }
+              },
               meta: {
                 title: (route, vm) => "Editar Paciente"
               }
             },
             {
-              path: "novo",
+              path: "/paciente/novo",
               name: "NewPatient",
               component: lazyTemplate("dashboard/patients/form"),
               props: true,
@@ -71,37 +75,53 @@ export default new Router({
           beforeEnter: requireAuth,
           children: [
             {
-              path: ":patientId(\\d+)",
+              path: "paciente/:patientId(\\d+)",
               name: "RoutinesList",
               component: lazyTemplate("dashboard/routines/list"),
-              props: true,
+              props: (prop) => {
+                return {
+                  patientId: Number(prop.params.patientId)
+                }
+              },
               meta: {
                 title: (route, vm) => "Rotinas"
               }
             },
             {
-              path: ":patientId(\\d+)/nova",
+              path: "paciente/:patientId(\\d+)/nova",
               name: "RoutinesNew",
               component: lazyTemplate("dashboard/routines/form"),
-              props: true,
+              props: (prop) => {
+                return {
+                  patientId: Number(prop.params.patientId)
+                }
+              },
               meta: {
                 title: (route, vm) => "Nova Rotina"
               }
             },
             {
-              path: ":patientId(\\d+)/:routineId(\\d+)",
+              path: "/rotina/:routineId(\\d+)",
               name: "RoutinesUpdate",
               component: lazyTemplate("dashboard/routines/form"),
-              props: true,
+              props: (prop) => {
+                return {
+                  routineId: Number(prop.params.routineId)
+                }
+              },
               meta: {
                 title: (route, vm) => "Editar Rotina"
               }
             },
             {
-              path: ":routineId(\\d+)/visualização",
-              name: "RoutineView",
+              path: "/rotina/:routineId(\\d+)/atividades",
+              name: "TaskView",
               component: lazyTemplate("dashboard/routines/view"),
-              props: true,
+              props: (prop) => {
+                return {
+                  routineId: Number(prop.params.routineId)
+                }
+              },
               meta: {
                 title: (route, vm) => "Visualizar Rotina"
               }

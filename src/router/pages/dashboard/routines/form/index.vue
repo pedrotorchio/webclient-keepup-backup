@@ -2,17 +2,15 @@
 
 import Route from '@/router/pages/Route';
 import FormView from '@/components/generic/form/FormView.mixin';
-import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
-import Routine from '@/router/pages/dashboard/routines/mixins/Routine.mixin';
+import RoutineRoute from '@/router/mixins/RoutineRoute';
 import RoutineForm from '@/components/routines/Form';
 import { createRoutine, updateRoutine } from './procedures';
 
 export default {
   extends: Route,
   components: { RoutineForm },
-  mixins: [ Patient, Routine, FormView ],
-  name: 'Form', 
-
+  mixins: [ RoutineRoute, FormView ],
+  name: 'Routine-Form', 
   methods: {
     ////// submit@FormView is called whenever form emits @change
     ///// submit calls submitProcedure
@@ -34,8 +32,32 @@ export default {
 
       return routine;
     },
+    routineLoaded() {
+      const { patient_id: patientId } = this.routine;
+
+      this.rootActions.push({
+        tip: 'Outras Rotinas',
+        to: {
+          name: 'RoutinesList',
+          params: {
+            patientId
+          }
+        }, 
+        color: 'info', 
+        icon: 'list' 
+      });
+    }
   },
-  
+  created() {
+    this.rootActions.push({ to: {
+        name: 'TaskView',
+        params: {
+          routineId: this.routineId
+        }
+      },
+      color: 'secondary', icon: 'event', tip: 'Ver Atividades'
+    })
+  }  
 }
 </script>
 

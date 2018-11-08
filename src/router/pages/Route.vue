@@ -15,7 +15,7 @@ export default {
     ...mapState({
       userData: state => state.auth.user
     }),
-    title() {
+    pageTitle() {
       if (this.$route.meta && this.$route.meta.title) {
         const title = this.$route.meta.title;
 

@@ -1,12 +1,16 @@
 <script>
-import { now } from '@/visualization/utils/date';
 import Model from '@/components/generic/model/Model';
 
 export default {
   extends: Model,
   data: () => ({
-    routine: {},
-    tasks: []
+    first_name: '',
+    last_name: '',
+
+    email: '',
+    home_companionship: '',
+    occupational_field: '',
+    schooling: 0
   })
 }
 </script>

@@ -23,12 +23,13 @@ export default {
   methods: {
     open(patient) {
       let { first_name, last_name, id } = patient;
-          last_name = last_name.split(' ').join('-');
 
-      let name = `${first_name} ${last_name}`;
-          name = name.replace(' ', '-');
-
-      this.$router.push(`/pacientes/${id}/${name}`);
+      this.$router.push({
+        name: 'Patient',
+        params: {
+          patientId: id
+        }
+      });
     },
     remove(id) {
       this.$store.dispatch('deletePatient', id);
