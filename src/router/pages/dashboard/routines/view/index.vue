@@ -8,11 +8,13 @@ import TasksRoute from '@/router/mixins/TasksRoute';
 import RoutineModel from '@/components/routines/RoutineModel';
 import Stats from '@/components/routines/Stats.mixin';
 
+import Task from '@/components/tasks/Task';
 
 export default {
   name: 'Visualization',
   extends: Route,
   mixins: [ TasksRoute, Stats ],
+  components: { Task },
   methods: {    
     tasksLoaded() {
       this.createVisualization();
