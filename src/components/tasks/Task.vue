@@ -1,18 +1,23 @@
 <script>
+import ClickHandler from './ClickHandler';
+import Visualization from './Visualization';
+
 export default {
+  mixins: [ ClickHandler, Visualization ],
   props: {
     model: {
       type: Object,
       required: true
-    }
+    },
   },
-  data: () => ({
-    selected: false
-  })
 }
 </script>
 <template lang="pug">
-  div.task(
+  article.task(
+    @click="select"
     :class = `{ selected }`
+    :style = `{
+      
+    }`
   )
 </template>
