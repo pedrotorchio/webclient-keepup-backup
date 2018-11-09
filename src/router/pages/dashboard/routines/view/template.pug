@@ -2,4 +2,9 @@ section
   task(
     v-for = '(task, i) in tasks'
     :model = 'task'
+    :durationScale = 'scales.duration'
+    :independencyScale = 'scales.independency'
+    :momentScale = 'scales.moment'
+    :heightScale = 'scales.height'
+    :categoryScale = 'scales.category'
   )

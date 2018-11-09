@@ -1,4 +1,5 @@
 <script>
+
 export default {
   props: {
     durationScale: {
@@ -30,14 +31,15 @@ export default {
       return this.independencyScale(this.model.independency);
     },
     moment() {
-      return this.momentScale(this.model.time);
+      return this.momentScale(this.model.start);
     },
     height() {
       return this.heightScale();
     },
     top() {
-      return this.categoryScale(this.model.category.slug);
-    }
+      return this.categoryScale(this.model.category.id);
+    },
+
   }
 }
 </script>
