@@ -90,8 +90,9 @@ export class Scales {
       .range([0, this.width]);
   }
   getHeightScale() {
-    const split = this.height / this.categories.length;
-    const height = Math.min(Math.max(split, this.minHeight), this.maxHeight);
+    // const split = this.height / this.categories.length;
+    // const height = Math.min(Math.max(split, this.minHeight), this.maxHeight);
+    const height = this.minHeight;
     
     return () => height + this.padding * 2;
   }
