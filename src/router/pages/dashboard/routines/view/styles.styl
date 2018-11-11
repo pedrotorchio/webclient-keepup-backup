@@ -1,4 +1,34 @@
-.Visualization
+.Visualization, #canvas
   width: 100%;
   height: 100%;
   position: relative;
+
+.Visualization
+  display: flex;
+
+#yAxis
+  max-width: 300px;
+
+.task-title
+  box-sizing: border-box;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  padding: 5px;
+
+  &:nth-of-type(odd)
+    background-color: rgba(100, 200, 200, .5);
+  
+  &:nth-of-type(even)
+    background-color: rgba(120, 220, 220, .5);
+
+#canvas
+  div
+    box-sizing: border-box;
+    border-left: 1px solid white;
+    &:nth-of-type(odd)
+      background-color: rgba(100, 200, 200, .5);
+    
+    &:nth-of-type(even)
+      background-color: rgba(120, 220, 220, .5);
