@@ -53,25 +53,34 @@ export function durationScale(tasks, range) {
 }
 
 export class Scales {
-  constructor(tasks, width, height) {
+  constructor(tasks) {
     this.maxHeight = 64;
     this.minHeight = 32;
 
     this.padding = 5;
 
     this.tasks = tasks;
-    this.width = width;
-    this.height = height;
 
     const categories = this.tasks.map( task => task.category ); // categories
+    const titles     = this.tasks.map( task => task.title ); // titles
     
-    const idFind = id => el => el.id == id;
-    const unFind = finder => (el, i, arr) => arr.findIndex(idFind(el.id)) === i;
-
-    this.categories = categories.filter( unFind(idFind));
+    const idFinder = a => b => a.id == b.id;
+    const ttFinder = a => b => a == b;
+    const unique = finder => (el, i, arr) => arr.findIndex(finder(el)) === i;
+    
+    this.categories = categories.filter( unique(idFinder));
+    this.titles = titles.filter( unique(ttFinder));
     this.timeExtent = taskExtent(this.tasks);
     
+    console.dir(this);
 
+  }
+
+  setCanvasWidth(width) {
+    this.width = width;
+  }
+  setCanvasHeight(height) {
+    this.height = height;
   }
 
   getMomentScale() {
@@ -84,20 +93,30 @@ export class Scales {
     const split = this.height / this.categories.length;
     const height = Math.min(Math.max(split, this.minHeight), this.maxHeight);
     
-    return () => height;
+    return () => height + this.padding * 2;
+  }
+  makeScaleBand(domain, rowSize, padding = 0) {
+    
+    const extent = [0, rowSize * domain.length];
+
+    return scaleBand()
+            .paddingInner(0)
+            .domain(domain)
+            .range(extent);
+
+  }
+  getTypeScale() {
+    const heightScale = this.getHeightScale();
+    
+    return this.makeScaleBand(this.titles, heightScale(), this.padding);
   }
   getCategoryScale() {
     // sorted tasks
     // unique category
     
     const heightScale = this.getHeightScale();
-    const ids = this.categories.map(cat => cat.id);
-    const height = (heightScale() + this.padding * 2) * this.categories.length;
-
-    return scaleBand()
-        .padding(this.padding)
-        .domain(ids)
-        .range([0, height]);
+    
+    return this.makeScaleBand(this.categories, heightScale(), this.padding);
   }
   getIndependencyScale() {
     

@@ -21,6 +21,10 @@ export default {
     categoryScale: {
       type: Function,
       required: true
+    },
+    typeScale: {
+      type: Function,
+      required: true
     }
   },
   computed: {
@@ -37,7 +41,7 @@ export default {
       return this.heightScale();
     },
     top() {
-      return this.categoryScale(this.model.category.id);
+      return this.typeScale(this.model.title);
     },
 
   }
