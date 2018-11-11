@@ -116,7 +116,7 @@ padding = 5px;
   position absolute;
   top 2em;
   left 2em;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.8);
   width: auto;
   max-width: 300px;
   padding: padding;
@@ -124,7 +124,7 @@ padding = 5px;
   font-size: 18px;
   font-weight: 400;
   border-radius: padding;
-  z-index 9
+  z-index 5
 
   .header
     font-weight: bold;

@@ -12,6 +12,7 @@ section
       v-for = "(title, i) in titles"
       :style = "{ height: `${scales.height()}px`, padding: `${padding}px`  } "
     )
+    
     div#xAxis( 
       v-if = "hasScalesComputed"
       ref = "xAxis"
