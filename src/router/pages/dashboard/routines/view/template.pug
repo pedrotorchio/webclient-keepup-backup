@@ -1,10 +1,28 @@
 section
-  task(
-    v-for = '(task, i) in tasks'
-    :model = 'task'
-    :durationScale = 'scales.duration'
-    :independencyScale = 'scales.independency'
-    :momentScale = 'scales.moment'
-    :heightScale = 'scales.height'
-    :categoryScale = 'scales.category'
+  div#yAxis
+    h2.task-title(
+      v-for = "(title, i) in titles"
+      :style = "{ height: `${scales.height()}px`, padding: `${padding}px`  } "
+    ) {{ title }}
+  
+  div#canvas(
+    ref = "canvas"
   )
+    div(
+      
+      v-for = "(title, i) in titles"
+      :style = "{ height: `${scales.height()}px`, padding: `${padding}px`  } "
+    )
+    task(
+      
+      v-if = "hasScalesComputed"
+      v-for = '(task, i) in tasks'
+      :key = 'task.id'
+      :model = 'task'
+      :durationScale = 'scales.duration'
+      :independencyScale = 'scales.independency'
+      :momentScale = 'scales.moment'
+      :heightScale = 'scales.height'
+      :categoryScale = 'scales.category'
+      :typeScale = 'scales.type'
+    )
