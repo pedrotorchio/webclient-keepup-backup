@@ -24,6 +24,9 @@ export default {
         this.scales.category &&
         this.scales.type
       )
+    },
+    hours() {
+      return this.timeExtent[1].getHours() - this.timeExtent[0].getHours();
     }
   },
   methods: {
