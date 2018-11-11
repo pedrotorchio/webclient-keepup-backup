@@ -38,5 +38,6 @@ export default {
 <style lang="stylus" scoped>
 .task
   position absolute;
+  border-radius 5px;
 
 </style>
