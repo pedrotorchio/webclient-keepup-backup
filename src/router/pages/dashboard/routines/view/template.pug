@@ -1,20 +1,31 @@
 section
   div#yAxis
     h2.task-title(
+      v-if = "hasHeightScalesComputed"
       v-for = "(title, i) in titles"
       :style = "{ height: `${scales.height()}px`, padding: `${padding}px`  } "
     ) {{ title }}
-  
-  div#canvas(
-    ref = "canvas"
-  )
+
+  div#canvas( ref = "canvas" )
     div(
-      
+      v-if = "hasHeightScalesComputed"
       v-for = "(title, i) in titles"
       :style = "{ height: `${scales.height()}px`, padding: `${padding}px`  } "
     )
+    div#xAxis( 
+      v-if = "hasScalesComputed"
+      ref = "xAxis"
+      :style = "{ height: `${scales.height() * ( titles.length + 1 )}px` }"
+    )
+      div.hourTick(
+
+        v-for = "hour in (hours)"
+        :style = "{ width: getHourTickWidth(hour)  }"
+
+      ) {{ format(getNextHourTick(hour - 1)) }}
+
     task(
-      
+
       v-if = "hasScalesComputed"
       v-for = '(task, i) in tasks'
       :key = 'task.id'
