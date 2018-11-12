@@ -86,7 +86,7 @@ export default {
 }
 </script>
 <template lang="pug">
-  div.task-tooltip( v-if = "shown")
+  div.task-tooltip( v-if = "shown || editable")
     h1.header {{ startTime }} {{ model.title }}
 
     editable-input.independency( 
