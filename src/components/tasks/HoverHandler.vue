@@ -5,7 +5,8 @@ export default {
       this.$refs.tooltip.show();
     },
     hoverOut(event) {
-      this.$refs.tooltip.hide();
+      if (!this.editable)
+        this.$refs.tooltip.hide();
     }
   }
 }
