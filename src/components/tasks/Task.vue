@@ -22,7 +22,7 @@ export default {
   methods: {
     setEditable( state ) {
       this.editable = state;
-    }
+    },
   }
 }
 </script>
@@ -37,12 +37,12 @@ export default {
     :style = "{ top: `${top}px`, left: `${moment}px`, width: `${duration}px`, height: `${height}px`, backgroundColor: independency }"
   )
     tooltip(
-      ref="tooltip"
+      ref = "tooltip"
       :editable = "editable"
       :model = "model"
       :color = "independency" 
 
-      @change = 'submit'
+      @input = 'submit'
     )
 </template>
 <style lang="stylus" scoped>

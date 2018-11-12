@@ -30,7 +30,7 @@ export default {
     span.text( v-if = "!editable" ) {{ value + append }}
     input.text( v-else
       :value = "value"
-      @input = "$emit('change', value)"
+      @input = "$emit('input', value)"
     )
     span.append( v-if = "editable && append") {{ append }}
 </template>
