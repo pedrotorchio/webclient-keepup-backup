@@ -39,6 +39,8 @@ export default {
 
 .input 
   font-size 18px;
+  display: flex;
+  flex-wrap nowrap; 
 .text
   white-space nowrap
   margin .5em 0
