@@ -27,6 +27,7 @@ section.visualization(
     div#canvas( ref = "canvas" )
       task(
         v-for = '(task, i) in tasks'
+        ref = "tasks"
         :key = 'task.id'
         :model = 'task'
         :durationScale = 'scales.getDurationScale()'
