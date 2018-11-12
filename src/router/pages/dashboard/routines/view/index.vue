@@ -24,6 +24,15 @@ export default {
         state = true
       
       elements.map ( el => el.setEditable(state) );
+    },
+  },
+  methods: {
+    onTaskChange(task) {
+      const i = this.tasks.findIndex( t => t.id === task.id);
+      
+      Object.entries( task ).forEach( ([key, value]) => {
+        this.tasks[i][key] = value;
+      }); 
     }
   }
 }
