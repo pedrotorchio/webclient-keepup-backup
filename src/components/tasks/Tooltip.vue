@@ -142,8 +142,11 @@ padding = 5px;
 
 .task-tooltip
   position absolute;
-  top 10px;
-  left 10px;
+  top 90%; 
+  top: 'calc(100% - %s)' % padding;
+  left 90%;
+  left: 'calc(100% - %s)' % padding;
+
   background-color: rgba(0,0,0,.8);
   width: auto;
   max-width: 300px;
