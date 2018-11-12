@@ -33,16 +33,15 @@ export default {
       ref="tooltip"
       :editable = "editable"
       :model = "model"
-      :color = "independency"
-      
+      :color = "independency" 
     )
-
-    
-
 </template>
 <style lang="stylus" scoped>
 .task
   position absolute;
   border-radius 5px;
+  cursor: pointer;
+.selected
+  border: 5px solid white;
 
 </style>
