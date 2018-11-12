@@ -89,6 +89,7 @@ export default {
       @mouseout  = "clearInfo"
       icon = "pan_tool"
       :value = "model.independency"
+      :editable = "editable"
       @update:value = "$emit('update:model', model)"
     ) 
 
@@ -99,30 +100,30 @@ export default {
       icon = "timer"
       append = "min"
       :value = "model.duration"
+      :editable = "editable"
       @update:value = "$emit('update:model', model)"
-    ) 
-    h2.duration( 
-      v-if="model.duration"
-      @mouseover = "durationInfo"
-      @mouseout  = "clearInfo"
     )
-      v-icon( color="primary") timer
-      span {{ model.duration }}min
-    h2.location( 
-      v-if="model.location"
+
+    editable-input.location( 
+      v-if="model.duration"
       @mouseover = "locationInfo"
       @mouseout  = "clearInfo"
+      icon = "location_on"
+      :value = "model.location"
+      :editable = "editable"
+      @update:value = "$emit('update:model', model)"
     ) 
-      v-icon( color="primary") location_on
-      span {{ model.location }}
-    h2.company( 
+
+    editable-input.company( 
       v-if="model.company"
       @mouseover = "companyInfo"
       @mouseout  = "clearInfo"
-    ) 
-      v-icon( color="primary") people
-      span {{ model.company }}
-
+      icon = "people"
+      :value = "model.company"
+      :editable = "editable"
+      @update:value = "$emit('update:model', model)"
+    )
+    
     h3.tooltip-info(
       v-if='info'
       :style="{ backgroundColor: infoColor }") {{ info }}

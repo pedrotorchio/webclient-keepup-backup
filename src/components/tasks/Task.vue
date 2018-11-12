@@ -11,6 +11,10 @@ export default {
       type: Object,
       required: true
     },
+    editable: {
+      type: Boolean,
+      default: false
+    }
   },
   components: { Tooltip }
 }
@@ -27,6 +31,7 @@ export default {
   )
     tooltip(
       ref="tooltip"
+      :editable = "editable"
       :model = "model"
       :color = "independency"
       
