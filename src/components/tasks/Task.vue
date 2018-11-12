@@ -24,7 +24,14 @@ export default {
       'updateTask'
     ]),
     setEditable( state ) {
+      
       this.editable = state;
+
+      if (state)
+        this.$refs.tooltip.show();
+      else
+        this.$refs.tooltip.hide();
+      
     },
     tooltipChange(model) {
       this.submit(model);
@@ -39,7 +46,7 @@ export default {
 <template lang="pug">
 
   article.task(
-    @click="select"
+    @click.self="select"
     @mouseover="hover"
     @mouseout = "hoverOut"
 
@@ -51,7 +58,7 @@ export default {
       :editable = "editable"
       :model = "model"
       :color = "independency" 
-
+      @click = "tooltipClick"
       @change = 'tooltipChange'
     )
 </template>
