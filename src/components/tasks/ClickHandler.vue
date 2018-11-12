@@ -10,7 +10,8 @@ export default {
         isSelection: this.selected,
         id: this.model.id
       });
-    }
+    },
+    tooltipClick() {}
   }
 }
 </script>
