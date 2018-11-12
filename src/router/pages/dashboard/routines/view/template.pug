@@ -30,6 +30,7 @@ section.visualization(
         ref = "tasks"
         :key = 'task.id'
         @click = "selected"
+        @change = 'onTaskChange'
         :model = 'task'
         :durationScale = 'scales.getDurationScale()'
         :independencyScale = 'scales.getIndependencyScale()'
