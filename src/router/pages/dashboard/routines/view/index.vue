@@ -14,6 +14,18 @@ export default {
   extends: Route,
   mixins: [ TasksRoute, Stats, Visualization ],
   components: { Task },
+
+  watch: {
+    selectedElements(elements) {
+
+      let state = false
+
+      if (elements.length === 1)
+        state = true
+      
+      elements.map ( el => el.setEditable(state) );
+    }
+  }
 }
 </script>
 <template lang="pug" src="./template.pug"></template>

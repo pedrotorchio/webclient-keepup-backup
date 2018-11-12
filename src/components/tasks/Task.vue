@@ -11,12 +11,16 @@ export default {
       type: Object,
       required: true
     },
-    editable: {
-      type: Boolean,
-      default: false
-    }
   },
-  components: { Tooltip }
+  components: { Tooltip },
+  data: () => ({
+    editable: false
+  }),
+  methods: {
+    setEditable( state ) {
+      this.editable = state;
+    }
+  }
 }
 </script>
 <template lang="pug">
