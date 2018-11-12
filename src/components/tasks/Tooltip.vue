@@ -1,7 +1,9 @@
 <script>
 import { format } from '@/visualization/utils/time';
+import EditableInput from './Input';
 
 export default {
+  components: { EditableInput },
   props: {
     model: {
       type: Object,
@@ -10,6 +12,10 @@ export default {
     color: {
       type: String,
       required: false
+    },
+    editable: {
+      type: Boolean,
+      defaulte: false
     }
   },
   data: () => ({
@@ -76,13 +82,25 @@ export default {
 <template lang="pug">
   div.task-tooltip( v-if = "shown")
     h1.header {{ startTime }} {{ model.title }}
-    h2.independency( 
+
+    editable-input.independency( 
       v-if="model.independency"
       @mouseover = "independencyInfo"
       @mouseout  = "clearInfo"
+      icon = "pan_tool"
+      :value = "model.independency"
+      @update:value = "$emit('update:model', model)"
     ) 
-      v-icon( color="primary") pan_tool
-      span {{ model.independency }}
+
+    editable-input.duration( 
+      v-if="model.duration"
+      @mouseover = "durationInfo"
+      @mouseout  = "clearInfo"
+      icon = "timer"
+      append = "min"
+      :value = "model.duration"
+      @update:value = "$emit('update:model', model)"
+    ) 
     h2.duration( 
       v-if="model.duration"
       @mouseover = "durationInfo"
@@ -130,16 +148,9 @@ padding = 5px;
     font-weight: bold;
     font-size: 1.1em;
     padding: .5em;
-  
-  h1, h2, h3
     white-space nowrap
-
-  h2
-    margin .5em 0
-    
-    .v-icon
-      margin-right .5em !important;
-  
+  .input
+    margin .5em
   .tooltip-info
     padding: padding;
     font-size: .8em;
