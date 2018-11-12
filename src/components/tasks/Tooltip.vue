@@ -86,7 +86,10 @@ export default {
 }
 </script>
 <template lang="pug">
-  div.task-tooltip( v-if = "shown || editable")
+  div.task-tooltip( 
+    v-if = "shown || editable"
+    :class = "{ editable }" )
+
     h1.header {{ startTime }} {{ model.title }}
 
     editable-input.independency( 
@@ -150,6 +153,9 @@ padding = 5px;
   font-weight: 400;
   border-radius: padding;
   z-index 5
+
+  &.editable
+    border: 2px solid white;
 
   .header
     font-weight: bold;
