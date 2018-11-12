@@ -20,15 +20,18 @@ export default {
     editable: false
   }),
   methods: {
+    ...mapActions([
+      'updateTask'
+    ]),
     setEditable( state ) {
       this.editable = state;
     },
     tooltipChange(model) {
-      this.$emit('change', model);
       this.submit(model);
     },
     submitProcedure(model) {
-      console.log(model);
+      this.$emit('change', model);
+      this.updateTask(model);
     }
   }
 }
