@@ -139,8 +139,8 @@ padding = 5px;
 
 .task-tooltip
   position absolute;
-  top 2em;
-  left 2em;
+  top 10px;
+  left 10px;
   background-color: rgba(0,0,0,.8);
   width: auto;
   max-width: 300px;
