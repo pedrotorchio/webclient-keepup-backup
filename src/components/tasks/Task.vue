@@ -58,7 +58,7 @@ export default {
       :editable = "editable"
       :model = "model"
       :color = "independency" 
-      @click = "tooltipClick"
+      @click.self.native.stop = "tooltipClick"
       @change = 'tooltipChange'
     )
 </template>
