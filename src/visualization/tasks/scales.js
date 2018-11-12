@@ -3,7 +3,7 @@ import { scaleTime, scaleLinear, scaleSequential, scaleBand } from 'd3-scale';
 import { interpolateRgb } from 'd3-interpolate';
 
 const independencyExtent = [1, 7];
-const independencyRange  = ['red', 'blue'];
+const independencyRange  = ['#f44336', '#2196f3'];
 const minHeight = 32;
 
 export function taskExtent([fst, ...rst]) {
@@ -43,7 +43,7 @@ export function independencyScale() {
     .domain([independencyExtent[0], independencyExtent[1]]);
 
 }
-export function durationScale(tasks, range) {
+export function getDurationScale(tasks, range) {
 
   let extent = taskExtent(tasks);
 

@@ -1,40 +1,38 @@
-section
-  div#yAxis
+section.visualization(
+  :style = "{ height: `${canvasHeight}px` }"
+)
+  div#yAxis( v-if = "scales")
     h2.task-title(
-      v-if = "hasHeightScalesComputed"
-      v-for = "(title, i) in titles"
-      :style = "{ height: `${scales.height()}px`, padding: `${padding}px`  } "
+      v-for = "(title, i) in scales.titles"
+      :style = "rowStyle()"
     ) {{ title }}
 
-  div#canvas( ref = "canvas" )
-    div(
-      v-if = "hasHeightScalesComputed"
-      v-for = "(title, i) in titles"
-      :style = "{ height: `${scales.height()}px`, padding: `${padding}px`  } "
-    )
+  div#gantt( 
+    ref = "gantt"
+    v-if = 'scales' )
+    div#rows
+      div.row(
+        v-for = "(title, i) in scales.titles"
+        :style = "rowStyle()"
+      )
     
-    div#xAxis( 
-      v-if = "hasScalesComputed"
-      ref = "xAxis"
-      :style = "{ height: `${scales.height() * ( titles.length + 1 )}px` }"
-    )
-      div.hourTick(
-
+    div#xAxis
+      div.hour-tick(
+        v-if = "doneScaling"
         v-for = "hour in (hours)"
-        :style = "{ width: getHourTickWidth(hour)  }"
+        :style = "{ width: getHourTickWidth(hour) }"
 
       ) {{ format(getNextHourTick(hour - 1)) }}
 
-    task(
-
-      v-if = "hasScalesComputed"
-      v-for = '(task, i) in tasks'
-      :key = 'task.id'
-      :model = 'task'
-      :durationScale = 'scales.duration'
-      :independencyScale = 'scales.independency'
-      :momentScale = 'scales.moment'
-      :heightScale = 'scales.height'
-      :categoryScale = 'scales.category'
-      :typeScale = 'scales.type'
-    )
+    div#canvas( ref = "canvas" )
+      task(
+        v-for = '(task, i) in tasks'
+        :key = 'task.id'
+        :model = 'task'
+        :durationScale = 'scales.getDurationScale()'
+        :independencyScale = 'scales.getIndependencyScale()'
+        :momentScale = 'scales.getMomentScale()'
+        :heightScale = 'scales.getHeightScale()'
+        :categoryScale = 'scales.getCategoryScale()'
+        :typeScale = 'scales.getTypeScale()'
+      ) {{ scales.getDurationScale(task.duration) }}

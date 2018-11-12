@@ -14,23 +14,6 @@ export default {
   extends: Route,
   mixins: [ TasksRoute, Stats, Visualization ],
   components: { Task },
-  data: () => ({
-    hasLoaded: false,
-    hasMounted: false
-  }),
-  methods: {    
-    tasksLoaded() {
-      this.hasLoaded = true;
-      if (this.hasMounted)
-        this.createVisualization();
-    },
-  },
-  mounted() {
-    this.hasMounted = true;
-    if (this.hasLoaded)
-      this.createVisualization();
-  }
-  
 }
 </script>
 <template lang="pug" src="./template.pug"></template>
