@@ -21,16 +21,15 @@ export default {
       default: ''
     }
   },
-  
 }
 </script>
 <template lang="pug">
   div.input
-    v-icon( v-if = "icon" :color="color") {{icon}}
+    v-icon( v-if = "icon" :color="color" ) {{icon}}
     span.text( v-if = "!editable" ) {{ value + append }}
     input.text( v-else
       :value = "value"
-      @input = "$emit('input', value)"
+      @input = "$emit('input', $event.target.value)"
     )
     span.append( v-if = "editable && append") {{ append }}
 </template>
