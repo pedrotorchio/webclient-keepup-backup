@@ -90,7 +90,7 @@ export default {
       icon = "pan_tool"
       :value = "model.independency"
       :editable = "editable"
-      @update:value = "$emit('update:model', model)"
+      @change = "$emit('change', model)"
     ) 
 
     editable-input.duration( 
@@ -101,7 +101,7 @@ export default {
       append = "min"
       :value = "model.duration"
       :editable = "editable"
-      @update:value = "$emit('update:model', model)"
+      @change = "$emit('change', model)"
     )
 
     editable-input.location( 
@@ -111,7 +111,7 @@ export default {
       icon = "location_on"
       :value = "model.location"
       :editable = "editable"
-      @update:value = "$emit('update:model', model)"
+      @change = "$emit('change', model)"
     ) 
 
     editable-input.company( 
@@ -121,7 +121,7 @@ export default {
       icon = "people"
       :value = "model.company"
       :editable = "editable"
-      @update:value = "$emit('update:model', model)"
+      @change = "$emit('change', model)"
     )
     
     h3.tooltip-info(
