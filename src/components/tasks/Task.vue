@@ -3,9 +3,12 @@ import ClickHandler from './ClickHandler';
 import HoverHandler from './HoverHandler';
 import Visualization from './Visualization';
 import Tooltip from './Tooltip';
-
+import FormView from '@/components/generic/form/FormView.mixin';
+import { mapActions } from 'vuex';
+  
 export default {
-  mixins: [ ClickHandler, HoverHandler, Visualization ],
+  
+  mixins: [ ClickHandler, HoverHandler, Visualization, FormView ],
   props: {
     model: {
       type: Object,
@@ -38,6 +41,8 @@ export default {
       :editable = "editable"
       :model = "model"
       :color = "independency" 
+
+      @change = 'submit'
     )
 </template>
 <style lang="stylus" scoped>
