@@ -70,6 +70,12 @@ export default {
     },
     companyInfo() {
       this.info = `Companhia: ${this.model.company}`;
+    },
+    change(key, value) {
+      const model = { ...this.model };
+      model[key] = value;
+
+      this.$emit('change', model);
     }
   },
   computed: {
@@ -90,7 +96,7 @@ export default {
       icon = "pan_tool"
       :value = "model.independency"
       :editable = "editable"
-      @input = "$emit('input', model)"
+      @input = "change('independency', $event)"
     ) 
 
     editable-input.duration( 
@@ -101,7 +107,7 @@ export default {
       append = "min"
       :value = "model.duration"
       :editable = "editable"
-      @input = "$emit('input', model)"
+      @input = "change('duration', $event)"
     )
 
     editable-input.location( 
@@ -111,7 +117,7 @@ export default {
       icon = "location_on"
       :value = "model.location"
       :editable = "editable"
-      @input = "$emit('input', model)"
+      @input = "change('location', $event)"
     ) 
 
     editable-input.company( 
@@ -121,7 +127,7 @@ export default {
       icon = "people"
       :value = "model.company"
       :editable = "editable"
-      @input = "$emit('input', model)"
+      @input = "change('company', $event)"
     )
     
     h3.tooltip-info(
