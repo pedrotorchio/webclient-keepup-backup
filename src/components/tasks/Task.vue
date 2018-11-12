@@ -23,6 +23,13 @@ export default {
     setEditable( state ) {
       this.editable = state;
     },
+    tooltipChange(model) {
+      this.$emit('change', model);
+      this.submit(model);
+    },
+    submitProcedure(model) {
+      console.log(model);
+    }
   }
 }
 </script>
@@ -42,7 +49,7 @@ export default {
       :model = "model"
       :color = "independency" 
 
-      @input = 'submit'
+      @change = 'tooltipChange'
     )
 </template>
 <style lang="stylus" scoped>
