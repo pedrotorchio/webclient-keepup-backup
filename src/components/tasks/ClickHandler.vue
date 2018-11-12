@@ -7,7 +7,8 @@ export default {
     select() {
       this.selected = !this.selected;
       this.$emit('click', {
-        selected: this.selected
+        isSelection: this.selected,
+        id: this.model.id
       });
     }
   }

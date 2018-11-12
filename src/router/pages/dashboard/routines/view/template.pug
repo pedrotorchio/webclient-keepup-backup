@@ -29,6 +29,7 @@ section.visualization(
         v-for = '(task, i) in tasks'
         ref = "tasks"
         :key = 'task.id'
+        @click = "selected"
         :model = 'task'
         :durationScale = 'scales.getDurationScale()'
         :independencyScale = 'scales.getIndependencyScale()'
