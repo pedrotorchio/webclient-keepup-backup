@@ -9,7 +9,7 @@ export default {
   async updateTask({}, data) {
     const { id } = data;
 
-    const response = await api.put(`task/${id}`, data);
+    const response = await api.put(`tasks/${id}`, data);
     
     return response;
   },
