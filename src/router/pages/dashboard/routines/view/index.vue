@@ -16,14 +16,20 @@ export default {
   components: { Task },
 
   watch: {
-    selectedElements(elements) {
+    selectedElements(newElements, oldElements) {
 
       let state = false
+      let elems = newElements;
 
-      if (elements.length === 1)
-        state = true
+      const len = newElements.length;
       
-      elements.map ( el => el.setEditable(state) );
+      if (len === 1)
+        state = true;
+
+      else if (len === 0)
+        elems = oldElements;
+
+      elems.map ( el => el.setEditable(state) );
     },
   },
   methods: {
