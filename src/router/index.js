@@ -21,14 +21,130 @@ function lazyTemplate(template) {
  *      (edição)
  *      rotinas   [ GET /patients/{id}/routines ]
  *        (lista)
- *    
+ *      nova-rotina
+ *     
  *    rotina/{id} [ GET /routines/{id} ]
  *       (edição)
  *        atividades [ GET /routines/{id}/tasks]
  *
- *    rotina/nova
+ 
  *    paciente/novo
  */
+
+const patients = {
+  path: "/pacientes",
+  component: lazyTemplate("dashboard/patients"),
+  beforeEnter: requireAuth,
+  children: [
+    {
+      path: "",
+      name: "PatientsList",
+      component: lazyTemplate("dashboard/patients/list"),
+      props: true,
+      meta: {
+        title: (route, vm) => "Pacientes"
+      }
+    },
+    {
+      path: "arquivo",
+      name: "PatientsArchive",
+      component: lazyTemplate("dashboard/patients/archive"),
+      props: true,
+      meta: {
+        title: (route, vm) => "Arquivo de Pacientes"
+      }
+    }
+  ]
+};
+
+const patient = {
+  path: "/paciente/:patientId(\\d+)",
+  component: lazyTemplate("dashboard/patients"),
+  beforeEnter: requireAuth,
+  children: [
+    {
+      path: "",
+      name: "PatientEdit",
+      component: lazyTemplate("dashboard/patients/form"),
+      props: (prop) => {
+        return {
+          patientId: Number(prop.params.patientId)
+        }
+      },
+      meta: {
+        title: (route, vm) => "Editar Paciente"
+      }
+    },
+    {
+      path: "rotinas",
+      name: "RoutinesList",
+      component: lazyTemplate("dashboard/routines/form"),
+      props: (prop) => {
+        return {
+          patientId: Number(prop.params.patientId)
+        }
+      },
+      meta: {
+        title: (route, vm) => "Rotinas"
+      }
+    },
+    {
+      path: "nova-rotina",
+      name: "RoutineNew",
+      component: lazyTemplate("dashboard/routines/form"),
+      props: (prop) => {
+        return {
+          patientId: Number(prop.params.patientId)
+        }
+      },
+      meta: {
+        title: (route, vm) => "Nova Rotina"
+      }
+    }
+  ]
+}
+const routine = {
+  path: "/rotina/:routineId(\\d+)",
+  component: lazyTemplate("dashboard/routines"),
+  beforeEnter: requireAuth,
+  children: [
+    {
+      path: '',
+      name: "RoutineEdit",
+      component: lazyTemplate("dashboard/routines/form"),
+      props: (prop) => {
+        return {
+          routineId: Number(prop.params.routineId)
+        }
+      },
+      meta: {
+        title: (route, vm) => "Editar Rotina"
+      }
+    },
+    {
+      path: "atividades",
+      name: "TasksView",
+      component: lazyTemplate("dashboard/routines/view"),
+      props: (prop) => {
+        return {
+          routineId: Number(prop.params.routineId)
+        }
+      },
+      meta: {
+        title: (route, vm) => "Visualizar Atividades"
+      }
+    },
+  ]
+};
+const newPatient = {
+  path: "/paciente/novo",
+  name: "PatientNew",
+  component: lazyTemplate("dashboard/patients/form"),
+  props: true,
+  meta: {
+    title: (route, vm) => "Novo Paciente"
+  }
+};
 
 export default new Router({
   mode: "history",
@@ -39,116 +155,13 @@ export default new Router({
       component: lazyTemplate("login")
     },
     {
-      path: "/painel",
+      path: "/",
       component: lazyTemplate("dashboard"),
       children: [
-        {
-          path: "/pacientes",
-          component: lazyTemplate("dashboard/patients"),
-          beforeEnter: requireAuth,
-          children: [
-            {
-              path: "",
-              name: "Patients",
-              component: lazyTemplate("dashboard/patients/list"),
-              props: true,
-              meta: {
-                title: (route, vm) => "Pacientes"
-              }
-            },
-            {
-              path: "/paciente/:patientId(\\d+)",
-              name: "Patient",
-              component: lazyTemplate("dashboard/patients/form"),
-              props: (prop) => {
-                return {
-                  patientId: Number(prop.params.patientId)
-                }
-              },
-              meta: {
-                title: (route, vm) => "Editar Paciente"
-              }
-            },
-            {
-              path: "/paciente/novo",
-              name: "NewPatient",
-              component: lazyTemplate("dashboard/patients/form"),
-              props: true,
-              meta: {
-                title: (route, vm) => "Novo Paciente"
-              }
-            },
-            {
-              path: "arquivo",
-              name: "PatientArchive",
-              component: lazyTemplate("dashboard/patients/archive"),
-              props: true,
-              meta: {
-                title: (route, vm) => "Arquivo de Pacientes"
-              }
-            }
-          ]
-        },
-        {
-          path: "/rotinas",
-          component: lazyTemplate("dashboard/routines"),
-          beforeEnter: requireAuth,
-          children: [
-            {
-              path: "paciente/:patientId(\\d+)",
-              name: "RoutinesList",
-              component: lazyTemplate("dashboard/routines/list"),
-              props: (prop) => {
-                return {
-                  patientId: Number(prop.params.patientId)
-                }
-              },
-              meta: {
-                title: (route, vm) => "Rotinas"
-              }
-            },
-            {
-              path: "paciente/:patientId(\\d+)/nova",
-              name: "RoutinesNew",
-              component: lazyTemplate("dashboard/routines/form"),
-              props: (prop) => {
-                return {
-                  patientId: Number(prop.params.patientId)
-                }
-              },
-              meta: {
-                title: (route, vm) => "Nova Rotina"
-              }
-            },
-            {
-              path: "/rotina/:routineId(\\d+)",
-              name: "RoutinesUpdate",
-              component: lazyTemplate("dashboard/routines/form"),
-              props: (prop) => {
-                return {
-                  routineId: Number(prop.params.routineId)
-                }
-              },
-              meta: {
-                title: (route, vm) => "Editar Rotina"
-              }
-            },
-            {
-              path: "/rotina/:routineId(\\d+)/atividades",
-              name: "TaskView",
-              component: lazyTemplate("dashboard/routines/view"),
-              props: (prop) => {
-                return {
-                  routineId: Number(prop.params.routineId)
-                }
-              },
-              meta: {
-                title: (route, vm) => "Visualizar Rotina"
-              }
-            },
-
-          ]
-        }
+        patients,
+        patient,
+        routine,
+        newPatient
       ]
     }
   ]
