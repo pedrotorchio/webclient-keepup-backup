@@ -10,6 +10,26 @@ function lazyTemplate(template) {
   return lazy(`router/pages/${template}/index.vue`);
 }
 
+/**
+ * /login
+ * /(dashboard)
+ *    pacientes [ GET /patients/]
+ *      (lista)
+ *      arquivo [ GET /patients/archive ]
+ *
+ *    paciente/{id} [ GET /patients/{id} ]
+ *      (edição)
+ *      rotinas   [ GET /patients/{id}/routines ]
+ *        (lista)
+ *    
+ *    rotina/{id} [ GET /routines/{id} ]
+ *       (edição)
+ *        atividades [ GET /routines/{id}/tasks]
+ *
+ *    rotina/nova
+ *    paciente/novo
+ */
+
 export default new Router({
   mode: "history",
   routes: [
