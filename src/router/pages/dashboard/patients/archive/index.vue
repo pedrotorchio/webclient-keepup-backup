@@ -13,7 +13,7 @@ export default {
   data: () => ({
     archive: [],
     rootActions: [
-      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'secondary', icon: 'list' },
+      { tip: 'Lista de Pacientes', to: { name: 'PatientsList' }, color: 'secondary', icon: 'list' },
     ]
   }),
   methods: {

@@ -11,8 +11,8 @@ export default {
   },
   data: () => ({
     rootActions: [
-      { tip: 'Novo Paciente', to: '/pacientes/novo', color: 'primary', icon: 'add' },
-      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'secondary', icon: 'inbox' },
+      { tip: 'Novo Paciente', to: { name: 'PatientNew' }, color: 'primary', icon: 'add' },
+      { tip: 'Pacientes Arquivados', to: { name: 'PatientsArchive' }, color: 'secondary', icon: 'inbox' },
     ],
   }),
   computed: {
@@ -25,7 +25,7 @@ export default {
       let { first_name, last_name, id } = patient;
 
       this.$router.push({
-        name: 'Patient',
+        name: 'PatientEdit',
         params: {
           patientId: id
         }

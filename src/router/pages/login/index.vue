@@ -41,7 +41,7 @@ export default {
     },
     submit(data) {
       this.submitProcedure(data)
-          .then(login => this.$router.push({ name: 'Patients' }))
+          .then(login => this.$router.push({ name: 'PatientsList' }))
           .catch(login => null);
     }
 

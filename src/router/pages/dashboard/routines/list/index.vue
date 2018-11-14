@@ -43,7 +43,7 @@ export default {
       const patientId = this.patientId;
 
       this.$router.push({
-        name: 'RoutinesUpdate',
+        name: 'RoutineEdit',
         params: {
           patientId: patientId,
           routineId: id
