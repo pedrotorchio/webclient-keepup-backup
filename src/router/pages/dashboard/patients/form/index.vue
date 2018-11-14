@@ -13,8 +13,8 @@ export default {
   components: { PatientForm },
   data: () => ({
     rootActions: [
-      { tip: 'Lista de Pacientes', to: '/pacientes', color: 'secondary', icon: 'list' },
-      { tip: 'Pacientes Arquivados', to: '/pacientes/arquivo', color: 'secondary', icon: 'inbox' },
+      { tip: 'Lista de Pacientes', to: { name: 'PatientsList' }, color: 'secondary', icon: 'list' },
+      { tip: 'Pacientes Arquivados', to: { name: 'PatientsArchive' }, color: 'secondary', icon: 'inbox' },
     ],
   }),
   methods: {
@@ -41,7 +41,7 @@ export default {
 
       return patient;
     },
-    patientLoaded() {
+    onPatientLoaded() {
       const name = `${this.patient.first_name} ${this.patient.last_name}`;
       const tip = `Rotina de ${name}`;
       

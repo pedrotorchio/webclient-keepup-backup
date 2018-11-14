@@ -7,9 +7,14 @@ export default {
       type: Number
     }
   },
+  computed: {
+    ...mapState({
+      patient: state => state.patients.patient
+    })
+  },
   methods: {
     async loadPatient() {
-      await this.$store.dispatch( 'fetchPatient', this.patientId );
+      const patient = await this.$store.dispatch( 'fetchPatient', this.patientId );
 
       this.onPatientLoaded();
     },

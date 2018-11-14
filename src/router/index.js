@@ -78,7 +78,7 @@ const patient = {
     {
       path: "rotinas",
       name: "RoutinesList",
-      component: lazyTemplate("dashboard/routines/form"),
+      component: lazyTemplate("dashboard/routines/list"),
       props: (prop) => {
         return {
           patientId: Number(prop.params.patientId)

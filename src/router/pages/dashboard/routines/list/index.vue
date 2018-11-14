@@ -2,11 +2,12 @@
 import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
 import List from '@/components/routines/List';
 import Route from '@/router/pages/Route';
+import PatientRoute from '@/router/mixins/PatientRoute';
 
 export default {
   name: 'RoutinesList',
   extends: Route,
-  mixins: [ Patient ],
+  mixins: [ Patient, PatientRoute ],
   components: {
     List
   },
@@ -21,18 +22,13 @@ export default {
   },
   methods: {
     
-    watchPatient(patient) {
-      const { id } = patient;
+    onPatientLoaded() {
+
+      const { id } = this.patient;
 
       this.rootActions.push({ 
-        tip: 'Lista de Rotinas', 
-        to: { name: 'RoutinesList', params: { patientId: id } }, 
-        color: 'secondary', 
-        icon: 'list' 
-      });
-      this.rootActions.push({ 
         tip: 'Adicionar Rotina', 
-        to: { name: 'RoutinesNew', params: { patientId: id } },
+        to: { name: 'RoutineNew', params: { patientId: id } },
         color: 'primary', 
         icon: 'add' 
       });
