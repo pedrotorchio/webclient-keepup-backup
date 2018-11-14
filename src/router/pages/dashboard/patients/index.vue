@@ -1,25 +1,17 @@
 <script>
-import { mapState } from 'vuex';
 import Route from '@/router/pages/Route';
+import UserDataWatcher from '@/router/mixins/UserDataWatcher';
 
 export default {
   extends: Route,
+  mixins: [ UserDataWatcher ],
   name: 'Patients',
-  computed: {
-    ...mapState({
-      userData: state => state.auth.user
-    })
-  },
-  watch: {
-    userData: {
-      immediate: true,
-      deep: true,
-      handler(data) {
-        if (data.id)
+  methods: {
+    onUserDataChange(user) {
+      if (user.id)
           this.$store.dispatch('fetchAllPatients');
-      }
     }
-  },
+  }
 }
 </script>
 <template lang="pug">
