@@ -7,16 +7,22 @@ export default {
       type: Number
     }
   },
+  data: () => ({
+    routine: null
+  }),
   methods: {
     async loadRoutine() {
-      this.routine = await this.$store.dispatch( 'fetchRoutine', this.routineId );
       
-      this.routineLoaded();
+      this.routine = await this.$store.dispatch( 'fetchRoutine', this.routineId );
+    
+      this.onRoutineLoaded();
+      
     },
-    routineLoaded() {},
+    onRoutineLoaded() {},
   },
   created() {
-    this.loadRoutine();
+    if (this.routineId) 
+      this.loadRoutine();
   }
 }
 </script>

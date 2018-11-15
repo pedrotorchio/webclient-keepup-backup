@@ -13,17 +13,13 @@ export default {
   watch: {
     model: {
       immediate: true,
-      deep: true,
-      handler(data) {
-        
-        if (data) {
-          this.form = Object.assign(this.model, data);
-        
-        } else {
-          this.form = Object.assign(this.form, this.data__.form);
-          
+      handler() {
+
+        if (this.model) {
+          Object.entries(this.model).forEach(([key, value]) => {
+            this.form[key] = value;
+          });
         }
-        
       }
     }
   }

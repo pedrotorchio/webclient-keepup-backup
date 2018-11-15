@@ -21,8 +21,8 @@ export default {
     onPatientLoaded() {},
   },
   created() {
-    
-    this.loadPatient();
+    if (this.patientId)
+      this.loadPatient();
   }
 }
 </script>

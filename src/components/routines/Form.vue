@@ -52,7 +52,7 @@ export default {
       ]
     },
     now
-  },
+  }
 }
 </script>
 <template lang="pug">

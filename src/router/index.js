@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import { lazy } from '@/assets/js';
-import { requireAuth } from './guard';
+import { requireAuth, anonymousOnly } from './guard';
 
 Vue.use(Router)
 
@@ -152,7 +152,8 @@ export default new Router({
     {
       path: "/",
       name: "Login",
-      component: lazyTemplate("login")
+      component: lazyTemplate("login"),
+      beforeEnter: anonymousOnly,
     },
     {
       path: "/",

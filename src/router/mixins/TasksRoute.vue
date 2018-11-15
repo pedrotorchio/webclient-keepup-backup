@@ -9,7 +9,7 @@ export default {
     ...mapActions([
       'fetchRoutineTasks'
     ]),
-    routineLoaded() {
+    onRoutineLoaded() {
      this.loadTasks(); 
     },
     async loadTasks() {
