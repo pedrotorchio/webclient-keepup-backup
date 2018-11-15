@@ -11,7 +11,13 @@ export default {
         id: this.model.id
       });
     },
-    tooltipClick() {}
+    tooltipClick() {
+      if (!this.editable)
+        this.setEditable(true);
+    },
+    outClick(eve) {
+      
+    }
   }
 }
 </script>
