@@ -55,19 +55,27 @@ export default {
   )
     tooltip(
       ref = "tooltip"
-      :editable = "editable"
+      :editable.sync = "editable"
       :model = "model"
       :color = "independency" 
-      @click.self.native.stop = "tooltipClick"
+      @click.native.stop = "tooltipClick"
       @change = 'tooltipChange'
+      @out-click = 'outClick'
     )
 </template>
 <style lang="stylus" scoped>
+padding = 5px;
+
 .task
   position absolute;
   border-radius 5px;
   cursor: pointer;
 .selected
   border: 5px solid white;
-
+.task-tooltip
+  position absolute;
+  top 90%; 
+  top: 'calc(100% - %s)' % (2 * padding);
+  left 90%;
+  left: 'calc(100% - %s)' % (2 * padding);
 </style>

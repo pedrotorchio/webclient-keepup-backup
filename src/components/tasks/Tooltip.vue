@@ -29,6 +29,7 @@ export default {
     },
     hide() {
       this.shown = false;
+      this.$emit('update:editable', false);
     },
     clearInfo() {
       this.info = null;
@@ -89,7 +90,6 @@ export default {
   div.task-tooltip( 
     v-if = "shown || editable"
     :class = "{ editable }" )
-
     h1.header {{ startTime }} {{ model.title }}
 
     editable-input.independency( 
@@ -141,11 +141,6 @@ export default {
 padding = 5px;
 
 .task-tooltip
-  position absolute;
-  top 90%; 
-  top: 'calc(100% - %s)' % padding;
-  left 90%;
-  left: 'calc(100% - %s)' % padding;
 
   background-color: rgba(0,0,0,.8);
   width: auto;
