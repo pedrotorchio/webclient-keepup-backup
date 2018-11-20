@@ -13,13 +13,22 @@ export default {
     onRoutineLoaded() {
      this.loadTasks(); 
     },
+    extractTasks() {
+      this.tasks = this
+                      .forms
+                      .filter( form => form.visibility )
+                      .flatMap( form => form.tasks ) // merge tasks
+                      .sort( ( task1, task2 ) => task1.start - task2.start );
+    },
     async loadTasks() {
       this.forms = await this.fetchRoutineTasksForms(this.routineId);
       
       const formFetcher = this.forms.map( async form => await this.fetchTasksForm(form.id) );
-      const forms = await Promise.all(formFetcher);
-      this.tasks = forms.flatMap( form => form.tasks )
-                        .map( task => {
+      this.forms = await Promise.all(formFetcher);
+
+      this.forms = this.forms.map( form => { // for each form
+
+        form.tasks = form.tasks.map( task => { // transform each of its tasks
 
           const timestring = `${task.time} ${this.routine.date}`;
           const moment = parseDatetime(timestring, true);
@@ -29,9 +38,13 @@ export default {
           
           return task;
           
-        }).sort( ( task1, task2 ) => task1.start - task2.start );
-        
-        this.tasksLoaded();
+        });
+
+        return form;
+      })
+      
+      this.extractTasks();
+      this.tasksLoaded();
 
     },
     tasksLoaded() {}
