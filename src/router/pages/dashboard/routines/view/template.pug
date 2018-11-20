@@ -1,16 +1,17 @@
-section.visualization(
-  
-)
-  nav#form-toggles
+section.visualization
+  nav#form-toggles( v-if = "scales" )
     span.form-toggles-title Formulários
     ul#toggles
       li.toggle(
-        v-for = "form in forms"
+        v-for = "( form, i ) in forms"
         :key = "form.id"
         :class = "{ on: form.visibility }"
+        :style = "{ borderColor: formsColorScale(i), backgroundColor: form.visibility ? formsColorScale(i) : 'transparent' }"
         @click = "toggleForm(form.id)"
       )
-        span {{ form.filler_name }}
+        span(
+          :style = "{ color: form.visibility ? 'white' : formsColorScale(i) }"
+        ) {{ form.filler_name }}
         ul.tooltip
           li.filler_name {{ form.filler_name }}
           li.pts(
