@@ -6,7 +6,8 @@ export default {
   extends: Model,
   data: () => ({
     routine: {},
-    tasks: []
+    tasks: [],
+    forms: []
   })
 }
 </script>
