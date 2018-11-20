@@ -31,7 +31,7 @@ export default {
           
         }).sort( ( task1, task2 ) => task1.start - task2.start );
         
-        // this.tasksLoaded();
+        this.tasksLoaded();
 
     },
     tasksLoaded() {}
