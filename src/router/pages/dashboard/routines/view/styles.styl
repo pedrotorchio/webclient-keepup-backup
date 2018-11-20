@@ -1,4 +1,4 @@
-.visualization, #gantt, #rows, #xAxis, #canvas
+.visualization, #gantt, #rows, #xAxis, #canvas, #gantt-container
   width: 100%;
   height: 100%;
   position: relative;
@@ -8,7 +8,7 @@
   top 0;
 
 
-.visualization
+#gantt-container
   display flex;
 
 #yAxis
@@ -48,3 +48,75 @@
     padding 5px;
     display: flex;
     align-items: flex-end;
+
+
+#form-toggles, #toggles
+  display flex
+  align-items center
+  justify-content: flex-start
+
+#form-toggles
+  margin-bottom 24px
+  z-index 55
+  .form-toggles-title
+    font-size .8em;    
+  .toggle
+    margin 2px
+    padding 2px
+    border 4px solid 
+    background-color transparent
+    display inline-block
+    position relative
+    font-size 12px
+    cursor pointer
+    line-height 1.5em
+
+    .filler_name, .pts
+      display inline-block
+      margin 0 5px
+
+    &.on
+      color white
+  
+  .toggle:nth-child(1)
+    cor = red
+    border-color cor;
+    color cor
+    &.on
+      color white
+      background-color cor
+      
+  .toggle:nth-child(2)
+    cor = blue
+    border-color cor;
+    color cor
+    &.on
+      color white
+      background-color cor
+  
+  .toggle:nth-child(3)
+    cor = green
+    border-color cor;
+    color cor
+    &.on
+      color white
+      background-color cor
+
+  .tooltip
+    display none
+    position absolute
+    width 300px
+    z-index 555
+    background rgba(0,0,0,.8)
+    color white
+    padding 24px
+    top 10px
+    left 10px
+    font-size 1.5em
+
+    li
+      line-height: 1.5em
+
+  .toggle:hover
+    .tooltip
+      display block;
