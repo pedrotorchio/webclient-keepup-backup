@@ -6,13 +6,18 @@ export default {
     ...mapActions({
       updateTasksForm: 'updateTasksForm'
     }),
-    toggleForm(formId) {
-      const { id, visibility } = this.forms.find( form => form.id === formId );    
+    async toggleForm(formId) {
+      const index = this.forms.findIndex( form => form.id === formId );    
+      
+      let { id, visibility } = this.forms[index];
+      visibility = !visibility;
 
-      this.updateTasksForm({
+      await this.updateTasksForm({
         id,
-        visibility: !visibility
+        visibility
       });
+
+      this.forms[index].visibility = visibility;
     }
   }
 }
