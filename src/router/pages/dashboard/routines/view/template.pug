@@ -1,41 +1,58 @@
 section.visualization(
-  :style = "{ height: `${canvasHeight}px` }"
+  
 )
-  div#yAxis( v-if = "scales")
-    h2.task-title(
-      v-for = "(title, i) in scales.titles"
-      :style = "rowStyle()"
-    ) {{ title }}
+  nav#form-toggles
+    ul
+      li.toggle(
+        v-for = "form in forms"
+        :key = "form.id"
+        :title = "form.filler_name"
+      )
+        ul.tooltip
+          li {{ form.filler_name }}
+          li {{ form.punctuation }}
+          li {{ form.comment }}
 
-  div#gantt( 
-    ref = "gantt"
-    v-if = 'scales' )
-    div#rows
-      div.row(
+  
+  div#gantt-container(
+    :style = "{ height: `${canvasHeight}px` }"
+  )
+    div#yAxis( v-if = "scales")
+      h2.task-title(
         v-for = "(title, i) in scales.titles"
         :style = "rowStyle()"
-      )
-    
-    div#xAxis
-      div.hour-tick(
-        v-if = "doneScaling"
-        v-for = "hour in (hours)"
-        :style = "{ width: getHourTickWidth(hour) }"
+      ) {{ title }}
 
-      ) {{ format(getNextHourTick(hour - 1)) }}
+    div#gantt( 
+      ref = "gantt"
+      v-if = 'scales' )
+      div#rows
+        div.row(
+          v-for = "(title, i) in scales.titles"
+          :style = "rowStyle()"
+        )
+      
+      div#xAxis
+        div.hour-tick(
+          v-if = "doneScaling"
+          v-for = "hour in (hours)"
+          :style = "{ width: getHourTickWidth(hour) }"
 
-    div#canvas( ref = "canvas" )
-      task(
-        v-for = '(task, i) in tasks'
-        ref = "tasks"
-        :key = 'task.id'
-        @click = "selected"
-        @change = 'onTaskChange'
-        :model = 'task'
-        :durationScale = 'scales.getDurationScale()'
-        :independencyScale = 'scales.getIndependencyScale()'
-        :momentScale = 'scales.getMomentScale()'
-        :heightScale = 'scales.getHeightScale()'
-        :categoryScale = 'scales.getCategoryScale()'
-        :typeScale = 'scales.getTypeScale()'
-      ) {{ scales.getDurationScale(task.duration) }}
+        ) {{ format(getNextHourTick(hour - 1)) }}
+
+      div#canvas( ref = "canvas" )
+        task(
+          v-for = '(task, i) in tasks'
+          ref = "tasks"
+          :key = 'task.id'
+          @click = "selected"
+          @change = 'onTaskChange'
+          :model = 'task'
+          :durationScale = 'scales.getDurationScale()'
+          :independencyScale = 'scales.getIndependencyScale()'
+          :momentScale = 'scales.getMomentScale()'
+          :heightScale = 'scales.getHeightScale()'
+          :categoryScale = 'scales.getCategoryScale()'
+          :typeScale = 'scales.getTypeScale()'
+        ) {{ scales.getDurationScale(task.duration) }}
+  
