@@ -2,6 +2,16 @@
 import { mapActions } from 'vuex';
 
 export default {
+  computed: {
+    formsColorScale() {
+      if (!this.scales)
+        return () => 'blue';
+      
+      return this.scales
+                 .getIndependencyScale()
+                 .domain([0, this.forms.length - 1]);
+    }
+  },
   methods: {
     ...mapActions({
       updateTasksForm: 'updateTasksForm'
