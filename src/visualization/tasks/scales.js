@@ -116,9 +116,12 @@ export class Scales {
     
     return this.makeScaleBand(this.categories, heightScale(), this.padding);
   }
+  getColorScale([ start, end ]) {
+    return scaleSequential( interpolateRgb( start, end ) );
+  }
   getIndependencyScale() {
     
-    return scaleSequential( interpolateRgb(independencyRange[0], independencyRange[1]) )
+    return this.getColorScale( [ independencyRange[0], independencyRange[1] ] )
       .domain([independencyExtent[0], independencyExtent[1]]);
   
   }

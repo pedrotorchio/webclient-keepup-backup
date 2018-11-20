@@ -8,7 +8,7 @@ export default {
         return () => 'blue';
       
       return this.scales
-                 .getIndependencyScale()
+                 .getColorScale([ '#009688', '#2196f3' ])
                  .domain([0, this.forms.length - 1]);
     },
     allTasks() {
