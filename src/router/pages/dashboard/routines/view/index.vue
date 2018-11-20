@@ -4,6 +4,7 @@ import Route from '@/router/pages/Route';
 import { mapActions } from 'vuex';
 
 import TasksRoute from '@/router/mixins/TasksRoute';
+import TasksFormView from './TasksForm.mixin';
 import RoutineModel from '@/components/routines/RoutineModel';
 import Stats from '@/components/routines/Stats.mixin';
 import Visualization from './Visualization.mixin';
@@ -12,7 +13,7 @@ import Task from '@/components/tasks/Task';
 export default {
   name: 'Visualization',
   extends: Route,
-  mixins: [ TasksRoute, Stats, Visualization ],
+  mixins: [ TasksRoute, TasksFormView, Stats, Visualization ],
   components: { Task },
 
   watch: {

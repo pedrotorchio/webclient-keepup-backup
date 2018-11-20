@@ -1,9 +1,7 @@
 <script>
-import TasksRoute from '@/router/mixins/TasksRoute';
 import { mapActions } from 'vuex';
 
 export default {
-  extend: TasksRoute,
   methods: {
     ...mapActions({
       updateFormsTask: 'updateFormsTask'

@@ -58,7 +58,7 @@ export class Scales {
     this.minHeight = 32;
 
     this.padding = 5;
-
+console.dir(tasks);
     this.tasks = tasks;
 
     const categories = this.tasks.map( task => task.category ); // categories

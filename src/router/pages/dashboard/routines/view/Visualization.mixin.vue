@@ -52,6 +52,7 @@ export default {
       }
     },
     tasksLoaded() {
+      
       this.hasLoaded = true;
       this.scales = new Scales(this.tasks);
 
