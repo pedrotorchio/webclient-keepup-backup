@@ -8,6 +8,7 @@ import auth from './auth';
 import patients from './patients';
 import routines from './routines';
 import tasks from './tasks';
+import tasksForms from './tasks-forms';
 
 export default new Vuex.Store({
   modules: {
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     patients,
     routines,
     tasks,
-    system
+    system,
+    tasksForms
   }
 });
