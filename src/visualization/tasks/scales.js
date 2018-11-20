@@ -58,7 +58,6 @@ export class Scales {
     this.minHeight = 32;
 
     this.padding = 5;
-console.dir(tasks);
     this.tasks = tasks;
 
     const categories = this.tasks.map( task => task.category ); // categories
@@ -71,8 +70,6 @@ console.dir(tasks);
     this.categories = categories.filter( unique(idFinder));
     this.titles = titles.filter( unique(ttFinder));
     this.timeExtent = taskExtent(this.tasks);
-    
-    console.dir(this);
 
   }
 
