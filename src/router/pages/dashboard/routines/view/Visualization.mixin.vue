@@ -54,10 +54,11 @@ export default {
     tasksLoaded() {
       
       this.hasLoaded = true;
-      this.scales = new Scales(this.tasks);
+      this.scales = new Scales(this.allTasks);
 
       if (this.hasMounted)
         this.createVisualization();
+
     },
     getCanvasWidth() {
       
