@@ -41,6 +41,30 @@ export default {
         this.tasks[i][key] = value;
       }); 
     }
+  },
+  created() {
+    this.rootActions.push({
+      tip: 'Informações de Rotina',
+      to: {
+        name: 'RoutineEdit',
+        params: {
+          routineId: this.routineId
+        }
+      },
+      color: 'secondary',
+      icon: 'list'
+    });
+    this.rootActions.push({
+      tip: 'Novo Formulário de Atividades',
+      to: {
+        name: 'FormNew',
+        params: {
+          routineId: this.routineId
+        }
+      },
+      color: 'primary',
+      icon: 'add'
+    });
   }
 }
 </script>
