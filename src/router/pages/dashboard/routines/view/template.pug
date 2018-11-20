@@ -2,16 +2,22 @@ section.visualization(
   
 )
   nav#form-toggles
-    ul
+    span.form-toggles-title Formulários
+    ul#toggles
       li.toggle(
         v-for = "form in forms"
         :key = "form.id"
-        :title = "form.filler_name"
+        :class = "{ on: form.visibility }"
       )
+        span {{ form.filler_name }}
         ul.tooltip
-          li {{ form.filler_name }}
-          li {{ form.punctuation }}
-          li {{ form.comment }}
+          li.filler_name {{ form.filler_name }}
+          li.pts(
+            v-if = "form.punctuation"
+          ) {{ form.punctuation }}
+          li.quote(
+            v-if = "form.comment"
+          ) {{ form.comment }}
 
   
   div#gantt-container(
