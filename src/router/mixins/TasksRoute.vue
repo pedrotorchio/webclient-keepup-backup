@@ -13,13 +13,7 @@ export default {
     onRoutineLoaded() {
      this.loadTasks(); 
     },
-    extractTasks() {
-      this.tasks = this
-                      .forms
-                      .filter( form => form.visibility )
-                      .flatMap( form => form.tasks ) // merge tasks
-                      .sort( ( task1, task2 ) => task1.start - task2.start );
-    },
+    extractTasks() {},
     async loadTasks() {
       this.forms = await this.fetchRoutineTasksForms(this.routineId);
       
