@@ -134,6 +134,19 @@ const routine = {
         title: (route, vm) => "Visualizar Atividades"
       }
     },
+    {
+      path: "novo-formulario",
+      name: "FormNew",
+      component: lazyTemplate("dashboard/routines/new-form"),
+      props: (prop) => {
+        return {
+          routineId: Number(prop.params.routineId)
+        }
+      },
+      meta: {
+        title: (route, vm) => "Novo Formulário de Atividades"
+      }
+    },
   ]
 };
 const newPatient = {
