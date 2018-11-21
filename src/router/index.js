@@ -162,7 +162,11 @@ const tasksForm = {
   path: "/formulario/:formId(\\d+)",
   component: lazyTemplate("dashboard/routines/new-form"),
   beforeEnter: requireAuth,
-  props: true,
+  props: (prop) => {
+    return {
+      formId: Number(prop.params.formId)
+    }
+  },
   meta: {
     title: (route, vm) => "Formulário de Atividades"
   }
@@ -183,7 +187,8 @@ export default new Router({
         patients,
         patient,
         routine,
-        newPatient
+        newPatient,
+        tasksForm
       ]
     }
   ]
