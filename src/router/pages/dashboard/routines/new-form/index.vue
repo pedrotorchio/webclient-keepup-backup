@@ -42,8 +42,39 @@ export default {
       }
 
       return form;
-    }
+    },
+    onTasksFormLoaded() {
+      this.setActions();
+    },
+    defineActions() {
+      let routineId;
+      
+      if (this.routineId)
+        routineId = this.routineId;
+
+      else if (this.tasksForm)
+        routineId = this.tasksForm.routine_id;
+
+      else
+        return;
+      
+      this.rootActions.push({
+        tip: 'Retornar', 
+        to: { 
+          name: 'TasksView',
+          params: {
+            routineId
+          }
+        }, 
+        color: 'secondary', 
+        icon: 'arrow_back' 
+      });
+    },
+  },
+  created() {
+    this.defineActions();
   }
+
 }
 
 </script>
