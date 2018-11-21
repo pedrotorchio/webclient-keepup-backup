@@ -17,7 +17,7 @@ section.visualization
             router-link(
               @click.native.stop = "(() => ({}))"
               :to = "{ name: 'FormEdit', params: { formId: form.id } }"
-            ) Editar
+            ) Editar/Compartilhar
           li.filler_name {{ form.filler_name }}
           li.pts(
             v-if = "form.punctuation"
