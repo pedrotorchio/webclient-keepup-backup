@@ -31,20 +31,23 @@ main
       //- section#warning-cards.padded
     
     div.actions
+      
       v-tooltip.floating-btn( 
         v-for="(action, i) in allActions"
         top
       )
         span(v-text='action.tip')
-
+        
         v-btn(
           fab dark large 
           fixed
           bottom left
-          :color="action.color"
           slot="activator"
-          :to='action.to'
-        ) 
+          
+          v-bind = "action.attrs"
+          v-on = "action.events"
+          
+        )
           v-icon( 
             dark
               v-text='action.icon'

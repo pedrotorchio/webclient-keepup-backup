@@ -14,7 +14,8 @@ export default {
   methods: {
     ...mapActions({
       updateTasksForm: 'updateTasksForm',
-      createTasksForm: 'createTasksForm'
+      createTasksForm: 'createTasksForm',
+      deleteTasksForm: 'deleteTasksForm'
     }),
     async submitProcedure(data) {
       
@@ -46,14 +47,34 @@ export default {
     onTasksFormLoaded() {
       this.defineActions();
     },
+    async deleteForm() {
+      
+      await this.deleteTasksForm(this.tasksForm.id);
+      
+      const routineId = this.tasksForm.routine_id;
+      this.$router.push({
+        name: 'TasksView',
+        params: {
+          routineId
+        }
+      })
+
+    },
     defineActions() {
       let routineId;
       
       if (this.routineId)
         routineId = this.routineId;
 
-      else if (this.tasksForm)
+      else if (this.tasksForm) {
         routineId = this.tasksForm.routine_id;
+        this.rootActions.push({
+          tip: 'Excluir', 
+          click: this.deleteForm,
+          color: 'error', 
+          icon: 'clear' 
+        });
+      }
 
       else
         return;
