@@ -1,11 +1,14 @@
 <script>
 import Form from '@/components/generic/form/Form.mixin';
+import Share from './Share.mixin';
+
 import '@/icons/wa';
 import '@/icons/email';
 
 export default {
   name: 'New-Form',
   extends: Form,  
+  mixins: [ Share ],
   data: () => ({
     isValid: false,
     form: {
@@ -27,31 +30,14 @@ export default {
     },
   },
   computed: {
-    urlRoute() {
-      if (!this.model)
-        return;
-
-      const formId = this.model.id;
-      return {
-        name: 'TasksForm',
-        params: {
-          formId
-        }
-      }
-    },
-    url() {
-      if (!this.model)
-        return;
-
-      return window.location.origin + this.$router.resolve(this.urlRoute).href
-    },
     textFields() {
       return [
         [ 'filler_name' , 'Preenchedor*', true],
         [ 'comment' , 'Comentário'],
       ]
     },
-  }
+  },
+
 }
 </script>
 <template lang="pug">
@@ -78,10 +64,7 @@ v-form(
         svgicon.media.whatsapp(
           icon = "wa"
           :original = 'true'
-        )
-        svgicon.media.whatsapp(
-          icon = "email"
-          :original = 'true'
+          @click = "shareOnWhatsapp"
         )
   
 </template>
@@ -123,6 +106,7 @@ v-form(
         width auto
         margin 5px 10px
         padding 10px
+        cursor pointer
 
 
 </style>

@@ -172,6 +172,17 @@ const tasksForm = {
     title: (route, vm) => "Formulário de Atividades"
   }
 };
+
+const tasksFill = {
+  path: "/preenchimento/:formId(\\d+)",
+  name: 'TasksForm',
+  component: lazyTemplate("dashboard/routines/tasks-form"),
+  props: (prop) => {
+    return {
+      formId: Number(prop.params.formId)
+    }
+  }
+};
 export default new Router({
   mode: "history",
   routes: [
@@ -191,6 +202,7 @@ export default new Router({
         newPatient,
         tasksForm
       ]
-    }
+    },
+    tasksFill
   ]
 });
