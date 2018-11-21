@@ -14,9 +14,10 @@ export default {
   }),
   methods: {
     changed(key) { 
-      const { filler } = this.form;
+      
+      const { filler_name } = this.form;
 
-      if (filler) {
+      if (filler_name) {
 
         const data = { ...this.form };
         this.$emit('change', data);
