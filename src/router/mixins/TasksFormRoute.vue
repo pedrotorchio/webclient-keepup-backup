@@ -3,7 +3,7 @@ import { mapActions } from 'vuex';
 
 export default {
   props: {
-    tasksFormId: {
+    formId: {
       type: Number
     }
   },
@@ -15,14 +15,14 @@ export default {
       fetchTasksForm: 'fetchTasksForm'
     }),
     async loadTasksForm() {
-      this.tasksForm = await this.fetchTasksForm( this.patientId );
+      this.tasksForm = await this.fetchTasksForm( this.formId );
 
       this.onTasksFormLoaded();
     },
     onTasksFormLoaded() {},
   },
   created() {
-    if (this.tasksFormId)
+    if (this.formId)
       this.loadTasksForm();
   }
 }
