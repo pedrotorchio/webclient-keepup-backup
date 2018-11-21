@@ -137,7 +137,7 @@ const routine = {
     {
       path: "novo-formulario",
       name: "FormNew",
-      component: lazyTemplate("dashboard/routines/new-form"),
+      component: lazyTemplate("dashboard/routines/tasks-form"),
       props: (prop) => {
         return {
           routineId: Number(prop.params.routineId)
@@ -161,7 +161,7 @@ const newPatient = {
 const tasksForm = {
   path: "/formulario/:formId(\\d+)",
   name: 'FormEdit',
-  component: lazyTemplate("dashboard/routines/new-form"),
+  component: lazyTemplate("dashboard/routines/tasks-form"),
   beforeEnter: requireAuth,
   props: (prop) => {
     return {

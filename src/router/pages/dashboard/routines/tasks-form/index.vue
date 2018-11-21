@@ -2,7 +2,7 @@
 import Route from '@/router/pages/Route';
 import RoutineRoute from '@/router/mixins/RoutineRoute';
 import TasksFormRoute from '@/router/mixins/TasksFormRoute';
-import NewForm from '@/components/tasks-form/Form';
+import TasksForm from '@/components/tasks-form/Form';
 import FormView from '@/components/generic/form/FormView.mixin';
 import { mapActions } from 'vuex';
 
@@ -10,7 +10,7 @@ import { mapActions } from 'vuex';
 export default {
   extends: Route,
   mixins: [ TasksFormRoute, RoutineRoute, FormView ],
-  components: { NewForm },
+  components: { TasksForm },
   methods: {
     ...mapActions({
       updateTasksForm: 'updateTasksForm',
@@ -100,7 +100,7 @@ export default {
 
 </script>
 <template lang="pug">
-  new-form(
+  tasks-form(
     :model='tasksForm'
     @change='submit'
   )
