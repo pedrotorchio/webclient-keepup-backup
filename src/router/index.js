@@ -160,6 +160,7 @@ const newPatient = {
 };
 const tasksForm = {
   path: "/formulario/:formId(\\d+)",
+  name: 'FormEdit',
   component: lazyTemplate("dashboard/routines/new-form"),
   beforeEnter: requireAuth,
   props: (prop) => {
