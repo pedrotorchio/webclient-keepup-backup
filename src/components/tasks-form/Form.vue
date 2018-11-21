@@ -7,7 +7,7 @@ export default {
   data: () => ({
     isValid: false,
     form: {
-      filler: '',
+      filler_name: '',
       comment: '',
     },
     updated_at: '',
@@ -26,7 +26,7 @@ export default {
   computed: {
     textFields() {
       return [
-        [ 'filler' , 'Preenchedor*', true],
+        [ 'filler_name' , 'Preenchedor*', true],
         [ 'comment' , 'Comentário'],
       ]
     },
