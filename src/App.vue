@@ -11,6 +11,7 @@ export default {
 </script>
 <style lang="stylus" src='@/styles/helper-classes.styl'></style>
 <style lang="stylus" src='@/styles/reset.styl'></style>
+<style lang="css" src='@/styles/icons.css'></style>
 <style lang="stylus">
 html, body, .application
   height: 100%;
