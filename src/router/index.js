@@ -72,7 +72,7 @@ const patient = {
         }
       },
       meta: {
-        title: (route, vm) => "Editar Paciente"
+        title: (route, vm) => "Paciente"
       }
     },
     {
@@ -118,7 +118,7 @@ const routine = {
         }
       },
       meta: {
-        title: (route, vm) => "Editar Rotina"
+        title: (route, vm) => "Rotina"
       }
     },
     {
@@ -158,7 +158,19 @@ const newPatient = {
     title: (route, vm) => "Novo Paciente"
   }
 };
-
+const tasksForm = {
+  path: "/formulario/:formId(\\d+)",
+  component: lazyTemplate("dashboard/routines/new-form"),
+  beforeEnter: requireAuth,
+  props: (prop) => {
+    return {
+      formId: Number(prop.params.formId)
+    }
+  },
+  meta: {
+    title: (route, vm) => "Formulário de Atividades"
+  }
+};
 export default new Router({
   mode: "history",
   routes: [
@@ -175,7 +187,8 @@ export default new Router({
         patients,
         patient,
         routine,
-        newPatient
+        newPatient,
+        tasksForm
       ]
     }
   ]
