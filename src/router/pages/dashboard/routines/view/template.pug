@@ -13,6 +13,11 @@ section.visualization
           :style = "{ color: form.visibility ? 'white' : formsColorScale(i) }"
         ) {{ form.filler_name }}
         ul.tooltip
+          li.edit-btn 
+            router-link(
+              @click.native.stop = "(() => ({}))"
+              :to = "{ name: 'FormEdit', params: { formId: form.id } }"
+            ) Editar
           li.filler_name {{ form.filler_name }}
           li.pts(
             v-if = "form.punctuation"

@@ -44,7 +44,7 @@ export default {
       return form;
     },
     onTasksFormLoaded() {
-      this.setActions();
+      this.defineActions();
     },
     defineActions() {
       let routineId;
