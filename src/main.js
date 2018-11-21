@@ -9,6 +9,7 @@ api.setBaseUrl('http://api.keepup.com.br/api');
 import "@/plugins/vuetify";
 import '@/plugins/Mixins';
 import '@/plugins/Directives';
+import '@/plugins/Components';
 
 import App from "./App";
 import router from "./router";
