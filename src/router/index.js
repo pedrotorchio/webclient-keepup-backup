@@ -177,11 +177,7 @@ const tasksFill = {
   path: "/preenchimento/:formUid",
   name: 'TasksForm',
   component: lazyTemplate("tasks-form"),
-  props: (prop) => {
-    return {
-      formUid: Number(prop.params.formUid)
-    }
-  }
+  props: true
 };
 export default new Router({
   mode: "history",
