@@ -9,5 +9,12 @@ main
           span.pts {{ totalPunctuation }}
     form
       p.comment( v-if = "form.comment" ) {{ form.comment }}
+      p.tip( v-if = "!hasTasks" ) Clique em ADICIONAR ATIVIDADE
+
+      task( v-else
+        v-for = "(task, i) in form.tasks" 
+        :task = "task"
+      )
+      
 
     button.new-task-btn.secondary ADICIONAR ATIVIDADE
