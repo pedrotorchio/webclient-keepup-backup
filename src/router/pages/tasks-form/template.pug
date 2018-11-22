@@ -1,2 +1,16 @@
 main
   v-progress-linear( v-if = "!form" )
+  div#main-container( v-else )
+    header.primary( )
+      h1 {{ patient.first_name }} {{ patient.last_name }}
+      div.filler
+        h2.name {{ fillerName }}
+        div.punctuation 
+          span.pts {{ totalPunctuation }}
+    form
+      p.comment( v-if = "form.comment" ) {{ form.comment }}
+
+      button.new-task-btn.secondary(
+        flat
+        
+      ) ADICIONAR ATIVIDADE
