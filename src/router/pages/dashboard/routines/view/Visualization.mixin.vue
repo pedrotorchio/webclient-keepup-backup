@@ -10,6 +10,9 @@ export default {
     doneScaling: false
   }),
   computed: {
+    hasTasks() {
+      return Boolean(this.scales) && this.scales.hasTasks();
+    },
     hours() {
       const timeExtent = this.scales.timeExtent; 
 
@@ -54,6 +57,7 @@ export default {
     tasksLoaded() {
       
       this.hasLoaded = true;
+      
       this.scales = new Scales(this.allTasks);
 
       if (this.hasMounted)
@@ -62,7 +66,7 @@ export default {
     },
     getCanvasWidth() {
       
-      if (!this.hasMounted)
+      if (!this.hasMounted || !this.$refs.canvas)
         return 0;
       
       return this.$refs.canvas.clientWidth;

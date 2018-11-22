@@ -19,6 +19,9 @@ export default {
                 .forms
                 .flatMap( form => form.tasks )
                 .sort( ( task1, task2 ) => task1.start - task2.start );
+    },
+    hasForms() {
+      return this.forms.length > 0;
     }
   },
   methods: {
