@@ -2,9 +2,11 @@
 import TasksFormRoute from '@/router/mixins/TasksFormRoute';
 import Route from '@/router/pages/Route';
 import { mapActions } from 'vuex';
+import Task from './Task';
 
 export default {
   extends: Route,
+  components: { Task },
   // mixins: [ TasksFormRoute ],
   props: {
     formUid: {}
@@ -21,6 +23,9 @@ export default {
     }
   },
   computed: {
+    hasTasks() {
+      return this.form && this.form.tasks.length > 0;
+    },
     fillerName() {
       return this.form.filler_name;
     },
