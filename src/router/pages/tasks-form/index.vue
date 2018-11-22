@@ -1,14 +1,38 @@
 <script>
 import TasksFormRoute from '@/router/mixins/TasksFormRoute';
 import Route from '@/router/pages/Route';
+import { mapActions } from 'vuex';
 
 export default {
   extends: Route,
-  mixins: [ TasksFormRoute ],
+  // mixins: [ TasksFormRoute ],
   props: {
-    formUid: {
-      type: Number
+    formUid: {}
+  },
+  data: () => ({
+    form: null
+  }),
+  methods: {
+    ...mapActions({
+      fetchForm: 'fetchTasksFormPublicData'
+    }),
+    async fetchData() {
+      this.form = await this.fetchForm(this.formUid);
     }
+  },
+  computed: {
+    fillerName() {
+      return this.form.filler_name;
+    },
+    totalPunctuation() {
+      return 432;
+    },
+    patient() {
+      return this.form.routine.patient;
+    }
+  },
+  created() {
+    this.fetchData();
   }
 }
 </script>
