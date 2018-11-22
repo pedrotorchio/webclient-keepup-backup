@@ -174,12 +174,12 @@ const tasksForm = {
 };
 
 const tasksFill = {
-  path: "/preenchimento/:formId(\\d+)",
+  path: "/preenchimento/:formUid",
   name: 'TasksForm',
-  component: lazyTemplate("dashboard/routines/tasks-form"),
+  component: lazyTemplate("tasks-form"),
   props: (prop) => {
     return {
-      formId: Number(prop.params.formId)
+      formUid: Number(prop.params.formUid)
     }
   }
 };

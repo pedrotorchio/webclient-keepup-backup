@@ -18,11 +18,12 @@ export default {
       if (!this.model)
         return;
 
-      const formId = this.model.id;
+      const formUid = this.model.uid;
+      
       return {
         name: 'TasksForm',
         params: {
-          formId
+          formUid
         }
       }
     },
@@ -48,7 +49,7 @@ ${this.url}
     },
   },
   watch: {
-    model() {
+    model(value) {
       this.fetchPatient(this.model.routine.patient_id);
     }
   }
