@@ -7,7 +7,10 @@ export default {
     }
   },
   data: () => ({
-    shown: false
+    shown: false,
+    task: {
+      title: ''
+    }
   }),
   methods: {
     show() {
@@ -15,6 +18,16 @@ export default {
     },
     hide() {
       this.shown = false
+    }
+  },
+  computed: {
+    category() {
+      if (!this.task.title)
+        return "";
+
+      const { category_id } = this.taskOptions.find( opt => opt.title === this.task.title );
+
+      return category_id;
     }
   }
 }
@@ -29,8 +42,13 @@ export default {
       @click = "hide"
     ) X
     v-select(
+      dark
+      v-model = "task.title"
       label = "Selecione a atividade"
       :items = "taskOptions"
+      item-text = "title"
+      item-value = "title"
+      color = "primary"
     )
 
 </template>
@@ -72,6 +90,12 @@ form
     right 1em
     top 1em
     font-size 12px
+
+  .v-select
+    margin: 1em auto;
+    width: 80%;
+    max-width: 600px;
+    min-width 340px
 
 </style>
 
