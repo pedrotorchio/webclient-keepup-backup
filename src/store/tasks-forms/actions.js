@@ -1,6 +1,8 @@
 import { api } from '@/api';
+import publicActions from './public-actions';
 
-export default {
+export default { ...publicActions,
+
   async fetchRoutineTasksForms({}, id) {
     const forms = await api.get(`routines/${id}/tasks-forms`);
     
