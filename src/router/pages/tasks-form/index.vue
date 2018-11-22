@@ -3,23 +3,31 @@ import TasksFormRoute from '@/router/mixins/TasksFormRoute';
 import Route from '@/router/pages/Route';
 import { mapActions } from 'vuex';
 import Task from './Task';
+import TasksForm from './NewTaskForm';
 
 export default {
   extends: Route,
-  components: { Task },
+  components: { Task, TasksForm },
   // mixins: [ TasksFormRoute ],
   props: {
     formUid: {}
   },
   data: () => ({
-    form: null
+    form: null,
+    taskOptions: null
   }),
   methods: {
     ...mapActions({
-      fetchForm: 'fetchTasksFormPublicData'
+      fetchForm: 'fetchTasksFormPublicData',
+      fetchTaskOptions: 'fetchTaskOptions'
     }),
     async fetchData() {
-      this.form = await this.fetchForm(this.formUid);
+      let fetchers = [this.fetchForm(this.formUid), this.fetchTaskOptions(this.formUid)]
+      
+      const [ form, taskOptions ] = await Promise.all(fetchers);
+
+      this.form = form;
+      this.taskOptions = taskOptions;
     }
   },
   computed: {
