@@ -7,7 +7,7 @@ main
         h2.name {{ fillerName }}
         div.punctuation 
           span.pts {{ totalPunctuation }}
-    form
+    div.list
       p.comment( v-if = "form.comment" ) {{ form.comment }}
       p.tip( v-if = "!hasTasks" ) Clique em ADICIONAR ATIVIDADE
 
@@ -17,4 +17,11 @@ main
       )
       
 
-    button.new-task-btn.secondary ADICIONAR ATIVIDADE
+    button.new-task-btn.secondary(
+      @click = "$refs.form.show()"
+    ) ADICIONAR ATIVIDADE
+
+    tasks-form(
+      ref = 'form'
+      :taskOptions = "taskOptions"
+    )
