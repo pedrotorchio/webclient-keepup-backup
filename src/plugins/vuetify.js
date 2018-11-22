@@ -12,7 +12,8 @@ import {
   VSlider,
   VDialog,
   VDatePicker,
-  transitions
+  transitions,
+  VProgressLinear
 } from "vuetify";
 import 'vuetify/src/stylus/app.styl'
 
@@ -28,7 +29,8 @@ Vue.use(Vuetify, {
     VIcon,
     VDialog,
     VTooltip,
-    transitions
+    transitions,
+    VProgressLinear
   },
   theme: {
     // Tangerine
