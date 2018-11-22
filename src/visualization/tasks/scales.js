@@ -7,7 +7,7 @@ const independencyRange  = ['#f44336', '#2196f3'];
 const minHeight = 32;
 
 export function taskExtent([fst, ...rst]) {
-
+  
   let extent  = [fst, rst.pop()];
   let rounded = [round(extent[0].start), round(extent[1].end, 'up')];
 
@@ -59,7 +59,7 @@ export class Scales {
 
     this.padding = 5;
     this.tasks = tasks;
-
+    
     const categories = this.tasks.map( task => task.category ); // categories
     const titles     = this.tasks.map( task => task.title ); // titles
     
@@ -69,10 +69,16 @@ export class Scales {
     
     this.categories = categories.filter( unique(idFinder));
     this.titles = titles.filter( unique(ttFinder));
-    this.timeExtent = taskExtent(this.tasks);
 
+    if (this.tasks.length != 0)
+      this.timeExtent = taskExtent(this.tasks);
+    else 
+      this.timeExtent = [];
   }
 
+  hasTasks() {
+    return this.tasks.length > 0;
+  }
   setCanvasWidth(width) {
     this.width = width;
   }
