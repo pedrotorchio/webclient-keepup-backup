@@ -26,11 +26,24 @@ export default {
     }
   }),
   methods: {
+    cancel() {
+      // reset here
+
+      this.hide();
+    },
+    submit() {
+      // submit here
+
+      this.hide();
+    },
     show() {
       this.shown = true
     },
     hide() {
       this.shown = false
+    },
+    independencyColorScale(lvl) {
+      return independencyColor(lvl);
     }
   },
   computed: {
@@ -88,101 +101,134 @@ export default {
       return getIndependencyLabel(this.task.independency);
     },
     independencyColor() {
-      return independencyColor(this.task.independency);
+      return this.independencyColorScale(this.task.independency);
     }
   }
 }
 </script>
 <template lang="pug">
-  div.form.secondary(
+  main(
     :class = `{
       shown
     }`
   )
-    button.close-btn(
-      @click = "hide"
-    ) X
-    div.row
-      v-select(
-        dark
-        v-model = "task.title"
-        label = "Selecione a atividade"
-        :items = "taskOptions"
-        item-text = "title"
-        item-value = "title"
-        color = "primary"
-      )
-    div.row
-      v-select.hours(
-        dark
-        v-model = "task.startHour"
-        label = "Horas"
-        :items = "hourOptions"
-        color = "primary"
-      )
-      v-select.minutes(
-        dark
-        v-model = "task.startMin"
-        label = "Minutos"
-        :items = "minuteOptions"
-        color = "primary"
-      )
-      spinner(
-        label = "Duração"
+    div.form.secondary
+      div.row
+        v-select(
+          dark
+          v-model = "task.title"
+          label = "Selecione a atividade"
+          :items = "taskOptions"
+          item-text = "title"
+          item-value = "title"
+          color = "primary"
+        )
+      div.row
+        v-select.hours(
+          dark
+          v-model = "task.startHour"
+          label = "Horas"
+          :items = "hourOptions"
+          color = "primary"
+        )
+        v-select.minutes(
+          dark
+          v-model = "task.startMin"
+          label = "Minutos"
+          :items = "minuteOptions"
+          color = "primary"
+        )
+        spinner(
+          label = "Duração"
 
-        :min="5"
-        :max="999"
-        :step="5"
-        :integerOnly="true"
+          :min="5"
+          :max="999"
+          :step="5"
+          :integerOnly="true"
 
-        v-model = "task.duration"
-      )
-    div.row
-      v-slider.independency(
-        v-model="task.independency"
-        hint = "Independência"
-        persistent-hint
-        :label="independencyLabel"
-        :min = '1'
-        :max = '7'
-        :step = '1'
-        :color = 'independencyColor'
-      )
-    div.row
-      v-select(
-        dark
-        v-model = "task.local"
-        label = "Local"
-        :items = "localOptions"
-        color = "primary"
-      )    
-    div.row
-      v-select(
-        dark
-        v-model = "task.company"
-        label = "Companhia"
-        :items = "companyOptions"
-        color = "primary"
-      )    
-    div.row
-      v-select(
-        dark
-        v-model = "task.simultaneous_task"
-        label = "Atividade Simultânea"
-        :items = "taskOptions"
-        item-text = "title"
-        item-value = "title"
-        color = "primary"
-      )    
-      
+          v-model = "task.duration"
+        )
+      div.row
+        v-slider.independency(
+          v-model="task.independency"
+          hint = "Independência"
+          persistent-hint
+          always-dirty
+          :label="independencyLabel"
+          :min = '1'
+          :max = '7'
+          :step = '1'
+          :color = 'independencyColor'
+        )
+      div.row
+        v-select(
+          dark
+          v-model = "task.local"
+          label = "Local"
+          :items = "localOptions"
+          color = "primary"
+        )    
+      div.row
+        v-select(
+          dark
+          v-model = "task.company"
+          label = "Companhia"
+          :items = "companyOptions"
+          color = "primary"
+        )    
+      div.row
+        v-select(
+          dark
+          v-model = "task.simultaneous_task"
+          label = "Atividade Simultânea"
+          :items = "taskOptions"
+          item-text = "title"
+          item-value = "title"
+          color = "primary"
+        )    
+    div.actions
+      button.finished-btn.accept(
+        :style = "{backgroundColor: independencyColorScale(7)}"
+      ) Salvar
+      button.finished-btn.decline(
+        @click = 'cancel'
+        :style = "{backgroundColor: independencyColorScale(1)}"
+      ) Cancelar
 
 </template>
 <style lang="stylus" scoped>
+
+distance = 5px
+rowCount = 7
+height = 480px //"calc(100% - %s)" % (shownTop) 
+rowHeight = (height / rowCount)
+shownTop = "calc(100% - %s)" % height //80 + 2*distance
+hiddenTop = 100%
+
+
+.actions
+  height rowHeight
+  display flex
+  align-items stretch
+  
+  button
+    flex 1 1 100%
+    color white
+    font-weight bold
+    letter-spacing 2px
+    text-transform uppercase
+    &.accept
+      
+      color #9ad2ff
+    &.decline
+      
+      color #FFBABA
 .row
   display flex
   flex-direction row
   margin: .1em auto;
   width: 80%;
+  height rowHeight
   max-width: 600px;
   min-width 340px
 
@@ -190,19 +236,9 @@ export default {
   width 5em
   flex 0 0 auto
 
-.form
+main
 
-  display flex
-  flex-direction column
-  justify-content space-around
-  align-items center
-
-
-  distance = 5px
-  shownTop = 80 + 2*distance
-  hiddenTop = 100%
-  height = "calc(100% - %s)" % (shownTop) 
-
+  
   position: fixed;
   top hiddenTop
   transition-timing-function: ease-in-out
@@ -217,15 +253,20 @@ export default {
   border-top-left-radius: distance;
   border-top-right-radius: distance;
 
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-end;
+
   &.shown
     top: shownTop;
 
-  .close-btn
-    color white
-    position absolute 
-    right 1em
-    top 1em
-    font-size 12px
+.form
+
+  display flex
+  flex-direction column
+  justify-content space-around
+  align-items center
 
 .independency
   margin-right 5px
