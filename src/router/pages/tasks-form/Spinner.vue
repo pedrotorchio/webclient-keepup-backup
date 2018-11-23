@@ -22,14 +22,20 @@ export default {
   components: {
     NumberInputSpinner
   },
+  watch: {
+    value(val) {
+      this.$refs.spinner.numericValue = val;
+    }
+  }
 }
 </script>
 <template lang="pug">
   div.spinner-input
     h4( v-if = "label" ) {{ label }}
-    number-input-spinner.spinner-input(
+    number-input-spinner.spinner-input( ref = 'spinner'
       v-bind = "attrs"
       v-on = "listeners"
+
       :value = 'value'
       @input = 'input'
 
