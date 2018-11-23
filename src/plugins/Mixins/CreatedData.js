@@ -1,9 +1,7 @@
 export default {
-  data: () => ({
-    data__: {}
-  }),
-  created() {
-    const { data__, ...data } = this.$data;
-    this.data__ = JSON.parse(JSON.stringify(data));
+  methods: {
+    resetData( fieldFinder = data => data ) {
+      Object.assign(fieldFinder(this.$data), fieldFinder(this.$options.data()));
+    },
   }
 };
