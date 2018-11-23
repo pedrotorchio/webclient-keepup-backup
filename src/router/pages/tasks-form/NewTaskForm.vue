@@ -10,7 +10,8 @@ export default {
     shown: false,
     task: {
       title: '',
-      start: ''
+      startMin: '00',
+      startHour: '06'
     }
   }),
   methods: {
@@ -22,6 +23,9 @@ export default {
     }
   },
   computed: {
+    start() {
+      return `${this.task.startHour}:${this.task.startMin}`;
+    },
     category() {
       if (!this.task.title)
         return "";
@@ -39,7 +43,7 @@ export default {
 
       return hours;
     },
-    minutesOptions() {
+    minuteOptions() {
       let mins = [];
       for (let i = 0 ; i < 60 ; i += 5) {
         const min = (i+'').padStart(2,0);
@@ -59,19 +63,45 @@ export default {
     button.close-btn(
       @click = "hide"
     ) X
-    v-select(
-      dark
-      v-model = "task.title"
-      label = "Selecione a atividade"
-      :items = "taskOptions"
-      item-text = "title"
-      item-value = "title"
-      color = "primary"
-    )
+    div.row
+      v-select(
+        dark
+        v-model = "task.title"
+        label = "Selecione a atividade"
+        :items = "taskOptions"
+        item-text = "title"
+        item-value = "title"
+        color = "primary"
+      )
+    div.row
+      v-select.hours(
+        dark
+        v-model = "task.startHour"
+        label = "Horas"
+        :items = "hourOptions"
+        color = "primary"
+      )
+      v-select.minutes(
+        dark
+        v-model = "task.startMin"
+        label = "Minutos"
+        :items = "minuteOptions"
+        color = "primary"
+      )
 
 </template>
 <style lang="stylus" scoped>
+.row
+  display flex
+  flex-direction row
+  margin: 1em auto;
+  width: 80%;
+  max-width: 600px;
+  min-width 340px
 
+.hours, .minutes
+  width 5em
+  flex 0 0 auto
 form
 
   display flex
@@ -109,11 +139,6 @@ form
     top 1em
     font-size 12px
 
-  .v-select
-    margin: 1em auto;
-    width: 80%;
-    max-width: 600px;
-    min-width 340px
 
 </style>
 
