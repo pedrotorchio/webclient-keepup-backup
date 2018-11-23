@@ -1,4 +1,6 @@
 <script>
+import Spinner from './Spinner';
+
 export default {
   props: {
     taskOptions: {
@@ -6,12 +8,14 @@ export default {
       required: true
     }
   },
+  components: { Spinner },
   data: () => ({
     shown: false,
     task: {
       title: '',
       startMin: '00',
-      startHour: '06'
+      startHour: '06',
+      duration: 20
     }
   }),
   methods: {
@@ -55,7 +59,7 @@ export default {
 }
 </script>
 <template lang="pug">
-  form.secondary(
+  div.form.secondary(
     :class = `{
       shown
     }`
@@ -88,6 +92,16 @@ export default {
         :items = "minuteOptions"
         color = "primary"
       )
+      spinner(
+        label = "Duração"
+
+        :min="5"
+        :max="999"
+        :step="5"
+        :integerOnly="true"
+
+        v-model = "task.duration"
+      )
 
 </template>
 <style lang="stylus" scoped>
@@ -102,7 +116,8 @@ export default {
 .hours, .minutes
   width 5em
   flex 0 0 auto
-form
+
+.form
 
   display flex
   flex-direction column
