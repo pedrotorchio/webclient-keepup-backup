@@ -139,7 +139,7 @@ export default {
           color = "primary"
         )
         spinner(
-          label = "Duração"
+          label = "Duração em Minutos"
 
           :min="5"
           :max="999"
