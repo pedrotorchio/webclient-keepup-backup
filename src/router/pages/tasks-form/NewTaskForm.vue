@@ -10,20 +10,15 @@ export default {
     taskOptions: {
       type: Array,
       required: true
+    },
+    task: {
+      type: Object,
+      required: false
     }
   },
   components: { Spinner },
   data: () => ({
     shown: false,
-    task: {
-      title: '',
-      startMin: '00',
-      startHour: '06',
-      duration: 20,
-      independency: 4,
-      local: '',
-      company: ''
-    }
   }),
   methods: {
     cancel() {
@@ -33,8 +28,11 @@ export default {
     },
     submit() {
       // submit here
-
-      this.hide();
+      if (!(this.task.title && this.task.time && this.task.duration))
+        return;
+      
+      this.$emit('update:task', this.task);
+      this.$emit('submit', this.task);
     },
     show() {
       this.shown = true
@@ -44,13 +42,42 @@ export default {
     },
     independencyColorScale(lvl) {
       return independencyColor(lvl);
+    },
+    getSplitTime() {
+      return this.task.time.split(':');
     }
   },
   computed: {
-    start() {
-      return `${this.task.startHour}:${this.task.startMin}`;
+    startMin: {
+      set(min) {
+        const [hour, m] = this.getSplitTime();
+        this.task.time = `${hour}:${min}`
+      },
+      get() {
+        const [hour, min] = this.getSplitTime();
+        return min;
+      }
     },
-    category() {
+    startHour: {
+      set(hour) {
+        const [h, min] = this.getSplitTime();
+        this.task.time = `${hour}:${min}`
+      },
+      get() {
+        const [hour, min] = this.getSplitTime();
+        return hour;
+      }
+    },
+    title: {
+      set( title ) {
+        this.task.title = title;
+        this.task.category_id = this.categoryId;
+      },
+      get() {
+        return this.task.title;
+      }
+    },
+    categoryId() {
       if (!this.task.title)
         return "";
 
@@ -116,7 +143,7 @@ export default {
       div.row
         v-select(
           dark
-          v-model = "task.title"
+          v-model = "title"
           label = "Selecione a atividade"
           :items = "taskOptions"
           item-text = "title"
@@ -126,14 +153,14 @@ export default {
       div.row
         v-select.hours(
           dark
-          v-model = "task.startHour"
+          v-model = "startHour"
           label = "Horas"
           :items = "hourOptions"
           color = "primary"
         )
         v-select.minutes(
           dark
-          v-model = "task.startMin"
+          v-model = "startMin"
           label = "Minutos"
           :items = "minuteOptions"
           color = "primary"
@@ -163,7 +190,7 @@ export default {
       div.row
         v-select(
           dark
-          v-model = "task.local"
+          v-model = "task.location"
           label = "Local"
           :items = "localOptions"
           color = "primary"
@@ -188,6 +215,7 @@ export default {
         )    
     div.actions
       button.finished-btn.accept(
+        @click = 'submit'
         :style = "{backgroundColor: independencyColorScale(7)}"
       ) Salvar
       button.finished-btn.decline(
@@ -205,7 +233,8 @@ rowHeight = (height / rowCount)
 shownTop = "calc(100% - %s)" % height //80 + 2*distance
 hiddenTop = 100%
 
-
+button
+  outline none
 .actions
   height rowHeight
   display flex
