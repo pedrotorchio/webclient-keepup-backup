@@ -14,13 +14,44 @@ export default {
   },
   data: () => ({
     form: null,
-    taskOptions: null
+    taskOptions: null,
+    currentTask: {
+      title: '',
+      time: '06:00',
+      duration: 20,
+      independency: 4,
+      location: '',
+      company: '',
+      simultaneous_task: ''
+    }
   }),
   methods: {
     ...mapActions({
       fetchForm: 'fetchTasksFormPublicData',
-      fetchTaskOptions: 'fetchTaskOptions'
+      fetchTaskOptions: 'fetchTaskOptions',
+      createTask: 'formCreateTask',
+      updateTask: 'formUpdateTask'
     }),
+    show() {
+      this.$refs.form.show()
+    },
+    hide() {
+      this.$refs.form.hide()
+    },
+    open(task) {
+
+      // this.currentTask.title = task.title;
+      // this.currentTask.time = task.time;
+      // this.currentTask.duration = task.duration;
+      // this.currentTask.independency = task.independency;
+      // this.currentTask.location = task.location;
+      // this.currentTask.company = task.company;
+      // this.currentTask.simultaneous_task = task.simultaneous_task;
+
+      this.currentTask = task;
+
+      this.show();
+    },
     async fetchData() {
       let fetchers = [this.fetchForm(this.formUid), this.fetchTaskOptions(this.formUid)]
       
@@ -28,6 +59,30 @@ export default {
 
       this.form = form;
       this.taskOptions = taskOptions;
+    },
+    async submit(data) {
+      const taskUid = data.uid;
+      const formUid = this.formUid;
+
+      data = {
+        data,
+        formUid,
+      }
+
+      if (!taskUid) {
+        this.form.tasks = await this.createTask(data);
+      } else {
+        data.taskUid = taskUid;
+        this.form.tasks = await this.updateTask(data);
+      }
+
+      this.hide();
+      this.resetDataValues( data => data.currentTask );
+      
+      delete this.currentTask.created_at
+      delete this.currentTask.deleted_at
+      delete this.currentTask.updated_at
+      delete this.currentTask.id
     }
   },
   computed: {

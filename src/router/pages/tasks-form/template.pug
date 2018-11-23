@@ -13,15 +13,19 @@ main
 
       task( v-else
         v-for = "(task, i) in form.tasks" 
+        :key = 'task.id'
         :task = "task"
+        @click = 'open(task)'
       )
       
 
     button.new-task-btn.secondary(
-      @click = "$refs.form.show()"
+      @click = "show"
     ) ADICIONAR ATIVIDADE
 
     tasks-form(
       ref = 'form'
+      :task = 'currentTask'
       :taskOptions = "taskOptions"
+      @submit = 'submit'
     )
