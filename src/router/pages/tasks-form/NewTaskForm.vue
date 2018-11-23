@@ -1,6 +1,9 @@
 <script>
 import Spinner from './Spinner';
+import { getIndependencyLabel } from '@/visualization/tasks/independency';
+import { Scales } from '@/visualization/tasks/scales';
 
+const independencyColor = new Scales().getIndependencyScale();
 export default {
   props: {
     taskOptions: {
@@ -15,7 +18,8 @@ export default {
       title: '',
       startMin: '00',
       startHour: '06',
-      duration: 20
+      duration: 20,
+      independency: 4
     }
   }),
   methods: {
@@ -54,6 +58,12 @@ export default {
         mins.push(min);
       }
       return mins;
+    },
+    independencyLabel() {
+      return getIndependencyLabel(this.task.independency);
+    },
+    independencyColor() {
+      return independencyColor(this.task.independency);
     }
   }
 }
@@ -102,6 +112,18 @@ export default {
 
         v-model = "task.duration"
       )
+    div.row
+      v-slider.independency(
+        v-model="task.independency"
+        hint = "Independência"
+        persistent-hint
+        :label="independencyLabel"
+        :min = '1'
+        :max = '7'
+        :step = '1'
+        :color = 'independencyColor'
+      )
+        
 
 </template>
 <style lang="stylus" scoped>
@@ -154,6 +176,17 @@ export default {
     top 1em
     font-size 12px
 
+.independency
+  margin-right 5px
+  height auto
+  margin-top 0
+  /deep/
+    
+    label.v-label
+      width 5em;
+      color white
+    .v-messages__message
+      color rgba(255,255,255,0.7)
 
 </style>
 
