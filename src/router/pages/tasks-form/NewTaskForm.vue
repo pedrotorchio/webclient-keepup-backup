@@ -19,7 +19,8 @@ export default {
       startMin: '00',
       startHour: '06',
       duration: 20,
-      independency: 4
+      independency: 4,
+      local: ''
     }
   }),
   methods: {
@@ -41,6 +42,18 @@ export default {
       const { category_id } = this.taskOptions.find( opt => opt.title === this.task.title );
 
       return category_id;
+    },
+    localOptions() {
+      return [
+        'Sala de Estar',
+        'Sala de Jantar',
+        'Quarto',
+        'Banheiro',
+        'Cozinha',
+        'Externo',
+        'Área de Serviço',
+        'Área do Condomínio'
+      ]
     },
     hourOptions() {
       let hours = [];
@@ -123,7 +136,15 @@ export default {
         :step = '1'
         :color = 'independencyColor'
       )
-        
+    div.row
+      v-select(
+        dark
+        v-model = "task.local"
+        label = "Local"
+        :items = "localOptions"
+        color = "primary"
+      )    
+      
 
 </template>
 <style lang="stylus" scoped>
