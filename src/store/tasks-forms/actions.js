@@ -30,5 +30,18 @@ export default { ...publicActions,
     await api.delete(`tasks-forms/${id}`);
 
     return true;
-  }
+  },
+  async formCreateTask({}, {formUid, data}) {
+    const tasks = await api.post(`task-filling/${formUid}`, data);
+
+    return tasks;
+  },
+  async formUpdateTask({}, {formUid, taskUid, data}) {
+    const tasks = await api.put(`task-filling/${formUid}/${taskUid}`, data);
+
+    return tasks;
+  },
+  async formDeleteTask({}, {formUid, taskUid}) {
+    await api.delete(`taks-forms/${formUid}/${taskUid}`);
+  } 
 }
