@@ -10,9 +10,11 @@ export default {
 </script>
 <template lang="pug">
   div.task
-    div.identification.secondary
+    div.identification.secondary(
+      @click = "$emit('click', task)"
+    )
       h2 
-        span.task-start {{ task.start }} 
+        span.task-start {{ task.time }} 
         span.task-title {{ task.title }}
     div.actions
       v-icon clear
@@ -27,6 +29,7 @@ export default {
     display flex
     align-items center
     justify-content space-between
+    cursor pointer
 
     .identification
       padding padding
