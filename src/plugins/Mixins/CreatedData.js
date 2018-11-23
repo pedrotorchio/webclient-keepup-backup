@@ -1,7 +1,7 @@
 export default {
   methods: {
-    resetData( fieldFinder = data => data ) {
+    resetDataValues( fieldFinder = data => data ) {
       Object.assign(fieldFinder(this.$data), fieldFinder(this.$options.data()));
-    },
+    }
   }
 };
