@@ -9,7 +9,8 @@ export default {
   data: () => ({
     shown: false,
     task: {
-      title: ''
+      title: '',
+      start: ''
     }
   }),
   methods: {
@@ -28,6 +29,23 @@ export default {
       const { category_id } = this.taskOptions.find( opt => opt.title === this.task.title );
 
       return category_id;
+    },
+    hourOptions() {
+      let hours = [];
+      for (let i = 0 ; i < 24 ; i++) {
+        const hour = (i+"").padStart(2, 0);
+        hours.push(hour);
+      }
+
+      return hours;
+    },
+    minutesOptions() {
+      let mins = [];
+      for (let i = 0 ; i < 60 ; i += 5) {
+        const min = (i+'').padStart(2,0);
+        mins.push(min);
+      }
+      return mins;
     }
   }
 }
