@@ -53,7 +53,7 @@ export function getDurationScale(tasks, range) {
 }
 
 export class Scales {
-  constructor(tasks) {
+  constructor(tasks = []) {
     this.maxHeight = 64;
     this.minHeight = 32;
 
