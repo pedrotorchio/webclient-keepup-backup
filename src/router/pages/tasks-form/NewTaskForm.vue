@@ -2,6 +2,7 @@
 import Spinner from './Spinner';
 import { getIndependencyLabel } from '@/visualization/tasks/independency';
 import { Scales } from '@/visualization/tasks/scales';
+import { memberExpression } from 'babel-types';
 
 const independencyColor = new Scales().getIndependencyScale();
 export default {
@@ -20,7 +21,8 @@ export default {
       startHour: '06',
       duration: 20,
       independency: 4,
-      local: ''
+      local: '',
+      company: ''
     }
   }),
   methods: {
@@ -42,6 +44,16 @@ export default {
       const { category_id } = this.taskOptions.find( opt => opt.title === this.task.title );
 
       return category_id;
+    },
+    companyOptions() {
+      return [
+        'Cuidador',
+        'Familiar',
+        'Empregado',
+        'Amigo',
+        'Esposo/Esposa',
+        'Pessoas Diversas'
+      ]
     },
     localOptions() {
       return [
@@ -144,6 +156,24 @@ export default {
         :items = "localOptions"
         color = "primary"
       )    
+    div.row
+      v-select(
+        dark
+        v-model = "task.company"
+        label = "Companhia"
+        :items = "companyOptions"
+        color = "primary"
+      )    
+    div.row
+      v-select(
+        dark
+        v-model = "task.simultaneous_task"
+        label = "Atividade Simultânea"
+        :items = "taskOptions"
+        item-text = "title"
+        item-value = "title"
+        color = "primary"
+      )    
       
 
 </template>
@@ -151,7 +181,7 @@ export default {
 .row
   display flex
   flex-direction row
-  margin: 1em auto;
+  margin: .1em auto;
   width: 80%;
   max-width: 600px;
   min-width 340px
@@ -164,8 +194,8 @@ export default {
 
   display flex
   flex-direction column
-  justify-content flex-start
-  align-items flex-start
+  justify-content space-around
+  align-items center
 
 
   distance = 5px
