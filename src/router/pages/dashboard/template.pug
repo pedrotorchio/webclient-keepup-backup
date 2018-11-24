@@ -1,10 +1,14 @@
 main
   header.padded
+    nav
+      router-link(
+        :to="{ path: '/pacientes' }"
+      ) Pacientes
     ul
       li 
         a Alterar dados pessoais
       li
-        a(@click='logout') Sair
+        a(@click.prevent='logout') Sair
     h1(
       v-text='userData.name'
     )
