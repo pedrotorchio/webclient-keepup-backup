@@ -1,8 +1,12 @@
 main
   v-progress-linear( v-if = "!form" )
   div#main-container( v-else )
-    header.primary( )
-      h1 {{ patient.first_name }} {{ patient.last_name }}
+    header#tasks-header.primary( )
+      h1
+        v-icon.routine-link( 
+          v-if = 'userData'
+          @click = "$router.push({ name: 'TasksView', params: { routineId: form.routine_id } })" ) event
+        span {{ patient.first_name }} {{ patient.last_name }}
       div.filler
         h2.name {{ fillerName }}
         div.punctuation 
