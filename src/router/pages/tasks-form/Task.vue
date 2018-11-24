@@ -17,7 +17,7 @@ export default {
         span.task-start {{ task.time }} 
         span.task-title {{ task.title }}
     div.actions
-      v-icon clear
+      v-icon( @click = "$emit('remove')" ) clear
 </template>
 <style lang="stylus" scoped>
   padding = 5px

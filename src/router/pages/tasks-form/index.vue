@@ -22,7 +22,8 @@ export default {
       independency: 4,
       location: '',
       company: '',
-      simultaneous_task: ''
+      simultaneous_task: '',
+      uid: null
     }
   }),
   methods: {
@@ -30,13 +31,16 @@ export default {
       fetchForm: 'fetchTasksFormPublicData',
       fetchTaskOptions: 'fetchTaskOptions',
       createTask: 'formCreateTask',
-      updateTask: 'formUpdateTask'
+      updateTask: 'formUpdateTask',
+      deleteTask: 'formDeleteTask'
     }),
     show() {
-      this.$refs.form.show()
+      this.$refs.form.show();
     },
     hide() {
-      this.$refs.form.hide()
+      this.$refs.form.hide();
+      
+      this.resetDataValues( data => data.currentTask );
     },
     open(task) {
 
@@ -47,8 +51,8 @@ export default {
       // this.currentTask.location = task.location;
       // this.currentTask.company = task.company;
       // this.currentTask.simultaneous_task = task.simultaneous_task;
-
-      this.currentTask = task;
+      let copy = { ...task };
+      Object.assign(this.currentTask, copy);
 
       this.show();
     },
@@ -60,7 +64,15 @@ export default {
       this.form = form;
       this.taskOptions = taskOptions;
     },
+    async remove(taskUid) {
+      
+      this.form.tasks = await this.deleteTask({
+        taskUid,
+        formUid: this.formUid
+      })
+    },
     async submit(data) {
+      
       const taskUid = data.uid;
       const formUid = this.formUid;
 
@@ -77,12 +89,6 @@ export default {
       }
 
       this.hide();
-      this.resetDataValues( data => data.currentTask );
-      
-      delete this.currentTask.created_at
-      delete this.currentTask.deleted_at
-      delete this.currentTask.updated_at
-      delete this.currentTask.id
     }
   },
   computed: {

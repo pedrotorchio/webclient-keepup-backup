@@ -42,6 +42,8 @@ export default { ...publicActions,
     return tasks;
   },
   async formDeleteTask({}, {formUid, taskUid}) {
-    await api.delete(`taks-forms/${formUid}/${taskUid}`);
+    const tasks = await api.delete(`task-filling/${formUid}/${taskUid}`);
+
+    return tasks;
   } 
 }
