@@ -31,8 +31,19 @@ export default {
         }
       });
     },
+    openRoutine(patient) {
+      alert(patient);
+    },
     remove(id) {
       this.$store.dispatch('deletePatient', id);
+    },
+    openRoutine(id) {
+      this.$router.push({
+        name: 'RoutinesList',
+        params: {
+          patientId: id
+        }
+      });
     }
   }
 }
@@ -44,6 +55,7 @@ export default {
       :array='patients'
       @open='open'
       @action='remove'
+      @openRoutine = 'openRoutine'
     )
 
 </template>

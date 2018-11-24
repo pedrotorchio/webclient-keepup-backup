@@ -30,6 +30,10 @@ export default {
         v-list-tile-title {{ patient.first_name }} {{ patient.last_name }}
 
       v-list-tile-action(
+        @click.stop="$emit('openRoutine', patient.id)"
+      )
+        v-icon event
+      v-list-tile-action(
         @click.stop="action(patient.id)"
       )
         v-icon(
