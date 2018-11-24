@@ -39,8 +39,6 @@ function setActions(state, array) {
 
     state.actions.push(action);
   })
-  console.dir([...state.actions]);
-  console.groupEnd();
 
 }
 
