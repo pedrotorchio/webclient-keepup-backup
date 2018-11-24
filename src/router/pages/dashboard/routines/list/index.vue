@@ -32,6 +32,12 @@ export default {
         color: 'primary', 
         icon: 'add' 
       });
+      this.rootActions.push({ 
+        tip: 'Editar Paciente', 
+        to: { name: 'PatientEdit', params: { patientId: id } },
+        color: 'secondary', 
+        icon: 'edit' 
+      });
     },
     open(routine) {
       const { id, title } = routine;
