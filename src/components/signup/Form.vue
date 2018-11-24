@@ -34,6 +34,7 @@ export default {
     )
     input(
       v-model='formData.password',
+      type = "password"
       placeholder='Senha'
     )
     h3#call.link(
