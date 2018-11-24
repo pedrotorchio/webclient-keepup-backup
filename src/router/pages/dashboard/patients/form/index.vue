@@ -14,7 +14,6 @@ export default {
   data: () => ({
     rootActions: [
       { tip: 'Lista de Pacientes', to: { name: 'PatientsList' }, color: 'secondary', icon: 'list' },
-      { tip: 'Pacientes Arquivados', to: { name: 'PatientsArchive' }, color: 'secondary', icon: 'inbox' },
     ],
   }),
   methods: {
