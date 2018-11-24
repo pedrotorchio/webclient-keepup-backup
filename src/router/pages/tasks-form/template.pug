@@ -16,6 +16,7 @@ main
         :key = 'task.id'
         :task = "task"
         @click = 'open(task)'
+        @remove = 'remove(task.uid)'
       )
       
 
@@ -28,4 +29,5 @@ main
       :task = 'currentTask'
       :taskOptions = "taskOptions"
       @submit = 'submit'
+      @close = 'hide'
     )
