@@ -10,8 +10,9 @@ function reset(state) {
 }
 
 function setActions(state, array) {
+  
   state.actions.length = 0;
-
+  
   // attributes list
   const attrList = ['color', 'to']
   // listeners list
@@ -21,6 +22,7 @@ function setActions(state, array) {
 
   array.forEach ( action => {
 
+    action = Object.assign({}, action);
     const extractor = attr => key => {
       if (action[key]) {
         action[attr][key] = action[key];
@@ -37,6 +39,8 @@ function setActions(state, array) {
 
     state.actions.push(action);
   })
+  console.dir([...state.actions]);
+  console.groupEnd();
 
 }
 
