@@ -60,8 +60,12 @@ export class Scales {
     this.padding = 5;
     this.tasks = tasks;
     
-    const categories = this.tasks.map( task => task.category ); // categories
-    const titles     = this.tasks.map( task => task.title ); // titles
+    const emptyCategory = {
+      id: 0,
+      title: 'Outros'
+    }
+    const categories = this.tasks.map( task => task.category || emptyCategory ); // categories
+    const titles     = this.tasks.map( task => task.title || "Sem Nome" ); // titles
     
     const idFinder = a => b => a.id == b.id;
     const ttFinder = a => b => a == b;
