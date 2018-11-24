@@ -22,7 +22,6 @@ export default {
 <style lang="stylus" scoped>
   padding = 5px
   .task
-    margin padding 0
     margin-top 0
     color white
     width 100%

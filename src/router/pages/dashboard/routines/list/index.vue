@@ -45,9 +45,8 @@ export default {
       const patientId = this.patientId;
 
       this.$router.push({
-        name: 'RoutineEdit',
+        name: 'TasksView',
         params: {
-          patientId: patientId,
           routineId: id
         }
       });
