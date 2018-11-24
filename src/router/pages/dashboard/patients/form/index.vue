@@ -11,11 +11,6 @@ export default {
   mixins: [ PatientRoute, FormView ],
   name: 'Patient-Form',
   components: { PatientForm },
-  data: () => ({
-    rootActions: [
-      { tip: 'Lista de Pacientes', to: { name: 'PatientsList' }, color: 'secondary', icon: 'list' },
-    ],
-  }),
   methods: {
     async submitProcedure(data) {
       
