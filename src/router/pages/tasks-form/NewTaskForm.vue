@@ -24,7 +24,7 @@ export default {
     cancel() {
       // reset here
 
-      this.hide();
+      this.$emit('close');
     },
     submit() {
       // submit here
@@ -87,6 +87,7 @@ export default {
     },
     companyOptions() {
       return [
+        'Sozinho',
         'Cuidador',
         'Familiar',
         'Empregado',
