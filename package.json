@@ -6,7 +6,7 @@
     "generate-icons": "vsvg -s ./icons -t ./src/icons",
     "build": "node build/build.js",
     "test": "export NODE_ENV=test && jest --watchAll --no-cache",
-    "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+    "dev": "webpack-dev-server --open --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "unit": "jest --config test/unit/jest.conf.js --coverage"
   },
