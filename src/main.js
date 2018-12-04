@@ -4,7 +4,7 @@ import '@babel/polyfill'
 import Vue from 'vue'
 
 import { api } from '@/api';
-api.setBaseUrl('http://api.keepup.com.br/api');
+api.setBaseUrl('http://api.timediary.com.br/api');
 
 import "@/plugins/vuetify";
 import '@/plugins/Mixins';
