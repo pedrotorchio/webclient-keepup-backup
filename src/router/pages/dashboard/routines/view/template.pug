@@ -1,5 +1,7 @@
 section.visualization
-  nav#form-toggles( v-if = "scales" )
+
+  h2.no-tasks-message( v-if = "!hasTasks") Crie formulários para preencher rotina 
+  nav#form-toggles( v-if = "hasForms" )
     span.form-toggles-title Formulários
     ul#toggles
       li.toggle(
@@ -17,7 +19,7 @@ section.visualization
             router-link(
               @click.native.stop = "(() => ({}))"
               :to = "{ name: 'FormEdit', params: { formId: form.id } }"
-            ) Editar
+            ) Editar/Compartilhar
           li.filler_name {{ form.filler_name }}
           li.pts(
             v-if = "form.punctuation"
@@ -31,7 +33,7 @@ section.visualization
   div#gantt-container(
     :style = "{ height: `${canvasHeight}px` }"
   )
-    div#yAxis( v-if = "scales")
+    div#yAxis( v-if = "hasTasks")
       h2.task-title(
         v-for = "(title, i) in scales.titles"
         :style = "rowStyle()"
@@ -39,7 +41,7 @@ section.visualization
 
     div#gantt( 
       ref = "gantt"
-      v-if = 'scales' )
+      v-if = 'hasTasks' )
       div#rows
         div.row(
           v-for = "(title, i) in scales.titles"

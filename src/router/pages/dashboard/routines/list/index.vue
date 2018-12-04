@@ -32,6 +32,12 @@ export default {
         color: 'primary', 
         icon: 'add' 
       });
+      this.rootActions.push({ 
+        tip: 'Editar Paciente', 
+        to: { name: 'PatientEdit', params: { patientId: id } },
+        color: 'secondary', 
+        icon: 'edit' 
+      });
     },
     open(routine) {
       const { id, title } = routine;
@@ -39,9 +45,8 @@ export default {
       const patientId = this.patientId;
 
       this.$router.push({
-        name: 'RoutineEdit',
+        name: 'TasksView',
         params: {
-          patientId: patientId,
           routineId: id
         }
       });

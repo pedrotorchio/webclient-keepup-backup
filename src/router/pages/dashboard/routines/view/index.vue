@@ -52,7 +52,7 @@ export default {
         }
       },
       color: 'secondary',
-      icon: 'list'
+      icon: 'edit'
     });
     this.rootActions.push({
       tip: 'Novo Formulário de Atividades',

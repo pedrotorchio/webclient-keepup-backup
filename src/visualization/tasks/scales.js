@@ -7,7 +7,7 @@ const independencyRange  = ['#f44336', '#2196f3'];
 const minHeight = 32;
 
 export function taskExtent([fst, ...rst]) {
-
+  
   let extent  = [fst, rst.pop()];
   let rounded = [round(extent[0].start), round(extent[1].end, 'up')];
 
@@ -53,15 +53,19 @@ export function getDurationScale(tasks, range) {
 }
 
 export class Scales {
-  constructor(tasks) {
+  constructor(tasks = []) {
     this.maxHeight = 64;
     this.minHeight = 32;
 
     this.padding = 5;
     this.tasks = tasks;
-
-    const categories = this.tasks.map( task => task.category ); // categories
-    const titles     = this.tasks.map( task => task.title ); // titles
+    
+    const emptyCategory = {
+      id: 0,
+      title: 'Outros'
+    }
+    const categories = this.tasks.map( task => task.category || emptyCategory ); // categories
+    const titles     = this.tasks.map( task => task.title || "Sem Nome" ); // titles
     
     const idFinder = a => b => a.id == b.id;
     const ttFinder = a => b => a == b;
@@ -69,10 +73,16 @@ export class Scales {
     
     this.categories = categories.filter( unique(idFinder));
     this.titles = titles.filter( unique(ttFinder));
-    this.timeExtent = taskExtent(this.tasks);
 
+    if (this.tasks.length != 0)
+      this.timeExtent = taskExtent(this.tasks);
+    else 
+      this.timeExtent = [];
   }
 
+  hasTasks() {
+    return this.tasks.length > 0;
+  }
   setCanvasWidth(width) {
     this.width = width;
   }

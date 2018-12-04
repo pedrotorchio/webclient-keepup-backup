@@ -1,9 +1,7 @@
 export default {
-  data: () => ({
-    data__: {}
-  }),
-  created() {
-    const { data__, ...data } = this.$data;
-    this.data__ = Object.assign({}, data);
+  methods: {
+    resetDataValues( fieldFinder = data => data ) {
+      Object.assign(fieldFinder(this.$data), fieldFinder(this.$options.data()));
+    }
   }
 };

@@ -137,7 +137,7 @@ const routine = {
     {
       path: "novo-formulario",
       name: "FormNew",
-      component: lazyTemplate("dashboard/routines/new-form"),
+      component: lazyTemplate("dashboard/routines/tasks-form"),
       props: (prop) => {
         return {
           routineId: Number(prop.params.routineId)
@@ -161,7 +161,7 @@ const newPatient = {
 const tasksForm = {
   path: "/formulario/:formId(\\d+)",
   name: 'FormEdit',
-  component: lazyTemplate("dashboard/routines/new-form"),
+  component: lazyTemplate("dashboard/routines/tasks-form"),
   beforeEnter: requireAuth,
   props: (prop) => {
     return {
@@ -171,6 +171,13 @@ const tasksForm = {
   meta: {
     title: (route, vm) => "Formulário de Atividades"
   }
+};
+
+const tasksFill = {
+  path: "/preenchimento/:formUid",
+  name: 'TasksForm',
+  component: lazyTemplate("tasks-form"),
+  props: true
 };
 export default new Router({
   mode: "history",
@@ -191,6 +198,7 @@ export default new Router({
         newPatient,
         tasksForm
       ]
-    }
+    },
+    tasksFill
   ]
 });

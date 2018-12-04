@@ -1,6 +1,6 @@
 <script>
 import RoutineRoute from './RoutineRoute';
-import { parseDatetime, format } from '@/visualization/utils/time';
+import { taskParser } from '@/visualization/utils/TaskParser';
 import { mapActions } from 'vuex';
 
 export default {
@@ -22,17 +22,7 @@ export default {
 
       this.forms = this.forms.map( form => { // for each form
 
-        form.tasks = form.tasks.map( task => { // transform each of its tasks
-
-          const timestring = `${task.time} ${this.routine.date}`;
-          const moment = parseDatetime(timestring, true);
-          
-          task.start = moment.toDate();
-          task.end   = moment.add(task.duration, 'm').toDate();
-          
-          return task;
-          
-        });
+        form.tasks = form.tasks.map( taskParser(this.routine) );
 
         return form;
       })
