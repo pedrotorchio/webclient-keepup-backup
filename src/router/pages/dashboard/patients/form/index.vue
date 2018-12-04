@@ -25,7 +25,7 @@ export default {
         patient = await createPatient.bind(this)(data);
 
         this.$router.push({
-          name: 'RoutinesList',
+          name: 'PatientEdit',
           params: {
             patientId: patient.id
           }

@@ -1,6 +1,10 @@
 section.visualization
 
-  h2.no-tasks-message( v-if = "!hasTasks") Crie formulários para preencher rotina 
+  h2.no-tasks-message( v-if = "!hasTasks") 
+    router-link(
+      :to = "{ name: 'FormNew', params: { routineId } }"    
+    ) Crie 
+    | ou utilize formulários para preencher rotina 
   nav#form-toggles( v-if = "hasForms" )
     span.form-toggles-title Formulários
     ul#toggles
