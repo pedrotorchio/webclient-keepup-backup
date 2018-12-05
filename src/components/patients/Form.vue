@@ -1,19 +1,25 @@
 <script>
 import Form from '@/components/generic/form/Form.mixin';
+import NewCaregiverForm from '@/components/caregivers/Form';
+import CaregiverView from '@/components/caregivers/CaregiverView';
 
 export default {
   name: 'Form',
   extends: Form,
+  mixins: [ CaregiverView ],
+  components: { NewCaregiverForm },
   data: () => ({
     isValid: false,
     form: {
+      id: null,
       first_name: '',
       last_name: '',
 
       email: '',
       home_companionship: '',
       occupational_field: '',
-      schooling: 0
+      schooling: 0,
+      caregivers: []
     },
     updated_at: ''
   }),
@@ -29,7 +35,7 @@ export default {
       }
     },
   },
-  computed: {
+  computed: { 
     textFields() {
       return [
         [ 'first_name', 'Nome'],
@@ -69,11 +75,61 @@ v-form(
       max="30"
       @input="changed('schooling')"
       thumb-label="always"
-    )  
+    ) 
+    div#professionals( v-if = 'model' )
+      
+      div#caregiver-form-container
+        
+        h4
+          v-btn( 
+            @click = "toggleCaregiverFormShown"
+            color="primary" 
+            fab small dark
+          )
+            v-icon( v-text = "caregiverFormShown ? 'list' : 'person_add' " )
+          | {{ caregiverFormShown ? 'Listar Cuidadores' : 'Adicionar Cuidador' }}
+          
+        new-caregiver-form( 
+          v-if = 'caregiverFormShown'
+          @change = 'createCaregiver'
+        
+        )
+        ul( v-else )
+          li( 
+            v-for = 'caregiver in model.caregivers'
+            :id = "`${caregiver.first_name}${caregiver.last_name}`"
+          )
+            label(
+              :for="`${caregiver.first_name}${caregiver.last_name}`"
+            ) {{ caregiver.first_name }} {{ caregiver.last_name }}
+            v-btn(
+              small icon
+              color = 'secondary'
+              @click = 'deleteCaregiver(caregiver.id)'
+            )
+              v-icon clear
 </template>
 <style lang="stylus" src='@/components/generic/form/styles.styl' scoped></style>
 
 <style lang="stylus" scoped>
+#professionals
+  width 100%
+#caregiver-form-container
+  width 50%
+  margin 0 1em
+  h4
+    display flex
+    justify-content flex-start
+    align-items center
+
+  &> ul
+    &> li
+      margin .5em
+      display flex
+      justify-content space-between
+      align-items center
+
+
 .slider
   margin: 2em;
 
