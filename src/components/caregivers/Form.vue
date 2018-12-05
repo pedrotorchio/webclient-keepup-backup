@@ -11,9 +11,8 @@ export default {
   }),
   methods: {
     changed(key) {
-      
       const { first_name, last_name } = this.caregiver;
-
+      
       if (first_name && last_name) {
         
         const data = { ...this.caregiver };
@@ -37,7 +36,7 @@ v-form(
     v-text-field( 
       v-model='caregiver.last_name'
       class="input-last_name"
-      label='Nome'
+      label='Sobrenome'
       @input="changed('last_name')"
       required
     )
