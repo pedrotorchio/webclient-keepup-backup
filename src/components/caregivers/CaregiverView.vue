@@ -29,7 +29,7 @@ export default {
             this.toggleCaregiverFormShown();
         },
         async deleteCaregiver(id) {
-            // await this.deleteCaregiver(id);
+            await this.storeDeleteCaregiver(id);
 
             if (this.model.caregivers)
                 this.model.caregivers = this.model.caregivers.filter( cg => cg.id !== id );
