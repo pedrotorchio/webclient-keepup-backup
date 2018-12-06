@@ -6,8 +6,8 @@ export default {
         points: 0,
     }),
     methods: {
-        fieldChanged(fieldName) {
-            this.points += getFieldPointing(fieldName);
+        fieldChanged({ fieldName, value }) {
+            this.points += getFieldPointing(fieldName, value);
         }
     }
 }
