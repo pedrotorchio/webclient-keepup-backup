@@ -1,4 +1,5 @@
 <script>
+import { getFieldPointing } from './FormPointsController';
 
 export default {
     data: () => ({
@@ -6,7 +7,7 @@ export default {
     }),
     methods: {
         fieldChanged(fieldName) {
-
+            return getFieldPointing(fieldName);
         }
     }
 
