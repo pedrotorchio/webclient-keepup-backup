@@ -21,6 +21,9 @@ export default {
     shown: false,
   }),
   methods: {
+    fieldChanged(fieldName, value){
+      this.$emit('change', { fieldName, value });
+    },
     cancel() {
       // reset here
 
@@ -150,6 +153,7 @@ export default {
           item-text = "title"
           item-value = "title"
           color = "primary"
+          @change = "fieldChanged('title', $event)"
         )
       div.row
         v-select.hours(
@@ -158,6 +162,7 @@ export default {
           label = "Horas"
           :items = "hourOptions"
           color = "primary"
+          @change = "fieldChanged('startHour', $event)"
         )
         v-select.minutes(
           dark
@@ -165,6 +170,7 @@ export default {
           label = "Minutos"
           :items = "minuteOptions"
           color = "primary"
+          @change = "fieldChanged('startMin', $event)"
         )
         spinner(
           label = "Duração em Minutos"
@@ -175,6 +181,7 @@ export default {
           :integerOnly="true"
 
           v-model = "task.duration"
+          @change = "fieldChanged('duration', $event)"
         )
       div.row
         v-slider.independency(
@@ -187,6 +194,7 @@ export default {
           :max = '7'
           :step = '1'
           :color = 'independencyColor'
+          @change = "fieldChanged('independency', $event)"
         )
       div.row
         v-select(
@@ -195,6 +203,7 @@ export default {
           label = "Local"
           :items = "localOptions"
           color = "primary"
+          @change = "fieldChanged('location', $event)"
         )    
       div.row
         v-select(
@@ -203,6 +212,7 @@ export default {
           label = "Companhia"
           :items = "companyOptions"
           color = "primary"
+          @change = "fieldChanged('company', $event)"
         )    
       div.row
         v-select(
@@ -213,6 +223,7 @@ export default {
           item-text = "title"
           item-value = "title"
           color = "primary"
+          @change = "fieldChanged('simultaneous_task', $event)"
         )    
     div.actions
       button.finished-btn.accept(
