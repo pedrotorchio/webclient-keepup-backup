@@ -92,6 +92,18 @@ export default {
       });
     },
   },
+  computed: {
+    items() {
+      const routine = this.routine || (this.tasksForm && this.tasksForm.routine);
+      let items = [];
+
+      if (routine && routine.patient) {
+        items = routine.patient.caregivers;
+      }
+
+      return items;
+    }
+  },
   created() {
     this.defineActions();
   }
@@ -101,6 +113,7 @@ export default {
 </script>
 <template lang="pug">
   tasks-form(
+    :items = 'items'
     :model='tasksForm'
     @change='submit'
   )
