@@ -7,9 +7,8 @@ export default {
     }),
     methods: {
         fieldChanged(fieldName) {
-            return getFieldPointing(fieldName);
+            this.points += getFieldPointing(fieldName);
         }
     }
-
 }
 </script>
