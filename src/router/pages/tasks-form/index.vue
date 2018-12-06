@@ -4,11 +4,13 @@ import Route from '@/router/pages/Route';
 import { mapActions } from 'vuex';
 import Task from './Task';
 import TasksForm from './NewTaskForm';
+import FormPointsView from '@/components/tasks-form/FormPointsView';
 
 export default {
   extends: Route,
   components: { Task, TasksForm },
   // mixins: [ TasksFormRoute ],
+  mixins: [ FormPointsView ],
   props: {
     formUid: {}
   },
@@ -97,9 +99,6 @@ export default {
     },
     fillerName() {
       return this.form.filler_name;
-    },
-    totalPunctuation() {
-      return 432;
     },
     patient() {
       return this.form.routine.patient;
