@@ -1,4 +1,4 @@
-export function getFieldPointing(fieldName) {
+export function getFieldPointing(fieldName, value) {
     let multiplier = 1;
     const base = 100;
 
@@ -8,15 +8,15 @@ export function getFieldPointing(fieldName) {
         break;
         
         case 'location':
-            multiplier = 1.6;
+            multiplier = Boolean(value) ? 1.6 : 0;
         break;
         
         case 'company':
-            multiplier = 1.3;
+            multiplier = Boolean(value) ? 1.3 : 0;
         break;
         
         case 'simultaneous_task':
-            multiplier = 1.3;
+            multiplier = Boolean(value) ? 1.3 : 0;
         break;
     }
 

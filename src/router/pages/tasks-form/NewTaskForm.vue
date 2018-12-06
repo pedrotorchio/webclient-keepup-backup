@@ -22,6 +22,11 @@ export default {
   }),
   methods: {
     fieldChanged(fieldName, value){
+      if (fieldName == 'startHour' || fieldName == 'startMin') {
+        fieldName = 'time';
+        value = this.task.time;
+      }
+
       this.$emit('change', { fieldName, value });
     },
     cancel() {

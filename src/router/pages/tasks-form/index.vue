@@ -15,8 +15,15 @@ export default {
     formUid: {}
   },
   data: () => ({
-    form: null,
-    taskOptions: null,
+    form: {
+      tasks: [],
+      routine: {
+        patient: {
+          first_name: null
+        }
+      }
+    },
+    taskOptions: [],
     currentTask: {
       title: '',
       time: '06:00',
@@ -43,6 +50,7 @@ export default {
       this.$refs.form.hide();
       
       this.resetDataValues( data => data.currentTask );
+      
     },
     open(task) {
 
@@ -101,6 +109,7 @@ export default {
       return this.form.filler_name;
     },
     patient() {
+      
       return this.form.routine.patient;
     }
   },
