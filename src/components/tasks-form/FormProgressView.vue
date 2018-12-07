@@ -1,10 +1,10 @@
 <script>
-import { getFieldPointing, fieldNames, getSumationFromField } from './FormPointsController';
+import { getSumationFromTask } from './FormPointsController';
 
 export default {
     computed: {
         formPoints() {
-            return getSumationFromField(field => this.task[field]);
+            return getSumationFromTask(this.task);
 
         },
         progress() {
@@ -12,7 +12,7 @@ export default {
         },
         maxPoints() {
             
-            return getSumationFromField();
+            return getSumationFromTask();
         }
     }
 }
