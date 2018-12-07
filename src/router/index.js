@@ -181,6 +181,7 @@ const tasksFill = {
 };
 export default new Router({
   mode: "history",
+  base: process.env.BASE_FOLDER,
   routes: [
     {
       path: "/",
