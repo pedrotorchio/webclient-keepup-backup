@@ -26,14 +26,13 @@ export function getFieldPointing(fieldName, value) {
 
     return base * multiplier;
 }
-export function getSumationFromField( valueExtractor = field => true ) {
+export function getSumationFromTask( task = true ) {
     return fieldNames.reduce( (points, field) => {
-        const value = valueExtractor(field);
+        const value = (task === true) || task[field];
         const fieldPoints = getFieldPointing(field, value)
 
         const sum = points + fieldPoints;
 
-        console.log(field, value, fieldPoints, sum, '\n');
         return sum;
     }, 0 );
 }
