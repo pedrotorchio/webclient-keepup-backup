@@ -48,7 +48,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: stretch;  
+  justify-content: flex-start;  
 
   input, button
     height: 2em;
@@ -60,6 +60,7 @@ export default {
     border: none;
     border-bottom: 1px solid lightgrey;
     outline: none;
+    width 100%
 
   #call
     text-align: center;
