@@ -3,6 +3,7 @@ import Spinner from './Spinner';
 import { getIndependencyLabel } from '@/visualization/tasks/independency';
 import { Scales } from '@/visualization/tasks/scales';
 import { memberExpression } from 'babel-types';
+import FormProgressView from '@/components/tasks-form/FormProgressView';
 
 const independencyColor = new Scales().getIndependencyScale();
 export default {
@@ -16,6 +17,7 @@ export default {
       required: false
     }
   },
+  mixins: [ FormProgressView ],
   components: { Spinner },
   data: () => ({
     shown: false,
@@ -148,6 +150,17 @@ export default {
       shown
     }`
   )
+    h4#progress-bar.error
+      span.pts.form-points(
+        :style = "{ left: progress > 10 ? `calc(${progress}% - 60px)` : '0' }"
+      ) {{ formPoints }}
+      span.pts.max-points.error(
+        :style = "{ opacity: (progress > 80) ? 0 : 1 }"
+      ) {{ maxPoints }}
+    v-progress-linear.progress-bar(
+      :value = 'progress'
+      color = 'error'
+    )
     div.form.secondary
       div.row
         v-select(
@@ -235,9 +248,8 @@ export default {
         @click = 'submit'
         :style = "{backgroundColor: independencyColorScale(7)}"
       ) Salvar
-      button.finished-btn.decline(
+      button.error.finished-btn.decline(
         @click = 'cancel'
-        :style = "{backgroundColor: independencyColorScale(1)}"
       ) Cancelar
 
 </template>
@@ -249,6 +261,34 @@ height = 480px //"calc(100% - %s)" % (shownTop)
 rowHeight = (height / rowCount)
 shownTop = "calc(100% - %s)" % height //80 + 2*distance
 hiddenTop = 100%
+
+
+#progress-bar
+  display flex
+  align-items center
+  justify-content flex-end
+  padding 5px 0
+  span
+    padding 0 5px
+    color white
+    flex 0 0 auto
+    transition-timing-function ease-in-out
+    transition-duration 500ms
+    transition-delay 100ms
+  .form-points
+    position absolute
+    z-index 99
+    font-style italic
+    transition-property left
+    
+  .max-points 
+    z-index 999
+    font-weight bold
+    transition-property opacity
+  
+.progress-bar
+  margin 0
+  align-self flex-end
 
 button
   outline none
