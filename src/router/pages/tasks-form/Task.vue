@@ -15,7 +15,7 @@ export default {
     )
       h2 
         span.task-start {{ task.time }} 
-        span.task-title {{ task.title }}
+        span.task-title_ {{ task.title }}
     div.actions
       v-icon( @click = "$emit('remove')" ) clear
 </template>
@@ -38,7 +38,7 @@ export default {
 
       .task-start
         font-size 10px
-      .task-title
+      .task-title_
         font-size 16px
 
     .actions
