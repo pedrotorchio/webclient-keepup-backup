@@ -151,7 +151,9 @@ export default {
     }`
   )
     h4#progress-bar.error
+      
       span.pts.form-points(
+        :class = "{ scoreAnimation: scoreAnimation }"
         :style = "{ left: progress > 10 ? `calc(${progress}% - 60px)` : '0' }"
       ) {{ formPoints }}
       span.pts.max-points.error(
@@ -262,24 +264,32 @@ rowHeight = (height / rowCount)
 shownTop = "calc(100% - %s)" % height //80 + 2*distance
 hiddenTop = 100%
 
+.scoreAnimation
+  bottom 40px !important
+  color black !important
+  transform scale(2) !important
+  transition-timing-function easeOutQuad
 
 #progress-bar
   display flex
   align-items center
   justify-content flex-end
   padding 5px 0
+  position relative
   span
     padding 0 5px
     color white
     flex 0 0 auto
-    transition-timing-function ease-in-out
+    transition-timing-function easeInQuad
     transition-duration 500ms
     transition-delay 100ms
+    bottom 0
   .form-points
     position absolute
     z-index 99
     font-style italic
-    transition-property left
+    transform scale(1)
+    transition-property: color, left, bottom, transform;
     
   .max-points 
     z-index 999
@@ -365,6 +375,10 @@ main
       color white
     .v-messages__message
       color rgba(255,255,255,0.7)
+
+
+
+
 
 </style>
 
