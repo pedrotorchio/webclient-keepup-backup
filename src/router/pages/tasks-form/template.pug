@@ -10,7 +10,7 @@ main#tasks-form
       div.filler
         h2.name {{ fillerName }}
         div.punctuation 
-          span.pts {{ totalPunctuation }}
+          span.pts {{ points }}
     div.list
       p.comment( v-if = "form.comment" ) {{ form.comment }}
       p.tip( v-if = "!hasTasks" ) Clique em ADICIONAR ATIVIDADE

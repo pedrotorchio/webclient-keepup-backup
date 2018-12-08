@@ -17,6 +17,7 @@ export default {
   methods: {
     input(value) {
       this.$emit('input', value);
+      this.$emit('change', value);
     }
   },
   components: {

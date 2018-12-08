@@ -4,17 +4,26 @@ import Route from '@/router/pages/Route';
 import { mapActions } from 'vuex';
 import Task from './Task';
 import TasksForm from './NewTaskForm';
+import FormPointsView from '@/components/tasks-form/FormPointsView';
 
 export default {
   extends: Route,
   components: { Task, TasksForm },
   // mixins: [ TasksFormRoute ],
+  mixins: [ FormPointsView ],
   props: {
     formUid: {}
   },
   data: () => ({
-    form: null,
-    taskOptions: null,
+    form: {
+      tasks: [],
+      routine: {
+        patient: {
+          first_name: null
+        }
+      }
+    },
+    taskOptions: [],
     currentTask: {
       title: '',
       time: '06:00',
@@ -41,6 +50,7 @@ export default {
       this.$refs.form.hide();
       
       this.resetDataValues( data => data.currentTask );
+      
     },
     open(task) {
 
@@ -98,10 +108,8 @@ export default {
     fillerName() {
       return this.form.filler_name;
     },
-    totalPunctuation() {
-      return 432;
-    },
     patient() {
+      
       return this.form.routine.patient;
     }
   },

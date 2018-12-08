@@ -9,6 +9,7 @@ import patients from './patients';
 import routines from './routines';
 import tasks from './tasks';
 import tasksForms from './tasks-forms';
+import caregivers from './caregivers';
 
 export default new Vuex.Store({
   modules: {
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     routines,
     tasks,
     system,
-    tasksForms
+    tasksForms,
+    caregivers
   }
 });

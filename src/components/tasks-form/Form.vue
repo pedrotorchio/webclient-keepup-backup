@@ -9,6 +9,12 @@ export default {
   name: 'New-Form',
   extends: Form,  
   mixins: [ Share ],
+  props: {
+    items: {
+      type: Array,
+      default: ()=>([])
+    }
+  },
   data: () => ({
     isValid: false,
     form: {
@@ -18,6 +24,7 @@ export default {
     updated_at: '',
   }),
   methods: {
+    caregiverText: giver => `${giver.first_name} ${giver.last_name}`,
     changed(key) { 
       
       const { filler_name } = this.form;
@@ -32,7 +39,7 @@ export default {
   computed: {
     textFields() {
       return [
-        [ 'filler_name' , 'Preenchedor*', true],
+        // [ 'filler_name' , 'Preenchedor*', true],
         [ 'comment' , 'Comentário'],
       ]
     },
@@ -44,6 +51,21 @@ export default {
 v-form.ku-form(
     v-model='isValid'
   )        
+  v-select(
+    :items="items"
+    v-model="form.filler_name"
+    flat
+    :item-value = "caregiverText"
+    :item-text = "caregiverText"
+    required
+    label="Cuidador"
+    @change="changed('filler_name')"
+    no-data-text = "Nenhum cuidador cadastrado. Cadastre algum."
+  )
+    //- template(
+    //-     slot="item"
+    //-     slot-scope="{ item }" ) {{ item.first_name }} {{ item.last_name }}
+    
   v-text-field( 
     v-for="([key, label, isRequired], i) in textFields"
     v-model='form[key]'
