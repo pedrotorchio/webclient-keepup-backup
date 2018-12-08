@@ -41,7 +41,7 @@ export default {
 }
 </script>
 <template lang="pug">
-v-form(
+v-form.ku-form(
     v-model='isValid'
   )        
   v-text-field( 
@@ -68,7 +68,7 @@ v-form(
         )
   
 </template>
-<style lang="stylus" src='@/components/generic/form/styles.styl' scoped></style>
+<style lang="stylus" src='@/components/generic/form/styles.styl'></style>
 
 <style lang="stylus" scoped>
 
