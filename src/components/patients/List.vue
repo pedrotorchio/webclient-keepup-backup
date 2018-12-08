@@ -10,10 +10,10 @@ export default {
   }
 }
 </script>
-<style lang="stylus" src="@/components/generic/list/style.styl" scoped></style>
+<style lang="stylus" src="@/components/generic/list/style.styl"></style>
 
 <template lang="pug">
-  v-list(
+  v-list.ku-list(
     :style=`{
         height: patients.length * 100 + "px"
       }`

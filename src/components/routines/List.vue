@@ -24,7 +24,7 @@ export default {
 </script>
 
 <template lang="pug">
-  v-list(
+  v-list.ku-list(
     :style=`{
         height: routines.length * 100 + "px"
       }`
@@ -44,4 +44,4 @@ export default {
           v-text='icon'
         )
 </template>
-<style lang="stylus" src="@/components/generic/list/style.styl" scoped></style>
+<style lang="stylus" src="@/components/generic/list/style.styl"></style>
