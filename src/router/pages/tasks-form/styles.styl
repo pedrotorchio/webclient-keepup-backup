@@ -1,73 +1,75 @@
-main, #main-container
+main#tasks-form, #main-container
   height 100%
   width 100%;
 
 padding = 5px
-#main-container
-  display flex
-  flex-direction column
-  justify-content flex-start
-  align-items stretch
-header#tasks-header
-  font-size 20px
-  color white;
-  padding padding
-  box-shadow 0 0px 4px #38383863
-  h1
-    text-align center
-    font-size 1em  
-    text-transform uppercase
-    line-height 1.5em;
-    overflow hidden
-    text-overflow ellipsis
-    font-weight bold
 
-  .filler
+#tasks-form
+  #main-container
     display flex
-    height 2em
-    align-items center
+    flex-direction column
+    justify-content flex-start
+    align-items stretch
+  header#tasks-header
+    font-size 20px
+    color white;
+    padding padding
+    box-shadow 0 0px 4px #38383863
+    h1
+      text-align center
+      font-size 1em  
+      text-transform uppercase
+      line-height 1.5em;
+      overflow hidden
+      text-overflow ellipsis
+      font-weight bold
 
-    .name
-      flex 1 0 auto
-      text-align left
-      font-size .8em
-    .punctuation
-      flex 1 0 auto;
-      text-align right
-      font-size .8em
+    .filler
+      display flex
+      height 2em
+      align-items center
 
-.list
-  flex 1 1 100%
-  height 100%
-  width 100%
-  box-shadow: inset 0 0 20px #d8d8d8;
-  padding padding
+      .name
+        flex 1 0 auto
+        text-align left
+        font-size .8em
+      .punctuation
+        flex 1 0 auto;
+        text-align right
+        font-size .8em
 
-  .tip
-    font-size 12px
-    text-align center
+  .list
+    flex 1 1 100%
+    height 100%
     width 100%
+    box-shadow: inset 0 0 20px #d8d8d8;
+    padding padding
 
-.list
-  display flex
-  flex-direction column
-  justify-content flex-start
-  align-items flex-start
-  overflow-y auto
-.task, .filler, #tasks-header h1
-  position relative
-  max-width 600px
-  margin 0 auto
-.task
-  margin 5px auto
-.new-task-btn
-  flex 0 0 auto
-  color white
-  font-weight bold
-  letter-spacing 2px
-  width 100%
-  height 80px
+    .tip
+      font-size 12px
+      text-align center
+      width 100%
 
-.routine-link
-  position: absolute;
-  left: 5px;
+  .list
+    display flex
+    flex-direction column
+    justify-content flex-start
+    align-items flex-start
+    overflow-y auto
+  .task, .filler, #tasks-header h1
+    position relative
+    max-width 600px
+    margin 0 auto
+  .task
+    margin 5px auto
+  .new-task-btn
+    flex 0 0 auto
+    color white
+    font-weight bold
+    letter-spacing 2px
+    width 100%
+    height 80px
+
+  .routine-link
+    position: absolute;
+    left: 5px;
