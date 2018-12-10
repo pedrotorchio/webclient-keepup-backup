@@ -51,7 +51,15 @@ export default {
 
 <template lang="pug">
   div
+    h4( v-if = "patients.length === 0") Nenhum paciente cadastrado. Clique em 
+      v-btn(
+        small icon
+        :to = "{ name: 'PatientNew' }"
+        color = "primary"
+      ) 
+        v-icon add
     list(
+      v-else
       :array='patients'
       @open='open'
       @action='remove'
@@ -59,3 +67,7 @@ export default {
     )
 
 </template>
+<style lang="stylus" scoped>
+h4
+  text-align center
+</style>
