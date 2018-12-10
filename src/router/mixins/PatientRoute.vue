@@ -1,5 +1,4 @@
 <script>
-import { mapState } from 'vuex';
 
 export default {
   props: {
@@ -8,12 +7,18 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-      patient: state => state.patients.patient
-    })
+    patient: {
+      set (patient) {
+        this.$store.state.patients.patient = patient;
+      },
+      get () {
+        return this.$store.state.patients.patient;
+      }
+    }
   },
   methods: {
     async loadPatient() {
+      
       const patient = await this.$store.dispatch( 'fetchPatient', this.patientId );
 
       this.onPatientLoaded();
@@ -23,6 +28,8 @@ export default {
   created() {
     if (this.patientId)
       this.loadPatient();
+    else  
+      this.patient = null;
   }
 }
 </script>
