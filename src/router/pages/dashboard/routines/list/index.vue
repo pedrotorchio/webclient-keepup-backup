@@ -65,7 +65,15 @@ export default {
 
 <template lang="pug">
   div
+    h4.text-center( v-if = "routines.length === 0") Nenhuma rotina cadastrada. Clique em 
+      v-btn(
+        small icon
+        :to = "{ name: 'RoutineNew', params: { patientId } }"
+        color = "primary"
+      ) 
+        v-icon add
     list(
+      v-else
       :array='routines'
       @action='remove'
       @open='open'
