@@ -18,8 +18,15 @@ export default {
 
       if (timeExtent.length == 0)
         return 0;
+      
+      const start = timeExtent[1].getHours();
+      let end = timeExtent[0].getHours();
 
-      return timeExtent[1].getHours() - timeExtent[0].getHours();
+      if ( end < start )
+        end = 24;
+
+
+      return  end - start;
     },
     taskCount() {
       return this.tasks.length;
@@ -91,7 +98,7 @@ export default {
 
     },
     getNextHourTick(offset = 0) {
-      const [ start ] = this.scales.timeExtent;
+      const [ start, end ] = this.scales.timeExtent;
 
       return parse(start.getHours() + offset, 'h');
     }
