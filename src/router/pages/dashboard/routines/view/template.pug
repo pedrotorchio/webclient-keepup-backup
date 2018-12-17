@@ -34,9 +34,7 @@ section#visualization-route
           li.tip Clique para {{ form.visibility ? 'esconder' : 'mostrar' }} atividades
 
   
-  div#gantt-container(
-    :style = "{ height: `${canvasHeight}px` }"
-  )
+  div#gantt-container()
     div#yAxis( v-if = "hasTasks")
       h2.task-title(
         v-for = "(title, i) in scales.titles"
@@ -52,7 +50,9 @@ section#visualization-route
           :style = "rowStyle()"
         )
       
-      div#xAxis
+      div#xAxis(
+        :style = "{ height: `${canvasHeight}px` }"
+      )
         div.hour-tick(
           v-if = "doneScaling"
           v-for = "hour in (hours)"
