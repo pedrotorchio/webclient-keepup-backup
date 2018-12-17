@@ -129,9 +129,6 @@ const routine = {
         return {
           routineId: Number(prop.params.routineId)
         }
-      },
-      meta: {
-        title: (route, vm) => "Visualizar Atividades"
       }
     },
     {
