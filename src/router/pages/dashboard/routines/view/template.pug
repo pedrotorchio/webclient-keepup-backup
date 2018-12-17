@@ -34,7 +34,7 @@ section#visualization-route
           li.tip Clique para {{ form.visibility ? 'esconder' : 'mostrar' }} atividades
 
   
-  div#gantt-container()
+  div#gantt-container.stylish-scrollbar()
     div#yAxis( v-if = "hasTasks")
       h2.task-title(
         v-for = "(title, i) in scales.titles"
