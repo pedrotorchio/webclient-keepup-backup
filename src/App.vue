@@ -22,4 +22,15 @@ a
 
 .v-dialog
   box-shadow: none !important;
+
+ .stylish-scrollbar
+    &::-webkit-scrollbar
+      width: .1em;
+    
+    &::-webkit-scrollbar-track
+      -webkit-box-shadow: inset 0 0 6px transparent;
+    
+    &::-webkit-scrollbar-thumb
+      background-color: orange;
+      outline: 1px solid slategrey;
 </style>
