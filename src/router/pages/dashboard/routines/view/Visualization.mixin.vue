@@ -1,6 +1,6 @@
 <script>
 import {  Scales } from '@/visualization/tasks';
-import { parse, format } from '@/visualization/utils/time';
+import { parse, format, isSameDay } from '@/visualization/utils/time';
 
 export default {
   data: () => ({
@@ -25,7 +25,7 @@ export default {
 
       const [ startTime, endTime ] = timeExtent;
 
-      const isMultipleDays = endTime.getTime() - startTime.getTime() > 0;
+      const isMultipleDays = !isSameDay(endTime, startTime);
 
       const start = startTime.getHours();
       const end = isMultipleDays ? 24 : endTime.getHours();
