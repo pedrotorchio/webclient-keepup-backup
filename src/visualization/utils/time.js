@@ -58,3 +58,9 @@ export function roundExtent([ min, max ]) {
 
   return [min, max];
 }
+
+export function isSameDay( date1, date2 ) {
+  const sameDay = date1.getDate() == date2.getDate();
+  
+  return sameDay;
+}

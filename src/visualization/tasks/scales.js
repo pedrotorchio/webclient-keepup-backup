@@ -67,12 +67,18 @@ export class Scales {
     const categories = this.tasks.map( task => task.category || emptyCategory ); // categories
     const titles     = this.tasks.map( task => task.title || "Sem Nome" ); // titles
     
+    // Finders:: ( static element ) => ( variable element ) => equality definition
+    // by same id
     const idFinder = a => b => a.id == b.id;
-    const ttFinder = a => b => a == b;
+    // by same value
+    const valFinder = a => b => a == b;
+    // unique elements:: ( static equality finder ) => ( variable element, index, whole array ) => is first equal element with same index
     const unique = finder => (el, i, arr) => arr.findIndex(finder(el)) === i;
     
+    // unique categories
     this.categories = categories.filter( unique(idFinder));
-    this.titles = titles.filter( unique(ttFinder));
+    //unique titles
+    this.titles = titles.filter( unique(valFinder));
 
     if (this.tasks.length != 0)
       this.timeExtent = taskExtent(this.tasks);

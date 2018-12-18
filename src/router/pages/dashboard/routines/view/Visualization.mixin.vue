@@ -1,6 +1,6 @@
 <script>
 import {  Scales } from '@/visualization/tasks';
-import { parse, format } from '@/visualization/utils/time';
+import { parse, format, isSameDay } from '@/visualization/utils/time';
 
 export default {
   data: () => ({
@@ -13,6 +13,7 @@ export default {
     hasTasks() {
       return Boolean(this.scales) && this.scales.hasTasks();
     },
+
     hours() {
       if (this.scales === null)
         return 0;
@@ -22,7 +23,14 @@ export default {
       if (timeExtent.length == 0)
         return 0;
 
-      return timeExtent[1].getHours() - timeExtent[0].getHours();
+      const [ startTime, endTime ] = timeExtent;
+
+      const isMultipleDays = !isSameDay(endTime, startTime);
+
+      const start = startTime.getHours();
+      const end = isMultipleDays ? 24 : endTime.getHours();
+
+      return  end - start;
     },
     taskCount() {
       return this.tasks.length;
@@ -94,7 +102,7 @@ export default {
 
     },
     getNextHourTick(offset = 0) {
-      const [ start ] = this.scales.timeExtent;
+      const [ start, end ] = this.scales.timeExtent;
 
       return parse(start.getHours() + offset, 'h');
     }
