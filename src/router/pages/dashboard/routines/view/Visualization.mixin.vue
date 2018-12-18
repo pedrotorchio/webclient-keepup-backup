@@ -13,6 +13,7 @@ export default {
     hasTasks() {
       return Boolean(this.scales) && this.scales.hasTasks();
     },
+
     hours() {
       if (this.scales === null)
         return 0;
@@ -21,13 +22,13 @@ export default {
 
       if (timeExtent.length == 0)
         return 0;
-      
-      const start = timeExtent[1].getHours();
-      let end = timeExtent[0].getHours();
 
-      if ( end < start )
-        end = 24;
+      const [ startTime, endTime ] = timeExtent;
 
+      const isMultipleDays = endTime.getDate() - startTime.getDate() > 0;
+
+      const start = startTime.getHours();
+      const end = isMultipleDays ? 24 : endTime.getHours();
 
       return  end - start;
     },
