@@ -14,6 +14,9 @@ export default {
       return Boolean(this.scales) && this.scales.hasTasks();
     },
     hours() {
+      if (this.scales === null)
+        return 0;
+
       const timeExtent = this.scales.timeExtent; 
 
       if (timeExtent.length == 0)

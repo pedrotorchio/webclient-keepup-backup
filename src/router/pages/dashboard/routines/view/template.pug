@@ -34,8 +34,8 @@ section#visualization-route
           li.tip Clique para {{ form.visibility ? 'esconder' : 'mostrar' }} atividades
 
   
-  div#gantt-container(
-    :style = "{ height: `${canvasHeight}px` }"
+  div#gantt-container.stylish-scrollbar(
+    :style = "{ paddingTop: `${rowHeight}px` }"
   )
     div#yAxis( v-if = "hasTasks")
       h2.task-title(
@@ -43,16 +43,9 @@ section#visualization-route
         :style = "rowStyle()"
       ) {{ title }}
 
-    div#gantt( 
-      ref = "gantt"
-      v-if = 'hasTasks' )
-      div#rows
-        div.row(
-          v-for = "(title, i) in scales.titles"
-          :style = "rowStyle()"
-        )
-      
-      div#xAxis
+    div#xAxis(
+        :style = "{ height: `${canvasHeight}px`, width: `${getCanvasWidth()}px` }"
+      )
         div.hour-tick(
           v-if = "doneScaling"
           v-for = "hour in (hours)"
@@ -60,6 +53,17 @@ section#visualization-route
 
         ) {{ format(getNextHourTick(hour - 1)) }}
 
+
+    div#gantt( 
+      ref = "gantt"
+      v-if = 'hasTasks' )
+
+      div#rows
+        div.row(
+          v-for = "(title, i) in scales.titles"
+          :style = "rowStyle()"
+        )
+      
       div#canvas( ref = "canvas" )
         task(
           v-for = '(task, i) in tasks'
