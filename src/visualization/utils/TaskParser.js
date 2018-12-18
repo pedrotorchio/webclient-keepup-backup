@@ -9,3 +9,8 @@ export const taskParser = routine => task => {
   
   return task;
 }
+export function taskChopper( task ) {
+  if ( task.start.getDate()  )
+  const  = new Date(), e = new Date(d);
+  var msSinceMidnight = e - d.setHours(0,0,0,0);
+}

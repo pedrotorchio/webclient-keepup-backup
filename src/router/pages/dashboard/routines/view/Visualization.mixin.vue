@@ -25,7 +25,7 @@ export default {
 
       const [ startTime, endTime ] = timeExtent;
 
-      const isMultipleDays = endTime.getDate() - startTime.getDate() > 0;
+      const isMultipleDays = endTime.getTime() - startTime.getTime() > 0;
 
       const start = startTime.getHours();
       const end = isMultipleDays ? 24 : endTime.getHours();
