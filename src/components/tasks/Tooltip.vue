@@ -25,6 +25,9 @@ export default {
   }),
   methods: {
     setPosition(left, top){
+      if (!this.$el.style)
+        return;
+
       const box = this.$parent.$el.getBoundingClientRect();
 
       left = left || box.width - 10;
@@ -92,6 +95,9 @@ export default {
     startTime() {
       return format(this.model.start);
     },
+  },
+  updated() {
+    this.setPosition();
   }
 }
 </script>
