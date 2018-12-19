@@ -24,6 +24,15 @@ export default {
     shown: false,
   }),
   methods: {
+    setPosition(left, top){
+      const box = this.$parent.$el.getBoundingClientRect();
+
+      left = left || box.width - 10;
+      top  = top || box.height - 10;
+
+      this.$el.style.left = `${ left }px`;
+      this.$el.style.top = `${ top }px`;
+    },
     show() {
       this.shown = true;
     },

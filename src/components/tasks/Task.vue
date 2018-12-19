@@ -27,8 +27,11 @@ export default {
       
       this.editable = state;
 
-      if (state)
+      if (state) {
         this.$refs.tooltip.show();
+        this.$refs.tooltip.setPosition();
+      }
+        
       else
         this.$refs.tooltip.hide();
       
@@ -48,6 +51,7 @@ export default {
   article.task(
     @click.self="select"
     @mouseover="hover"
+    @mousemove="move"
     @mouseout = "hoverOut"
 
     :class = "{ selected }"
@@ -74,8 +78,12 @@ padding = 5px;
   border: 5px solid white;
 .task-tooltip
   position absolute;
-  top 90%; 
-  top: 'calc(100% - %s)' % (2 * padding);
-  left 90%;
-  left: 'calc(100% - %s)' % (2 * padding);
+  will-change top, left
+  transition-property top, left
+  transition-timing-function ease-out
+  transition-duration 100ms
+  // top 90%; 
+  // top: 'calc(100% - %s)' % (2 * padding);
+  // left 90%;
+  // left: 'calc(100% - %s)' % (2 * padding);
 </style>
