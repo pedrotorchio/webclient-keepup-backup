@@ -50,8 +50,8 @@ export default {
 
   article.task(
     @click.self="select"
-    @mouseover="hover"
-    @mousemove="move"
+    @mouseover.self="hover"
+    @mousemove.self="move"
     @mouseout = "hoverOut"
 
     :class = "{ selected }"
