@@ -1,6 +1,7 @@
 <script>
 import { parse, format, isSameDay } from '@/visualization/utils/time';
 import ArrayTransitioner from './ArrayTransitioner';
+import { Expo, TweenMax } from 'gsap';
 
 export default {
     mixins: [ ArrayTransitioner ],
@@ -43,11 +44,11 @@ export default {
         },
         fadeIn(el, done) {
             const delay = el.dataset.index * this.delay;
-
             setTimeout(() => {
                 TweenMax.from(el, this.duration, 
                 {
-                    autoAlpha: 0
+                    autoAlpha: 0,
+                    ease: Expo
                 });
 
                 done();
