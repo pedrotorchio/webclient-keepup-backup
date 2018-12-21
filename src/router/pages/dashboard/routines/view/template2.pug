@@ -19,7 +19,7 @@ section#visualization-route
             )
         
     div#gantt-container.stylish-scrollbar(
-        :style = "{ paddingTop: `${rowHeight}px` }"
+        :style = "{ gridTemplateRows: `${rowHeight}px auto` }"
     )
         div#intersection Atividades
         x-axis(
@@ -27,9 +27,9 @@ section#visualization-route
             :tickWidth = "hourTickWidth"
             :timeExtent = "scales.timeExtent"
             :delay = "50"
-            :style = "{ height: rowHeight }"
+            :style = "{ height: `${rowHeight}px`, lineHeight: `${rowHeight}px` }"
         )
-        y-Axis( ref = "canvas"
+        y-Axis( 
             v-if = "hasTasks"
             :titles = "scales.titles"
             :rowHeight = "rowHeight"
@@ -38,7 +38,9 @@ section#visualization-route
 
         )
 
-        div#gantt
+        div#gantt(
+            ref = "canvas"
+        )
             //- transition-group#rows( appear tag = "div" )
             //- transition-group#columns( appear tag = "div" )
             //- transition-group#tasks( appear tag = "div" )
