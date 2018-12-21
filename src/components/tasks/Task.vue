@@ -17,7 +17,8 @@ export default {
   },
   components: { Tooltip },
   data: () => ({
-    editable: false
+    editable: false,
+    grown: false
   }),
   methods: {
     ...mapActions([
@@ -54,7 +55,7 @@ export default {
     @mousemove.self="move"
     @mouseout = "hoverOut"
 
-    :class = "{ selected }"
+    :class = "{ selected, growX: grown }"
     :style = "{ top: `${top}px`, left: `${moment}px`, width: `${duration}px`, height: `${height}px`, backgroundColor: independency }"
   )
     tooltip(
@@ -62,7 +63,7 @@ export default {
       :editable.sync = "editable"
       :model = "model"
       :color = "independency" 
-      @click.native.stop = "tooltipClick"
+      
       @change = 'tooltipChange'
       @out-click = 'outClick'
     )
@@ -74,6 +75,12 @@ padding = 5px;
   position absolute;
   border-radius 5px;
   cursor: pointer;
+
+  z-index 9
+
+  &:hover, &.selected
+    z-index 99
+
 .selected
   border: 5px solid white;
 .task-tooltip
@@ -86,4 +93,5 @@ padding = 5px;
   // top: 'calc(100% - %s)' % (2 * padding);
   // left 90%;
   // left: 'calc(100% - %s)' % (2 * padding);
+
 </style>

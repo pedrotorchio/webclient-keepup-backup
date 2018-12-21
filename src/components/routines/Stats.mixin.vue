@@ -27,7 +27,7 @@ export default {
       this.selectedElements = this.$refs.tasks.filter( task => task.selected );
     },
     selected({ id, isSelection }) {
-      this.computeSelection();
+      // this.computeSelection();
     }
   }  
 }

@@ -10,6 +10,7 @@ export default {
         isSelection: this.selected,
         id: this.model.id
       });
+      this.setEditable(!this.editable);
     },
     tooltipClick() {
       if (!this.editable)
