@@ -29,9 +29,23 @@ export default {
         return;
 
       const box = this.$parent.$el.getBoundingClientRect();
+      const bWidth = document.body.getBoundingClientRect().width;
 
-      left = left || box.width - 10;
-      top  = top || box.height - 10;
+      let leftFallback, topFallback;
+
+      leftFallback = box.width - 10;
+      topFallback  = box.height - 10;
+
+      // if right edge passes half the screen
+      if (box.left + box.width > bWidth / 2 ) {
+        const tooltipBox = this.$el.getBoundingClientRect();
+
+        leftFallback = -tooltipBox.width;
+
+      }
+
+      left = left || leftFallback;
+      top  = top  || topFallback;
 
       this.$el.style.left = `${ left }px`;
       this.$el.style.top = `${ top }px`;

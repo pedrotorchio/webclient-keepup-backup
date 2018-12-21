@@ -1,0 +1,70 @@
+section#visualization-route
+
+    h2.no-tasks-message( v-if = "!hasTasks && hasLoaded") 
+        router-link(
+        :to = "{ name: 'FormNew', params: { routineId } }"    
+        ) Crie 
+        | ou utilize formulários para preencher rotina 
+
+    
+    nav#form-toggles( v-if = "hasForms" )
+        span.form-toggles-title Formulários (Ative e Desative clicando sobre os botões abaixo)
+
+        transition-group#toggles( appear tag = "div" )
+            form-toggle(
+                v-for = "(form, i) in forms" :key = "form.id"
+                :form = "form"
+                :color = "formsColorScale(i)"
+                @click = "toggleForm(form.id)"
+            )
+        
+    div#gantt-container.stylish-scrollbar(
+        :style = "{ gridTemplateRows: `${rowHeight}px auto`, marginTop: `${rowHeight}px` }"
+    )
+        div#intersection( ref = "intersection" )
+            span Atividades 
+            //- pular essa mensagem ao final
+        x-axis(
+            v-if = "doneScaling"
+            :tickWidth = "hourTickWidth"
+            :timeExtent = "scales.timeExtent"
+            :delay = "50"
+            :style = "{ height: `${rowHeight}px`, lineHeight: `${rowHeight}px` }"
+        )
+        y-Axis( 
+            v-if = "hasTasks"
+            :titles = "scales.titles"
+            :rowHeight = "rowHeight"
+            :innerPadding = "padding"
+            @before-showing = "createVisualization"
+
+        )
+
+        div#gantt(
+            ref = "canvas"
+        )
+            rows(
+                v-if = "doneScaling"
+                :titles = "scales.titles"
+                :rowHeight = "rowHeight"
+                :innerPadding = "padding"
+            )
+            columns(
+                v-if = "doneScaling"
+                :tickWidth = "hourTickWidth"
+                :timeExtent = "scales.timeExtent"
+                :delay = "50"
+            )
+            tasks(
+                v-if = "doneScaling"
+                :tasks = "tasks"
+                :scales = "scales"
+                :delay = "50"
+                @click = "selected"
+                @change = 'onTaskChange'
+                @done-showing = "doneShowing"
+            )
+            //- transition-group#columns( appear tag = "div" v-if = "doneScaling && $refs.xAxis" )
+            //-     p( v-for = "(hour, i) in $refs.xAxis.hourCount" :key = "hour" :style = "{ width: `${hourTickWith}px` }" )
+            //- transition-group#columns( appear tag = "div" )
+            //- transition-group#tasks( appear tag = "div" )

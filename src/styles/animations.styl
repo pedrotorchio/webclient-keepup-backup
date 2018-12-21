@@ -8,3 +8,32 @@
     box-shadow: 0 0 30px #00000012;
     opacity: 1;
     transform: scale(1);
+
+
+.fade-in
+  animation fade-in 1s ease-out
+
+@keyframes fade-in
+  0%
+    opacity 0
+  100%
+    opacity 1
+
+.jump
+  animation jump 1s linear alternate
+
+@keyframes jump {
+  0%   {transform: translate3d(0,0,0);}
+  40%  {transform: translate3d(0,30%,0);}
+  100% {transform: translate3d(0,100%,0);}
+}
+
+.growX
+  animation growX 1s ease-out
+  transform-origin left center
+ 
+@keyframes growX
+  0%
+    transform scaleX(0)
+  100%
+    transform scaleX(1)
