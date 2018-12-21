@@ -1,6 +1,6 @@
 section#visualization-route
 
-    h2.no-tasks-message( v-if = "!hasTasks") 
+    h2.no-tasks-message( v-if = "!hasTasks && hasLoaded") 
         router-link(
         :to = "{ name: 'FormNew', params: { routineId } }"    
         ) Crie 
