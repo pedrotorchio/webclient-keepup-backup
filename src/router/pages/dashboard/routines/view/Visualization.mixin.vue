@@ -54,12 +54,13 @@ export default {
       if (!this.$refs.canvas)
         throw "CANVAS not mounted";
       
-      return this.$refs.canvas.$el.clientWidth;
+      return this.$refs.canvas.clientWidth;
     },
     
     async createVisualization() {
 
-      setTimeout(() => {
+      setTimeout(() => {    
+
         this.scales.setCanvasWidth(this.getCanvasWidth());
         this.doneScaling = true;
 
