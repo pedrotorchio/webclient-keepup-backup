@@ -27,7 +27,7 @@ section#visualization-route
             v-if = "doneScaling"
             :tickWidth = "hourTickWidth"
             :timeExtent = "scales.timeExtent"
-            :delay = "10"
+            :delay = "50"
             :style = "{ height: `${rowHeight}px`, lineHeight: `${rowHeight}px` }"
         )
         y-Axis( 
@@ -42,6 +42,19 @@ section#visualization-route
         div#gantt(
             ref = "canvas"
         )
-            //- transition-group#rows( appear tag = "div" )
+            rows(
+                v-if = "hasTasks"
+                :titles = "scales.titles"
+                :rowHeight = "rowHeight"
+                :innerPadding = "padding"
+            )
+            columns(
+                v-if = "doneScaling"
+                :tickWidth = "hourTickWidth"
+                :timeExtent = "scales.timeExtent"
+                :delay = "50"
+            )
+            //- transition-group#columns( appear tag = "div" v-if = "doneScaling && $refs.xAxis" )
+            //-     p( v-for = "(hour, i) in $refs.xAxis.hourCount" :key = "hour" :style = "{ width: `${hourTickWith}px` }" )
             //- transition-group#columns( appear tag = "div" )
             //- transition-group#tasks( appear tag = "div" )
