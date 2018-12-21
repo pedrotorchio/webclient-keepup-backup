@@ -66,7 +66,7 @@ export default {
     )    
         label.tick(
             v-for = "( hour, i ) in hourCount" :key = "hour"
-            :style = "{ width: tickWidth }"
+            :style = "{ width: `${tickWidth}px` }"
             :data-index = "i"
 
         ) {{ getNextHourTick(hour - 1) }}
@@ -74,5 +74,6 @@ export default {
 <style lang="stylus" scoped>
     .tick
         visibility hidden
+        display inline-block
 </style>
 
