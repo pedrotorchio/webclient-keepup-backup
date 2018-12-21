@@ -145,9 +145,10 @@ export class Scales {
   
     const [a, b] = this.timeExtent;
     const span   = (b-a)/60000;
-    
-    return scaleLinear()
-      .domain([0, span])
-      .range([0, this.width]);
+    const scale = scaleLinear()
+                    .domain([0, span])
+                    .range([0, this.width]);
+
+    return ( x ) => Math.floor(scale(x));
   }
 }
