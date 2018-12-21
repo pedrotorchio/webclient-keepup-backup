@@ -52,6 +52,7 @@ export default {
     },
     show() {
       this.shown = true;
+      
     },
     hide() {
       this.shown = false;

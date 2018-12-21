@@ -36,10 +36,12 @@ export default {
     },
     methods: {
         grow(el, done) {
-            const delay = el.dataset.index * this.delay;
-
+            const i = el.dataset.index;
+            const delay = i * this.delay;
+            const task = this.$refs.tasks[i];
+            
             setTimeout(() => {
-                el.classList.add('growX');
+                task.grown = true;
                 done();
             }, delay);
         }
