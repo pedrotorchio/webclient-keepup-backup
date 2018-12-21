@@ -63,7 +63,7 @@ export default {
     #yAxis
         .task-title
             box-sizing: border-box;
-            white-space: wrap;
+            white-space: nowrap;
             font-weight bold;
             text-align: left;
             visibility hidden
