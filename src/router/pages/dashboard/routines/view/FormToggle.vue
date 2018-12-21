@@ -13,6 +13,14 @@ export default {
     computed: {
         isVisible() {
             return this.form.visibility;
+        },
+        formRoute() {
+            return {
+                name: 'TasksForm',
+                params: {
+                    formUid: this.form.uid
+                }
+            }
         }
     }
 }
@@ -32,8 +40,13 @@ export default {
         ul.tooltip
             li.edit-btn 
                 router-link(
-                @click.native.stop = "(() => ({}))"
-                :to = "{ name: 'FormEdit', params: { formId: form.id } }"
+                    @click.native.stop = "(() => ({}))"
+                    :to = "formRoute"
+                )
+                    v-icon( small color = "primary" ) open_in_new
+                router-link(
+                    @click.native.stop = "(() => ({}))"
+                    :to = "{ name: 'FormEdit', params: { formId: form.id } }"
                 ) Editar/Compartilhar
 
             li.filler_name {{ form.filler_name }}
@@ -62,16 +75,20 @@ export default {
       cursor pointer
       line-height 1.5em
 
-    .filler_name, .pts, .edit-btn
+    .filler_name, .pts
         display inline-block
         margin 0 5px
       
     .edit-btn
         position: absolute;
+        display flex
+        justify-content space-between
+        align-items center
+        left 0
         right: 0;
         top: 0;
         font-size: .6em;
-        margin: .5em;
+        margin: .5em 0;
         
     .filler_name
         text-transform uppercase
@@ -96,8 +113,10 @@ export default {
         left 50%
         font-size 1.5em
 
-    li
-        line-height: 1.5em
+        li
+            line-height: 1.5em
+            width 100%
+
 
     .toggle:hover
       .tooltip
