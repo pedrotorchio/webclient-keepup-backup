@@ -15,7 +15,7 @@ section#visualization-route
                 v-for = "(form, i) in forms" :key = "form.id"
                 :form = "form"
                 :color = "formsColorScale(i)"
-                @click = "toggleForm(form.id)"
+                @click.native = "toggleForm(form.id)"
             )
         
     div#gantt-container.stylish-scrollbar(
