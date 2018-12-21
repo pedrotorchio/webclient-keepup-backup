@@ -21,8 +21,9 @@ section#visualization-route
     div#gantt-container.stylish-scrollbar(
         :style = "{ gridTemplateRows: `${rowHeight}px auto`, marginTop: `${rowHeight}px` }"
     )
-        div#intersection
-            span.fade-in Atividades
+        div#intersection( ref = "intersection" )
+            span Atividades 
+            //- pular essa mensagem ao final
         x-axis(
             v-if = "doneScaling"
             :tickWidth = "hourTickWidth"
@@ -35,7 +36,7 @@ section#visualization-route
             :titles = "scales.titles"
             :rowHeight = "rowHeight"
             :innerPadding = "padding"
-            @done-showing = "createVisualization"
+            @before-showing = "createVisualization"
 
         )
 
@@ -53,6 +54,7 @@ section#visualization-route
                 :tickWidth = "hourTickWidth"
                 :timeExtent = "scales.timeExtent"
                 :delay = "50"
+                @done-showing = "doneShowing"
             )
             //- transition-group#columns( appear tag = "div" v-if = "doneScaling && $refs.xAxis" )
             //-     p( v-for = "(hour, i) in $refs.xAxis.hourCount" :key = "hour" :style = "{ width: `${hourTickWith}px` }" )
