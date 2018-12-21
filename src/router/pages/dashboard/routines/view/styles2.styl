@@ -7,9 +7,13 @@
     #gantt-container
         display: grid;
         grid-template-areas: "intersection xAxis" "yAxis gantt";
+        grid-template-columns min-content auto
 
         #intersection
             grid-area intersection
+            align-self center
+            justify-self left
+            text-transform uppercase
         #yAxis
             grid-area yAxis
         #xAxis
