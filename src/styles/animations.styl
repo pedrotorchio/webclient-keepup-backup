@@ -27,3 +27,13 @@
   40%  {transform: translate3d(0,30%,0);}
   100% {transform: translate3d(0,100%,0);}
 }
+
+.growX
+  animation growX 1s ease-out
+  transform-origin left center
+ 
+@keyframes growX
+  0%
+    transform scaleX(0)
+  100%
+    transform scaleX(1)
