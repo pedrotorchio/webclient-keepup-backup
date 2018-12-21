@@ -60,9 +60,9 @@ export default {
 </script>
 <template lang="pug">
     transition-group#xAxis( appear tag = "div" 
-        v-on = "$listeners" v-bind = "$attrs" 
+        v-on = "listeners" v-bind = "$attrs" 
         :css = "false"
-        @after-enter = "entered"
+        @after-enter = "afterEnter"
         @enter = "fadeIn"
     )    
         label.tick(

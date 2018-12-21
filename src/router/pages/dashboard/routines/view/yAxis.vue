@@ -48,10 +48,10 @@ export default {
 </script>
 <template lang="pug">
     transition-group#yAxis( appear tag = "div" 
-        v-on = "$listeners" v-bind = "$attrs" 
+        v-on = "listeners" v-bind = "$attrs" 
         :css = "false"
         @before-enter = "beforeEnter"
-        @after-enter = "entered"
+        @after-enter = "afterEnter"
         @enter = "slideIn"
     )
         h2.task-title(
