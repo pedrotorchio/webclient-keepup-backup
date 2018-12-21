@@ -36,6 +36,7 @@ export default {
                     autoAlpha: 0
                 },
                 {
+                    ease: Expo,
                     onComplete: done,
                     x: 0,
                     autoAlpha: 1
