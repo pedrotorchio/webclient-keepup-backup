@@ -6,7 +6,7 @@ export default {
 }
 </script>
 <template lang="pug">
-    transition-group#columns( appear tag = "div" 
+    transition-group#columns.xContainer( appear tag = "div" 
         v-on = "listeners" v-bind = "$attrs" 
         :css = "false"
         @after-enter = "afterEnter"

@@ -59,7 +59,7 @@ export default {
 }
 </script>
 <template lang="pug">
-    transition-group#xAxis( appear tag = "div" 
+    transition-group#xAxis.xContainer( appear tag = "div" 
         v-on = "listeners" v-bind = "$attrs" 
         :css = "false"
         @after-enter = "afterEnter"
@@ -73,6 +73,8 @@ export default {
         ) {{ getNextHourTick(hour - 1) }}
 </template>
 <style lang="stylus" scoped>
+    .xContainer
+        display flex
     .tick
         visibility hidden
         display inline-block
