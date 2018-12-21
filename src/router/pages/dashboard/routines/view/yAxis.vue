@@ -51,7 +51,7 @@ export default {
     transition-group#yAxis( appear tag = "div" 
         v-on = "$listeners" v-bind = "$attrs" 
         :css = "false"
-        @after-enter = "entered"
+        @before-enter = "entered"
         @enter = "slideIn"
     )
         h2.task-title(
