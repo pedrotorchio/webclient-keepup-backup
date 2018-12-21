@@ -21,12 +21,13 @@ section#visualization-route
     div#gantt-container.stylish-scrollbar(
         :style = "{ gridTemplateRows: `${rowHeight}px auto` }"
     )
-        div#intersection Atividades
+        div#intersection
+            span.fade-in Atividades
         x-axis(
             v-if = "doneScaling"
             :tickWidth = "hourTickWidth"
             :timeExtent = "scales.timeExtent"
-            :delay = "50"
+            :delay = "10"
             :style = "{ height: `${rowHeight}px`, lineHeight: `${rowHeight}px` }"
         )
         y-Axis( 
