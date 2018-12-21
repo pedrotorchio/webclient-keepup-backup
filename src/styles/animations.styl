@@ -18,3 +18,12 @@
     opacity 0
   100%
     opacity 1
+
+.jump
+  animation jump 1s linear alternate
+
+@keyframes jump {
+  0%   {transform: translate3d(0,0,0);}
+  40%  {transform: translate3d(0,30%,0);}
+  100% {transform: translate3d(0,100%,0);}
+}
