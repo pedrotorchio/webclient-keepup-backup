@@ -8,19 +8,19 @@ import TasksFormView from './TasksForm.mixin';
 import RoutineModel from '@/components/routines/RoutineModel';
 import Stats from '@/components/routines/Stats.mixin';
 import Visualization from './Visualization.mixin';
-import Task from '@/components/tasks/Task';
 
 import FormToggle from './FormToggle';
 import xAxis from './xAxis';
 import yAxis from './yAxis';
 import Rows from './Rows';
 import Columns from './Columns';
+import Tasks from './Tasks';
 
 export default {
   name: 'Visualization',
   extends: Route,
   mixins: [ TasksRoute, TasksFormView, Stats, Visualization ],
-  components: { Task, FormToggle, xAxis, yAxis, Rows, Columns },
+  components: { FormToggle, xAxis, yAxis, Rows, Columns, Tasks },
 
   watch: {
     selectedElements(newElements, oldElements) {

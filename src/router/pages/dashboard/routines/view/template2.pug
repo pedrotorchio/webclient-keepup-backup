@@ -44,7 +44,7 @@ section#visualization-route
             ref = "canvas"
         )
             rows(
-                v-if = "hasTasks"
+                v-if = "doneScaling"
                 :titles = "scales.titles"
                 :rowHeight = "rowHeight"
                 :innerPadding = "padding"
@@ -54,6 +54,14 @@ section#visualization-route
                 :tickWidth = "hourTickWidth"
                 :timeExtent = "scales.timeExtent"
                 :delay = "50"
+            )
+            tasks(
+                v-if = "doneScaling"
+                :tasks = "tasks"
+                :scales = "scales"
+                :delay = "50"
+                @click = "selected"
+                @change = 'onTaskChange'
                 @done-showing = "doneShowing"
             )
             //- transition-group#columns( appear tag = "div" v-if = "doneScaling && $refs.xAxis" )
