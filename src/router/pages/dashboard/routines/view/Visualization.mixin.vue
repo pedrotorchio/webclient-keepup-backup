@@ -1,6 +1,7 @@
 <script>
 import {  Scales } from '@/visualization/tasks';
 import { parse, format, isSameDay } from '@/visualization/utils/time';
+import { TweenMax, Bounce } from 'gsap';
 
 export default {
   data: () => ({
@@ -45,6 +46,15 @@ export default {
   },
   methods: {
     format,
+    jumpIntersection() {
+      const intersection = this.$refs.intersection;
+      
+      TweenMax.from(intersection, 1, 
+        {y:-100, autoAlpha: 0, ease:Bounce.easeOut});
+    },
+    doneShowing() {
+      this.jumpIntersection();
+    },
     tasksLoaded() {
       this.hasLoaded = true;
       this.scales = new Scales(this.allTasks);
