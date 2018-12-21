@@ -4,7 +4,8 @@ import ArrayTransitioner from './ArrayTransitioner';
 import { Expo, TweenMax } from 'gsap';
 
 export default {
-    mixins: [ ArrayTransitioner ],
+    name: 'xAxis',
+    extends: ArrayTransitioner,
     props: {
         tickWidth: {
             type: Number,
@@ -48,10 +49,9 @@ export default {
                 TweenMax.from(el, this.duration, 
                 {
                     autoAlpha: 0,
-                    ease: Expo
+                    ease: Expo,
+                    onComplete: done
                 });
-
-                done();
 
             }, delay);
         }

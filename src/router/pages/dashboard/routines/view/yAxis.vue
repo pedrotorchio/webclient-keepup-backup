@@ -2,10 +2,9 @@
 import ArrayTransitioner from './ArrayTransitioner';
 import { TweenMax, Expo } from 'gsap';
 
-let enterCount = 0;
-
 export default {
-    mixins: [ ArrayTransitioner ],
+    name: 'yAxis',
+    extends: ArrayTransitioner,
     props: {
         titles : {
             type: Array,
@@ -51,7 +50,8 @@ export default {
     transition-group#yAxis( appear tag = "div" 
         v-on = "$listeners" v-bind = "$attrs" 
         :css = "false"
-        @before-enter = "entered"
+        @before-enter = "beforeEnter"
+        @after-enter = "entered"
         @enter = "slideIn"
     )
         h2.task-title(
