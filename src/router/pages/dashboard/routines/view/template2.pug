@@ -1,0 +1,44 @@
+section#visualization-route
+
+    h2.no-tasks-message( v-if = "!hasTasks") 
+        router-link(
+        :to = "{ name: 'FormNew', params: { routineId } }"    
+        ) Crie 
+        | ou utilize formulários para preencher rotina 
+
+    
+    nav#form-toggles( v-if = "hasForms" )
+        span.form-toggles-title Formulários (Ative e Desative clicando sobre os botões abaixo)
+
+        transition-group#toggles( appear tag = "div" )
+            form-toggle(
+                v-for = "(form, i) in forms" :key = "form.id"
+                :form = "form"
+                :color = "formsColorScale(i)"
+                @click = "toggleForm(form.id)"
+            )
+        
+    div#gantt-container.stylish-scrollbar(
+        :style = "{ paddingTop: `${rowHeight}px` }"
+    )
+        div#intersection Atividades
+        x-axis(
+            v-if = "doneScaling"
+            :tickWidth = "hourTickWidth"
+            :timeExtent = "scales.timeExtent"
+            :delay = "50"
+            :style = "{ height: rowHeight }"
+        )
+        y-Axis( ref = "canvas"
+            v-if = "hasTasks"
+            :titles = "scales.titles"
+            :rowHeight = "rowHeight"
+            :innerPadding = "padding"
+            @done-showing = "createVisualization"
+
+        )
+
+        div#gantt
+            //- transition-group#rows( appear tag = "div" )
+            //- transition-group#columns( appear tag = "div" )
+            //- transition-group#tasks( appear tag = "div" )

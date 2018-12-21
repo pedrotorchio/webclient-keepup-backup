@@ -63,6 +63,11 @@ section#visualization-route
           v-for = "(title, i) in scales.titles"
           :style = "rowStyle()"
         )
+      div#columns
+        div.row(
+          v-for = "(title, i) in scales.titles"
+          :style = "rowStyle()"
+        )
       
       div#canvas( ref = "canvas" )
         task(
