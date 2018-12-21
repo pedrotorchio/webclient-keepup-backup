@@ -2,6 +2,7 @@
 let enterCount = 0;
 
 export default {
+    inheritAttrs: false,
     props: {
         delay: {
             type: Number,
@@ -18,14 +19,19 @@ export default {
     computed: {
         arraySize() {
             return 0;
+        },
+        listeners() {
+            const { "after-enter": afterEnter, "before-enter": beforeEnter, ...listeners } = this.$listeners;
+            
+            return listeners;
         }
     },
     methods: {
-        entered() {
+        afterEnter() {
             this.enterCount++;
             
             if (this.enterCount >= this.arraySize) {
-                
+
                 this.$emit('done-showing');
                 this.enterCount = 0;
             }
