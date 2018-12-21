@@ -142,7 +142,7 @@ export class Scales {
   
   }
   getDurationScale() {
-  console.log(this.width);
+  
     const [a, b] = this.timeExtent;
     const span   = (b-a)/60000;
     const scale = scaleLinear()
