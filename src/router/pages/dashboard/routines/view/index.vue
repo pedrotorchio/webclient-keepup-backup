@@ -13,12 +13,14 @@ import Task from '@/components/tasks/Task';
 import FormToggle from './FormToggle';
 import xAxis from './xAxis';
 import yAxis from './yAxis';
+import Rows from './Rows';
+import Columns from './Columns';
 
 export default {
   name: 'Visualization',
   extends: Route,
   mixins: [ TasksRoute, TasksFormView, Stats, Visualization ],
-  components: { Task, FormToggle, xAxis, yAxis },
+  components: { Task, FormToggle, xAxis, yAxis, Rows, Columns },
 
   watch: {
     selectedElements(newElements, oldElements) {
