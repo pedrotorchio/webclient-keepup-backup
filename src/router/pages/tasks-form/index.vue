@@ -6,11 +6,13 @@ import Task from './Task';
 import TasksForm from './NewTaskForm';
 import FormPointsView from '@/components/tasks-form/FormPointsView';
 
+import Animation from './Animation.mixin';
+
 export default {
   extends: Route,
   components: { Task, TasksForm },
   // mixins: [ TasksFormRoute ],
-  mixins: [ FormPointsView ],
+  mixins: [ FormPointsView, Animation ],
   props: {
     formUid: {}
   },

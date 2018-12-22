@@ -11,13 +11,18 @@ main#tasks-form
         h2.name {{ fillerName }}
         div.punctuation 
           span.pts {{ points }}
-    div.list
+      
+    transition-group.list(
+      tag = "div"
+      @enter = "listEnter"
+    )
       p.comment( v-if = "form.comment" ) {{ form.comment }}
       p.tip( v-if = "!hasTasks" ) Clique em ADICIONAR ATIVIDADE
 
       task( v-else
         v-for = "(task, i) in form.tasks" 
         :key = 'task.id'
+        :data-index = "i"
         :task = "task"
         @click = 'open(task)'
         @remove = 'remove(task.uid)'
