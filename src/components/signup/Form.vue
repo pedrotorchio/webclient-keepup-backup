@@ -1,6 +1,9 @@
 <script>
+import Recaptcha from 'vue-recaptcha';
+
 export default {
   name: 'signup-form',
+  components: { Recaptcha },
   props: {
     isLogin: {
       type: Boolean,
@@ -15,8 +18,15 @@ export default {
     }
   }),
   methods: {
-    submit() {
-      this.$emit('submit', { ...this.formData });
+    submit(captcha) {
+      this.resetCaptcha();
+      this.$emit('submit', { ...this.formData, captcha });
+    },
+    lazyValidation() {
+      this.$refs.recaptcha.execute();
+    },
+    resetCaptcha() {
+      this.$refs.recaptcha.reset();
     }
   }
 }
@@ -37,9 +47,11 @@ export default {
       type = "password"
       placeholder='Senha'
     )
-    h3#call.link(
-      @click='submit'
-    ) Acesse o KeepUp
+    recaptcha( ref = "recaptcha" sitekey = "6LdXPYQUAAAAANQOh_W1tC-D9Qei1dJy8T1aMyQ4" 
+      @verify = "submit" 
+      @expired = "resetCaptcha"
+    )
+      button#call.link Acesse o KeepUp
 
     
 </template>
@@ -62,6 +74,9 @@ export default {
     outline: none;
     width 100%
 
+  button
+    border-bottom none
+    
   #call
     text-align: center;
     font-size: 24px;
