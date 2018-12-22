@@ -4,6 +4,8 @@ export default {
   async fetchTasksFormPublicData( {}, uid ) {
     const form = await api.get(`task-filling/${uid}`);
 
+    form.tasks = form.sorted_tasks;
+
     return form;
   },
   async fetchTaskOptions() {
