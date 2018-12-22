@@ -17,7 +17,7 @@ export function taskChopper( task ) {
     // task.end.setDate(task.start.getDate());
     task.end.setHours(0, 0, 0, 0);
     task.end.setHours(0, 0, 0, -1);
-    task.duration = ( task.end.getTime() - task.start.getTime() ) / ( 1000 * 60 );
+    task.duration = Math.floor (( task.end.getTime() - task.start.getTime() ) / ( 1000 * 60 ));
     
   } else
 
