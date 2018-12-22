@@ -10,6 +10,8 @@ export default { ...publicActions,
   },
   async fetchTasksForm({}, id) {
     const form = await api.get(`tasks-forms/${id}`);
+
+    form.tasks = form.sorted_tasks;
     
     return form;
   },
