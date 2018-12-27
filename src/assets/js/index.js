@@ -1,3 +1,3 @@
 export function lazy(file) {
-  return () => import(/* webpackChunkName: "view-[request]" */ `@/${file}`);
+  return () => import(/* webpackChunkName: "bundle-[request]" */ `@/${file}`);
 }
