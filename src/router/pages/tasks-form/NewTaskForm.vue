@@ -169,6 +169,7 @@ export default {
           dark
           v-model = "title"
           label = "Selecione a atividade"
+          no-data-text = "Nenhuma Atividade Disponível"
           :items = "taskOptions"
           item-text = "title"
           item-value = "title"
@@ -221,6 +222,7 @@ export default {
           dark
           v-model = "task.location"
           label = "Local"
+          no-data-text = "Nenhum Local Disponível"
           :items = "localOptions"
           color = "primary"
           @change = "fieldChanged('location', $event)"
@@ -230,6 +232,7 @@ export default {
           dark
           v-model = "task.company"
           label = "Companhia"
+          no-data-text = "Nenhuma Opção Disponível"
           :items = "companyOptions"
           color = "primary"
           @change = "fieldChanged('company', $event)"
@@ -239,6 +242,7 @@ export default {
           dark
           v-model = "task.simultaneous_task"
           label = "Atividade Simultânea"
+          no-data-text = "Nenhuma Opção Disponível"
           :items = "taskOptions"
           item-text = "title"
           item-value = "title"
