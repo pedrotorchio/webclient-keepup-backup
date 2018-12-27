@@ -1,7 +1,7 @@
 @import '~@/styles/colors';
 @import '~@/styles/config';
 
-main#dashboard
+#dashboard
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -123,7 +123,6 @@ main#dashboard
       overflow-y: auto;
       overflow-x: hidden;
 
-p
   #warning-cards
     display: flex;
     flex-direction: column;
@@ -141,7 +140,11 @@ p
       max-width: 0;
 
   .actions
-      for i in (0..5)
-        .floating-btn:nth-of-type({i})
-          .v-btn
-            left: i * 100px !important;
+    position fixed
+    bottom 1em
+    left 1em
+
+  //     for i in (0..5)
+  //       .floating-btn:nth-of-type({i})
+  //         .v-btn
+  //           left: i * 100px !important;
