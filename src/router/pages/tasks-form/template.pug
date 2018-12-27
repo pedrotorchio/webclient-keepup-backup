@@ -11,15 +11,17 @@ main#tasks-form
         h2.name {{ fillerName }}
         div.punctuation 
           span.pts {{ points }}
-      
-    transition-group.list(
+
+    p.comment( v-if = "form.comment" :key = "form.id" ) {{ form.comment }}
+    
+    div.list( v-if = "!hasTasks" )
+      p.tip Clique em ADICIONAR ATIVIDADE
+    transition-group.list( v-else
       tag = "div"
       @enter = "listEnter"
     )
-      p.comment( v-if = "form.comment" ) {{ form.comment }}
-      p.tip( v-if = "!hasTasks" ) Clique em ADICIONAR ATIVIDADE
 
-      task( v-else
+      task(
         v-for = "(task, i) in form.tasks" 
         :key = 'task.id'
         :data-index = "i"
