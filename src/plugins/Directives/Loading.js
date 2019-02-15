@@ -3,13 +3,19 @@ export default {
         Vue.directive('loading', {
             bind(el) {        
                 const div = makeProgress();
-
+                
+                const currPadding = parseInt(
+                    window.getComputedStyle(el).paddingBottom
+                        .replace('px', '') || 0);
+                
                 el.style.position = "relative"
+                el.style.paddingBottom = `${Math.max(currPadding, 10)}px`
                 el.classList.add('loading-container');
 
                 el.appendChild(div)
             },
             update: function (el, binding) {
+                
                 if (binding.value !== null) {
                     if (binding.value)
                         el.classList.add('loading');
