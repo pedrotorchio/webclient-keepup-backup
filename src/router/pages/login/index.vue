@@ -2,7 +2,7 @@
 import Page from '../Page';
 import SignupForm from '@/components/signup/form';
 import { loginProcedure, failedLogin, signupProcedure, failedSignup } from './procedures';
-
+import { TimelineMax } from 'gsap'
 export default {
   name: 'LoginPage',
   extends: Page,
@@ -29,8 +29,6 @@ export default {
         login = await loginProcedure.bind(this)(data)
           .catch(failedLogin.bind(this));
       }
-      
-      this.loading = false;
 
       login = Boolean(login);
       
@@ -42,9 +40,16 @@ export default {
     submit(data) {
       this.submitProcedure(data)
           .then(login => this.$router.push({ name: 'PatientsList' }))
-          .catch(login => null);
+          .catch(login => this.loading = false);
+    },
+  },
+  watch: {
+    loading(value) {
+      new TimelineMax()
+        .to('.link', .5, {
+          autoAlpha: this.loading ? 0 : 1
+        })
     }
-
   }
 }
 </script>
