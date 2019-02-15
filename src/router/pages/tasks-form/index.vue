@@ -69,12 +69,14 @@ export default {
       this.show();
     },
     async fetchData() {
+      this.setGlobalLoading(true)
       let fetchers = [this.fetchForm(this.formUid), this.fetchTaskOptions(this.formUid)]
       
       const [ form, taskOptions ] = await Promise.all(fetchers);
 
       this.form = form;
       this.taskOptions = taskOptions;
+      this.setGlobalLoading(false)
     },
     async remove(taskUid) {
       

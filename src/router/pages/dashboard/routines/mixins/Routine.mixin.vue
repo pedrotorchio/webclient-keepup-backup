@@ -44,11 +44,14 @@ export default {
     },
     routineId: {
       immediate: true,
-      handler(id) {
+      async handler(id) {
         if (id) {
+          this.setGlobalLoading(true)
+          const routine = await this.$store.dispatch('fetchRoutine', id)    
+          this.routine = routine
           
-          this.$store.dispatch('fetchRoutine', id)
-              .then( routine => this.routine = routine );
+          this.setGlobalLoading(false)
+              
         }
       }
     }

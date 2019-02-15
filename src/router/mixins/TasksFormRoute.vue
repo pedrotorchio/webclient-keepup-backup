@@ -15,9 +15,11 @@ export default {
       fetchTasksForm: 'fetchTasksForm'
     }),
     async loadTasksForm() {
+      this.setGlobalLoading(true)
       this.tasksForm = await this.fetchTasksForm( this.formId );
-
+      
       this.onTasksFormLoaded();
+      this.setGlobalLoading(false)
     },
     onTasksFormLoaded() {},
   },

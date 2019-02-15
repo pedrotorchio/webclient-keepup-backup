@@ -18,10 +18,11 @@ export default {
   },
   methods: {
     async loadPatient() {
-      
+      this.setGlobalLoading(true)
       const patient = await this.$store.dispatch( 'fetchPatient', this.patientId );
 
       this.onPatientLoaded();
+      this.setGlobalLoading(false)
     },
     onPatientLoaded() {},
   },

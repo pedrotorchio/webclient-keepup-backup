@@ -40,12 +40,15 @@ export default {
       deep: true,
       handler(data) {
         if (data)
+          this.setGlobalLoading(true)
           this.$store.dispatch('fetchArchivedPatients')
               .then(patients => {
                 patients.forEach( patient => {
                   this.archive.push(patient);
                 });
               });
+          this.setGlobalLoading(false)
+          
       }
     }
   }

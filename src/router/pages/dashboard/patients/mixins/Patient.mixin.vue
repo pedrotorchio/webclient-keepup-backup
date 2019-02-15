@@ -15,7 +15,11 @@ export default {
     }),
   },
   created() {
-    this.$store.dispatch('fetchPatient', this.patientId);
+    this.setGlobalLoading(true)
+
+    this.$store.dispatch('fetchPatient', this.patientId)
+        .then(()=>this.setGlobalLoading(false))
+
   }
 }
 </script>

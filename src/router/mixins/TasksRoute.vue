@@ -15,6 +15,7 @@ export default {
     },
     extractTasks() {},
     async loadTasks() {
+      this.setGlobalLoading(true)
       this.forms = await this.fetchRoutineTasksForms(this.routineId);
       
       const formFetcher = this.forms.map( async form => await this.fetchTasksForm(form.id) );
@@ -32,7 +33,7 @@ export default {
       
       this.extractTasks();
       this.tasksLoaded();
-
+      this.setGlobalLoading(false)
     },
     tasksLoaded() {}
   }

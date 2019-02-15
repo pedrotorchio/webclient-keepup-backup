@@ -12,11 +12,11 @@ export default {
   }),
   methods: {
     async loadRoutine() {
-      
+      this.setGlobalLoading(true)
       this.routine = await this.$store.dispatch( 'fetchRoutine', this.routineId );
-    
-      this.onRoutineLoaded();
       
+      this.onRoutineLoaded();
+      this.setGlobalLoading(false)
     },
     onRoutineLoaded() {},
   },
