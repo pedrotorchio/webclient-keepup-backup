@@ -26,7 +26,7 @@ section#visualization-route
             //- pular essa mensagem ao final
         x-axis(
             v-if = "doneScaling"
-            :tickWidth = "hourTickWidth"
+            :durationScale = "scales.getDurationScale()"
             :timeExtent = "scales.timeExtent"
             :delay = "50"
             :style = "{ height: `${rowHeight}px`, lineHeight: `${rowHeight}px` }"
@@ -51,9 +51,9 @@ section#visualization-route
             )
             columns(
                 v-if = "doneScaling"
-                :tickWidth = "hourTickWidth"
                 :timeExtent = "scales.timeExtent"
                 :delay = "50"
+                :durationScale = "scales.getDurationScale()"
             )
             tasks(
                 v-if = "doneScaling"
