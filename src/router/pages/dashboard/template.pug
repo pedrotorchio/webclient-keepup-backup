@@ -13,7 +13,7 @@ main#dashboard
       v-text='userData.name'
     )
 
-  div#panel
+  div#panel( v-loading = "gIsLoading" )
     
     h2#message-warning(
       class='error'
