@@ -14,6 +14,8 @@ export default {
 <style lang="stylus" src='@/styles/reset.styl'></style>
 <style lang="css" src='@/styles/icons.css'></style>
 <style lang="stylus">
+@import '~@/styles/colors'
+
 html, body, .application
   height: 100%;
   height: 100vh;
@@ -34,4 +36,14 @@ a
     &::-webkit-scrollbar-thumb
       background-color: orange;
       outline: 1px solid slategrey;
+
+.loading-container
+  .indeterminate-loading
+    background-color orange
+    visibility: hidden
+  &.loading
+    .indeterminate-loading
+      visibility: visible
+  
+
 </style>
