@@ -15,9 +15,11 @@ export default {
     routines: []
   }),
   created() {
+    this.setGlobalLoading(true)
     this.$store.dispatch('fetchPatientRoutines', this.patientId)
         .then( routines => {
-          routines.forEach( routine => this.routines.push(routine) );
+          this.routines = routines
+          this.setGlobalLoading(false)
         });
   },
   methods: {

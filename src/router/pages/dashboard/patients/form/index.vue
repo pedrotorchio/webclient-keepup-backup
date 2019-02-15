@@ -15,7 +15,7 @@ export default {
     async submitProcedure(data) {
       
       let patient;
-      this.isLoading = true
+      this.setGlobalLoading(true)
 
       if (this.patient) {
         data.id = this.patient.id;
@@ -33,7 +33,8 @@ export default {
         });
 
       }
-      this.isLoading = true
+      this.setGlobalLoading(false)
+      
       
       return patient;
     },
