@@ -37,3 +37,18 @@
     transform scaleX(0)
   100%
     transform scaleX(1)
+
+.indeterminate-loading
+  will-change: left, right
+  animation: indeterminate 1s cubic-bezier(0.7, 0.45, 0.7, 0.46) infinite alternate
+
+@keyframes indeterminate
+  0%
+    left: 0%
+    width: 0%
+  50%
+    left: 0%
+    width: 100%
+  100%
+    left: 100%
+    width: 0%
