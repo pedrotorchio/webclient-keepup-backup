@@ -78,7 +78,9 @@ v-form.ku-form(
     ) 
     div#professionals( v-if = 'model' )
       
-      div#caregiver-form-container
+      div#caregiver-form-container(
+        v-loading = "cgLoading"
+      )
         
         h4
           v-btn( 
