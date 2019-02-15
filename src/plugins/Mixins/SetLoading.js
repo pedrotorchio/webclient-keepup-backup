@@ -10,7 +10,7 @@ export default {
         }),
         isLoading: {
             get() {
-                return this.gIsLoading || this.localIsLoading
+                return this.gIsLoading || this.localIsLoading___
             },
             set(value) {
                 this.localIsLoading___ = value
