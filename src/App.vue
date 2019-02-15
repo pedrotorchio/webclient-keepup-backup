@@ -42,7 +42,7 @@ a
     background-color orange
     visibility: hidden
   &.loading
-    .indeterminate-loading
+    & > .indeterminate-loading
       visibility: visible
   
 
