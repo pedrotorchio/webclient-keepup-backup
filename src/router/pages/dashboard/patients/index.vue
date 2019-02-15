@@ -8,8 +8,10 @@ export default {
   name: 'Patients',
   methods: {
     onUserDataChange(user) {
+      this.setGlobalLoading(true)
       if (user.id)
-          this.$store.dispatch('fetchAllPatients');
+          this.$store.dispatch('fetchAllPatients')
+            .then(()=>this.setGlobalLoading(false))
     }
   }
 }
