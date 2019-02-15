@@ -5,6 +5,7 @@ import { mapActions } from 'vuex';
 import Task from './Task';
 import TasksForm from './NewTaskForm';
 import FormPointsView from '@/components/tasks-form/FormPointsView';
+import { toInteger } from '@/visualization/utils/time';
 
 import Animation from './Animation.mixin';
 
@@ -106,6 +107,11 @@ export default {
     }
   },
   computed: {
+    sortedTasks() {
+      return [...this.form.tasks]
+        .sort((a, b) => toInteger(a.time, 'h') - toInteger(b.time, 'h'));
+      
+    },
     hasTasks() {
       return this.form && this.form.tasks.length > 0;
     },

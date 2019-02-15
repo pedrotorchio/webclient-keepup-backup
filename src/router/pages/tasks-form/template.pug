@@ -22,7 +22,7 @@ main#tasks-form
     )
 
       task(
-        v-for = "(task, i) in form.tasks" 
+        v-for = "(task, i) in sortedTasks" 
         :key = 'task.id'
         :data-index = "i"
         :task = "task"

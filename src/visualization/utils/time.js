@@ -6,6 +6,12 @@ export const timeFormats = {
   regular: 'HH:mm',
   date: 'DD/MM/YYYY'
 };
+export function toInteger(value, format) {
+  const date = parse(value, format);
+  const unix = date.getTime();
+  console.log(value, date.getHours(), unix)
+  return unix;
+}
 export function format(date) {
   if ((!date instanceof Date))
     throw 'Not a Date';
