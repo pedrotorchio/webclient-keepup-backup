@@ -1,9 +1,9 @@
 import { mapActions, mapState } from 'vuex'
 
 export default {
-    data: {
+    data: ()=> ({
         localIsLoading___: false
-    },
+    }),
     computed: {
         ...mapState({
             gIsLoading: state => state.system.isLoading
