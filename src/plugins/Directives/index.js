@@ -1,8 +1,4 @@
 import Vue from 'vue';
-import ClickOutside from 'vue-click-outside';
+import Loading from './Loading'
 
-Vue.use({
-  install(Vue, options) {
-    Vue.directive('out-click', ClickOutside);
-  }
-});
+Vue.use(Loading);
