@@ -7,13 +7,13 @@ div#signup-page.page
       isLogin? 'login' : 'signup'
     ]`
     ref = "loadingContainer"
-    v-loading = "loading"
+    v-loading = "isLoading"
   )
     p#signup-btn
       span.link(
         @click='isLogin=!isLogin'
         v-text="isLogin? 'Cadastrar Usuário' : 'Acessar KeepUp'"
-        :style = "{ visibility: loading? 'hidden' : 'visible' }"
+        :style = "{ visibility: isLoading? 'hidden' : 'visible' }"
         ref = "toggle"
       )
 
