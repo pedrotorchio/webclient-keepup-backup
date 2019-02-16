@@ -17,6 +17,7 @@
     "d3-scale": "^2.1.2",
     "debounce": "^1.2.0",
     "gsap": "^2.0.2",
+    "media-query-mixins": "^3.0.4",
     "moment": "^2.22.2",
     "reset-css": "^4.0.1",
     "url-join": "^4.0.0",
