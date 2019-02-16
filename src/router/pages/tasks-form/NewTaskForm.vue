@@ -195,12 +195,6 @@ export default {
         )
         spinner(
           label = "Duração em Minutos"
-
-          :min="5"
-          :max="999"
-          :step="5"
-          :integerOnly="true"
-
           v-model = "task.duration"
           @change = "fieldChanged('duration', $event)"
         )

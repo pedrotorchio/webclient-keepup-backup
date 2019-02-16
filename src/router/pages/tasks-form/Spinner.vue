@@ -5,12 +5,23 @@ export default {
   inheritAttrs: false,
   props: [ 'value', 'label' ],
   computed: {
+    step() {
+      let step = 5
+
+      if (this.value >= 120)
+        step = 30
+      if (this.value >= 60)
+        step = 20
+      if (this.value >= 30)
+        step = 15
+      return step
+    },
     attrs() {
-      const { label, ...attrs } = this.$attrs;
+      const {value, label, ...attrs} = this.$attrs;
       return attrs;
     },
     listeners() {
-      const { input, ...listeners } = this.$listeners;
+      const { input, change, ...listeners } = this.$listeners;
       return listeners;
     }
   },
@@ -18,35 +29,28 @@ export default {
     input(value) {
       this.$emit('input', value);
       this.$emit('change', value);
-    }
-  },
-  components: {
-    NumberInputSpinner
-  },
-  watch: {
-    value(val) {
-      this.$refs.spinner.numericValue = val;
+    },
+    add() {
+      this.input(this.value += this.step)
+    },
+    subtract() {
+      this.input(this.value -= this.step)
     }
   }
 }
 </script>
 <template lang="pug">
-  div.spinner-input
+  .spinner-input
     h4( v-if = "label" ) {{ label }}
-    number-input-spinner.spinner-input( ref = 'spinner'
-      v-bind = "attrs"
-      v-on = "listeners"
-
-      :value = 'value'
-      @input = 'input'
-
-      inputClass="spinner-value"
-      buttonClass="spinner-btn"
-    )
+    .spinner-input-block
+      button( @click = "subtract" ) -
+      input( type = "number" :value = "value" @input = "input" v-bind = "attrs" v-on = "listeners" )
+      button( @click = "add" ) +
 </template>
 
 <style lang="stylus" scoped>
 color = white
+
 .spinner-input
   display flex
   align-items center
@@ -65,15 +69,16 @@ color = white
     position: absolute;
     color rgba(255,255,255,0.7)
   /deep/
-    .spinner-value, .spinner-btn
+    input, button
       color color;
       text-align center
       outline none
+      width: 5em
     
-    .spinner-btn
-      width: 40px;
-      height: 40px;
-      flex: 1 1 40px;
+    button
+      width: 64px;
+      height: 64px;
+      flex: 1 1 64px;
 
 </style>
 
