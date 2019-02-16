@@ -193,7 +193,7 @@ export default {
           color = "primary"
           @change = "fieldChanged('startMin', $event)"
         )
-        spinner(
+        spinner.duration(
           label = "Duração em Minutos"
           v-model = "task.duration"
           @change = "fieldChanged('duration', $event)"
@@ -329,9 +329,12 @@ button
 .hours, .minutes
   width 5em
   flex 0 0 auto
+.duration
+  width: 100%
+  max-width: 400px;
+  margin: 0 auto;
 
 main
-
   
   position: fixed;
   top hiddenTop

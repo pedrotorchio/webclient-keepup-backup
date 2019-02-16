@@ -31,10 +31,10 @@ export default {
       this.$emit('change', value);
     },
     add() {
-      this.input(this.value += this.step)
+      this.input(this.value + this.step)
     },
     subtract() {
-      this.input(this.value -= this.step)
+      this.input(this.value - this.step)
     }
   }
 }
@@ -52,33 +52,47 @@ export default {
 color = white
 
 .spinner-input
-  display flex
-  align-items center
-  justify-content space-around
-  flex 1 1 100%
-  font-size 30px
-  position relative
+  position: relative
 
-  h4
-    height: 20px;
-    line-height: 20px;
-    font-size 12px
-    top 0
-    left: 0px;
-    right: auto;
-    position: absolute;
-    color rgba(255,255,255,0.7)
-  /deep/
-    input, button
-      color color;
-      text-align center
-      outline none
-      width: 5em
-    
-    button
-      width: 64px;
-      height: 64px;
-      flex: 1 1 64px;
+.spinner-input-block
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content center
+  font-size: 24px
+
+  input, button
+    color color;
+    text-align center
+    outline none
+    width: 5em
+    flex: 1 1 64px
+  
+  button
+    width: 64px;
+    height: 64px;
+    min-width: 64px
+    max-width: 80px
+h4
+  height: 20px;
+  line-height: 20px;
+  font-size 12px
+  top 0
+  left: 0px;
+  right: auto;
+  position: absolute;
+  color rgba(255,255,255,0.7)
+
+// .spinner-input
+//   display flex
+//   align-items center
+//   justify-content space-around
+//   flex 1 1 100%
+//   font-size 30px
+//   position relative
+
+//   /deep/
+
 
 </style>
 
