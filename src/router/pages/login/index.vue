@@ -11,14 +11,15 @@ export default {
   },
   data: () => ({
     isLogin: true,
-    loading: false
+    
   }),
   methods: {
     async submitProcedure(data) {
-      this.loading = true;
+      this.isLoading = true;
       
       let shouldLogin = true;
       let login = null;
+
 
       if (!this.isLogin) {
         shouldLogin = await signupProcedure.bind(this)(data)
@@ -30,24 +31,19 @@ export default {
           .catch(failedLogin.bind(this));
       }
 
-      login = Boolean(login);
-      
-      if (!login) 
-        throw false;
-
       return login;
     },
     submit(data) {
       this.submitProcedure(data)
           .then(login => this.$router.push({ name: 'PatientsList' }))
-          .catch(login => this.loading = false);
+          .catch(login => this.isLoading = false);
     },
   },
   watch: {
-    loading(value) {
+    isLoading(value) {
       new TimelineMax()
         .to('.link', .5, {
-          autoAlpha: this.loading ? 0 : 1
+          autoAlpha: this.isLoading ? 0 : 1
         })
     }
   }
