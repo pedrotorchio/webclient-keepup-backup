@@ -1,9 +1,9 @@
 import { timeExtent, round, format } from '@/visualization/utils/time';
 import { scaleTime, scaleLinear, scaleSequential, scaleBand } from 'd3-scale';
-import { interpolateRgb } from 'd3-interpolate';
+import { interpolateRgb, interpolateHcl } from 'd3-interpolate';
 
 const independencyExtent = [1, 7];
-const independencyRange  = ['#f44336', '#4caf50'];
+const independencyRange  = ['#f44336', '#081f9e'];
 const minHeight = 32;
 
 export function taskExtent([fst, ...rst]) {
@@ -133,7 +133,12 @@ export class Scales {
     return this.makeScaleBand(this.categories, heightScale(), this.padding);
   }
   getColorScale([ start, end ]) {
-    return scaleSequential( interpolateRgb( start, end ) );
+    // return scaleSequential( interpolateRgb( start, end ) );
+
+    return scaleLinear()
+                .domain([0, 7])
+                .range([start, end])
+                .interpolate(interpolateHcl);
   }
   getIndependencyScale() {
     
