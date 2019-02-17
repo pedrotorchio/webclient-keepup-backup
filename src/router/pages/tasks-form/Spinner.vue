@@ -3,7 +3,7 @@ import NumberInputSpinner from 'vue-number-input-spinner'
 
 export default {
   inheritAttrs: false,
-  props: [ 'value', 'label' ],
+  props: [ 'value', 'label', 'max' ],
   computed: {
     step() {
       let step = 5
@@ -26,15 +26,23 @@ export default {
     }
   },
   methods: {
-    input(value) {
-      this.$emit('input', value);
+    change(value) {
+      value = Math.min(value, this.max)
+
       this.$emit('change', value);
+      this.$emit('update:value', value);
+    },
+    input(value) {
+      value = Math.min(value, this.max)
+      
+      this.$emit('input', value);
+      this.$emit('update:value', value);
     },
     add() {
-      this.input(this.value + this.step)
+      this.change(this.value + this.step)
     },
     subtract() {
-      this.input(this.value - this.step)
+      this.change(this.value - this.step)
     }
   }
 }
@@ -44,7 +52,7 @@ export default {
     h4( v-if = "label" ) {{ label }}
     .spinner-input-block
       button( @click = "subtract" ) -
-      input( type = "number" :value = "value" @input = "input" v-bind = "attrs" v-on = "listeners" readonly )
+      input( type = "number" :value = "value" :max = "max" @input = "input" v-bind = "attrs" v-on = "listeners" readonly )
       button( @click = "add" ) +
 </template>
 

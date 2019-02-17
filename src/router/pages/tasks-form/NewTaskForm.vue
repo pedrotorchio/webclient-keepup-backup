@@ -87,6 +87,10 @@ export default {
         return this.task.title;
       }
     },
+    maxDuration() {
+      const [ hourStr, minStr ] = this.getSplitTime();
+      return (24 - parseInt(hourStr)) * 60 - parseInt(minStr)
+    },
     categoryId() {
       if (!this.task.title)
         return "";
@@ -195,8 +199,10 @@ export default {
         )
         spinner.duration(
           label = "Duração em Minutos"
-          v-model = "task.duration"
+          :value.sync = "task.duration"
           @change = "fieldChanged('duration', $event)"
+          min = "5"
+          :max = "maxDuration"
         )
       div.row
         v-slider.independency(
