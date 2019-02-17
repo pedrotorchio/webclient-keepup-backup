@@ -42,8 +42,6 @@ export default {
     ...mapActions({
       fetchForm: 'fetchTasksFormPublicData',
       fetchTaskOptions: 'fetchTaskOptions',
-      createTask: 'formCreateTask',
-      updateTask: 'formUpdateTask',
       deleteTask: 'formDeleteTask'
     }),
     show() {
@@ -86,25 +84,6 @@ export default {
         formUid: this.formUid
       })
     },
-    async submit(data) {
-      
-      const taskUid = data.uid;
-      const formUid = this.formUid;
-
-      data = {
-        data,
-        formUid,
-      }
-
-      if (!taskUid) {
-        this.form.tasks = await this.createTask(data);
-      } else {
-        data.taskUid = taskUid;
-        this.form.tasks = await this.updateTask(data);
-      }
-
-      this.hide();
-    }
   },
   computed: {
     sortedTasks() {

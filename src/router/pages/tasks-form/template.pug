@@ -37,8 +37,11 @@ main#tasks-form
 
     tasks-form(
       ref = 'form'
+      :formUid = "formUid"
       :task = 'currentTask'
       :taskOptions = "taskOptions"
-      @submit = 'submit'
+      @created = 'hide'
+      @updated = 'hide'
+      @updateList = "form.tasks = $event"
       @close = 'hide'
     )

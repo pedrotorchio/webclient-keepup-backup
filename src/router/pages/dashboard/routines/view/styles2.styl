@@ -1,3 +1,5 @@
+@import '~media-query-mixins/_mixins.styl'
+
 #visualization-route
     text-align center
     #form-toggles
@@ -14,12 +16,18 @@
         grid-template-areas: "intersection xAxis" "yAxis gantt";
         grid-template-columns min-content auto
 
+        #intersection, #yAxis
+            display: none
+            +md()
+                display: block
+
         #intersection
             grid-area intersection
             align-self center
             justify-self left
             text-transform uppercase
             visibility hidden
+                
         #yAxis
             grid-area yAxis
         #xAxis

@@ -1,13 +1,16 @@
 @import './colors';
+@import '~media-query-mixins/_mixins.styl'
 
 .floating
   box-shadow: 0 0 30px lightGrey;
 
 base-size = 16px;
 .padded
-  padding: base-size;
+  +sm()  
+    padding: base-size;
 .padded-large
-  padding: base-size*2;
+  +sm()
+    padding: base-size*2;
 
 .link
   transition: color 500ms ease-in-out;

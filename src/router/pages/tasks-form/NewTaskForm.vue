@@ -1,4 +1,5 @@
 <script>
+import { mapActions } from 'vuex';
 import Spinner from './Spinner';
 import { getIndependencyLabel } from '@/visualization/tasks/independency';
 import { Scales } from '@/visualization/tasks/scales';
@@ -15,6 +16,10 @@ export default {
     task: {
       type: Object,
       required: false
+    },
+    formUid: {
+      type: String,
+      required: true
     }
   },
   mixins: [ FormProgressView ],
@@ -23,6 +28,10 @@ export default {
     shown: false,
   }),
   methods: {
+    ...mapActions({
+      createTask: 'formCreateTask',
+      updateTask: 'formUpdateTask',
+    }),
     fieldChanged(fieldName, value){
       if (fieldName == 'startHour' || fieldName == 'startMin') {
         fieldName = 'time';
@@ -36,13 +45,32 @@ export default {
 
       this.$emit('close');
     },
-    submit() {
+    async submit() {
       // submit here
-      if (!(this.task.title && this.task.time && this.task.duration))
+      if (!this.isEnoughFilled)
         return;
+
+            
+      const taskUid = this.task.uid;
+      const formUid = this.formUid;
+
+      let data = {
+        data: this.task,
+        formUid,
+      }
+
+      let tasks = null
       
-      this.$emit('update:task', this.task);
-      this.$emit('submit', this.task);
+      if (!taskUid) {
+        tasks = await this.createTask(data);
+        this.$emit('created');
+      } else {
+        data.taskUid = taskUid;
+        tasks = await this.updateTask(data);
+        this.$emit('updated');
+      }
+      
+      this.$emit('updateList', tasks);      
     },
     show() {
       this.shown = true
@@ -58,6 +86,9 @@ export default {
     }
   },
   computed: {
+    isEnoughFilled() {
+      return Boolean(this.task.title && this.task.time && this.task.duration)
+    },
     startMin: {
       set(min) {
         const [hour, m] = this.getSplitTime();
@@ -164,8 +195,9 @@ export default {
         :style = "{ opacity: (progress > 80) ? 0 : 1 }"
       ) {{ maxPoints }}
     v-progress-linear.progress-bar(
-      :value = 'progress'
-      color = 'error'
+      :value='progress'
+      :color="isLoading? 'info' : 'error'"
+      :indeterminate = "isLoading"
     )
     div.form.secondary
       div.row
@@ -252,8 +284,9 @@ export default {
     div.actions
       button.finished-btn.accept(
         @click = 'submit'
+        :disabled = "!isEnoughFilled"
         :style = "{backgroundColor: independencyColorScale(7)}"
-      ) Salvar
+      ) {{ isEnoughFilled ? 'Salvar' : 'Preencha o Formulário' }}
       button.error.finished-btn.decline(
         @click = 'cancel'
       ) Cancelar
@@ -306,6 +339,14 @@ hiddenTop = 100%
 
 button
   outline none
+  transition-property: background-color, color
+  transition-duration: .5s
+  transition-timing-function: ease-out
+
+button[disabled = "disabled"]
+  background-color: #8c8c8c !important
+  color: rgba(white, .2) !important
+
 .actions
   height rowHeight
   display flex
@@ -313,16 +354,11 @@ button
   
   button
     flex 1 1 100%
-    color white
+    color rgba(white, .8)
     font-weight bold
     letter-spacing 2px
     text-transform uppercase
-    &.accept
-      
-      color #9ad2ff
-    &.decline
-      
-      color #FFBABA
+    
 .row
   display flex
   flex-direction row
