@@ -44,7 +44,7 @@ export default {
     h4( v-if = "label" ) {{ label }}
     .spinner-input-block
       button( @click = "subtract" ) -
-      input( type = "number" :value = "value" @input = "input" v-bind = "attrs" v-on = "listeners" )
+      input( type = "number" :value = "value" @input = "input" v-bind = "attrs" v-on = "listeners" readonly )
       button( @click = "add" ) +
 </template>
 
@@ -59,20 +59,26 @@ color = white
   flex-direction: row
   flex-wrap: nowrap
   justify-content center
+  align-items: stretch
   font-size: 24px
-
+  
+  size = 64px
   input, button
     color color;
     text-align center
     outline none
-    width: 5em
-    flex: 1 1 64px
+    flex: 1 1 size
+    width: size;
+    height: size;
   
+    
   button
-    width: 64px;
-    height: 64px;
-    min-width: 64px
     max-width: 80px
+    min-width: size
+  input
+    min-width: 50px
+  
+    
 h4
   height: 20px;
   line-height: 20px;
