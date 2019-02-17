@@ -1,18 +1,22 @@
+import Vue from 'vue'
+
 export default {
     install (Vue, options) {
         Vue.directive('loading', {
             bind(el) {        
-                const div = makeProgress();
+                Vue.nextTick(()=>{
+                    const div = makeProgress();
                 
-                const currPadding = parseInt(
-                    window.getComputedStyle(el).paddingBottom
-                        .replace('px', '') || 0);
-                
-                el.style.position = "relative"
-                el.style.paddingBottom = `${Math.max(currPadding, 10)}px`
-                el.classList.add('loading-container');
+                    const currPadding = parseInt(
+                        window.getComputedStyle(el).paddingBottom
+                            .replace('px', '') || 0);
 
-                el.appendChild(div)
+                    el.style.position = "relative"
+                    el.style.paddingBottom = `${Math.max(currPadding, 10)}px`
+                    el.classList.add('loading-container');
+
+                    el.appendChild(div)
+                })
             },
             update: function (el, binding) {
                 
