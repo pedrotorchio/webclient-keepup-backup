@@ -2,9 +2,15 @@
 
 #visualization-route
     text-align center
+
     #form-toggles
         margin 0 auto;
         display inline-block
+
+    #form-toggles-title
+        font-size: 14px
+        +md()
+            font-size: 16px
 
     #toggles
         display flex
@@ -18,7 +24,7 @@
 
         #intersection, #yAxis
             display: none
-            +md()
+            +sm()
                 display: block
 
         #intersection
