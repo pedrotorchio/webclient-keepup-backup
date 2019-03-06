@@ -4,3 +4,9 @@ export function error500() {
         type: 'error'
     })
 }
+export function error400() {
+    this.setGlobalMessage({
+        message: "Erro em um dos campos",
+        type: 'error'
+    })
+}
