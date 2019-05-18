@@ -296,10 +296,10 @@ export default {
 
 distance = 5px
 rowCount = 7
-height = 480px //"calc(100% - %s)" % (shownTop) 
-rowHeight = (height / rowCount)
-shownTop = "calc(100% - %s)" % height //80 + 2*distance
+rowHeight = 64px
+shownTop = 100px
 hiddenTop = 100%
+height = "calc(100% - %s)" % (shownTop) 
 
 .scoreAnimation
   bottom 40px !important
@@ -349,10 +349,12 @@ button[disabled = "disabled"]
 
 .actions
   height rowHeight
+  flex 0 0 auto
   display flex
   align-items stretch
   
   button
+    height: 100%
     flex 1 1 100%
     color rgba(white, .8)
     font-weight bold
