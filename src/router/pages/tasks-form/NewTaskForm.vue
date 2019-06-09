@@ -8,6 +8,9 @@ import FormProgressView from '@/components/tasks-form/FormProgressView';
 
 const independencyColor = new Scales().getIndependencyScale();
 export default {
+  constants: {
+    DURATION_MIN_VALUE: 5
+  },
   props: {
     taskOptions: {
       type: Array,
@@ -26,6 +29,7 @@ export default {
   components: { Spinner },
   data: () => ({
     shown: false,
+
   }),
   methods: {
     ...mapActions({
@@ -230,10 +234,10 @@ export default {
           @change = "fieldChanged('startMin', $event)"
         )
         spinner.duration(
-          label = "Duração em Minutos"
+          :label = "`Duração em Minutos (${DURATION_MIN_VALUE} - ${maxDuration})`"
           :value.sync = "task.duration"
           @change = "fieldChanged('duration', $event)"
-          min = "5"
+          :min = "DURATION_MIN_VALUE"
           :max = "maxDuration"
         )
       div.row
