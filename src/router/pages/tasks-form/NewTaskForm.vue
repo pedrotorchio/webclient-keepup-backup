@@ -90,6 +90,16 @@ export default {
     }
   },
   computed: {
+    durationSpinnerLabel() {
+      let label = `Duração em Minutos (${this.DURATION_MIN_VALUE}`;
+
+      if (this.DURATION_MIN_VALUE !== this.maxDuration)
+        label += ` - ${this.maxDuration}`;
+
+      label += ")"
+
+      return label;
+    },
     isEnoughFilled() {
       return Boolean(this.task.title && this.task.time && this.task.duration)
     },
@@ -234,7 +244,7 @@ export default {
           @change = "fieldChanged('startMin', $event)"
         )
         spinner.duration(
-          :label = "`Duração em Minutos (${DURATION_MIN_VALUE} - ${maxDuration})`"
+          :label = "durationSpinnerLabel"
           :value.sync = "task.duration"
           @change = "fieldChanged('duration', $event)"
           :min = "DURATION_MIN_VALUE"
