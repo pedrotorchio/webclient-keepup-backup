@@ -23,6 +23,7 @@
     "url-join": "^4.0.0",
     "vue": "^2.5.2",
     "vue-click-outside": "^1.0.7",
+    "vue-constants": "^1.0.3",
     "vue-number-input-spinner": "^2.1.0",
     "vue-recaptcha": "^1.1.1",
     "vue-router": "^3.0.1",
