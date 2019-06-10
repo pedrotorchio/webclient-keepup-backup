@@ -9,6 +9,14 @@ export default {
   name: 'New-Form',
   extends: Form,  
   mixins: [ Share ],
+  constants: {
+    REQUIRED_FIELDS: [
+      'filler_name'
+    ],
+    TEXT_FIELDS: [
+      [ 'comment' , 'Comentário']      
+    ]
+  },
   props: {
     items: {
       type: Array,
@@ -36,14 +44,6 @@ export default {
       }
     },
   },
-  computed: {
-    textFields() {
-      return [
-        // [ 'filler_name' , 'Preenchedor*', true],
-        [ 'comment' , 'Comentário'],
-      ]
-    },
-  },
 
 }
 </script>
@@ -57,7 +57,8 @@ v-form.ku-form(
     flat
     :item-value = "caregiverText"
     :item-text = "caregiverText"
-    required
+    :required="isRequiredField('filler_name')"
+    :disabled="isCreation() && !isRequiredField('filler_name')"
     label="Cuidador"
     @change="changed('filler_name')"
     no-data-text = "Nenhum cuidador cadastrado. Cadastre algum."
@@ -67,13 +68,14 @@ v-form.ku-form(
     //-     slot-scope="{ item }" ) {{ item.first_name }} {{ item.last_name }}
     
   v-text-field( 
-    v-for="([key, label, isRequired], i) in textFields"
+    v-for="([key, label, isRequired], i) in TEXT_FIELDS"
     v-model='form[key]'
     :class="`input-${key}`"
     class="input"
     :label='label'
     @input="changed(key)"
-    :required = 'isRequired'
+    :required="isRequiredField(key)"
+    :disabled="isCreation() && !isRequiredField(key)"
   )
   div#sharing-section( v-if = "url" )
     router-link(
