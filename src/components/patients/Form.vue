@@ -8,6 +8,12 @@ export default {
   extends: Form,
   mixins: [ CaregiverView ],
   components: { NewCaregiverForm },
+  constants: {
+    REQUIRED_FIELDS: [
+      'first_name',
+      'last_name'
+    ]
+  },
   data: () => ({
     isValid: false,
     form: {
@@ -25,10 +31,7 @@ export default {
   }),
   methods: {
     changed(key) {
-      
-      const { first_name, last_name } = this.form;
-
-      if (first_name && last_name) {
+      if (this.areRequiredFieldsFilled()) {
         
         const data = { ...this.form };
         this.$emit('change', data);
@@ -63,7 +66,8 @@ v-form.ku-form(
       :class="`input-${key}`"
       :label='label'
       @input="changed(key)"
-      required
+      :required="isRequiredField(key)"
+      :disabled="isCreation() && !isRequiredField(key)"
     )
     v-slider(
       class='slider input-schooling'
@@ -75,6 +79,9 @@ v-form.ku-form(
       max="30"
       @input="changed('schooling')"
       thumb-label="always"
+      :required="isRequiredField('schooling')"
+      :disabled="isCreation() && !isRequiredField('schooling')"
+      :readonly="false"
     ) 
     div#professionals( v-if = 'model' )
       
