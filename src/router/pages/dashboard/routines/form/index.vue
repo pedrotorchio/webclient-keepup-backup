@@ -20,7 +20,6 @@ export default {
     },
     async submitProcedure(data) {
       
-      this.setGlobalLoading(true);
       
       let routine;
 
@@ -40,8 +39,6 @@ export default {
         routine = await updateRoutine.bind(this)(data);
 
       }
-
-      this.setGlobalLoading(false);
 
       return routine;
     },
