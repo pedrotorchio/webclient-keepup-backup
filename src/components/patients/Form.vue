@@ -12,6 +12,13 @@ export default {
     REQUIRED_FIELDS: [
       'first_name',
       'last_name'
+    ],
+    TEXT_FIELDS: [
+      [ 'first_name', 'Nome'],
+      [ 'last_name' , 'Sobrenome'],
+      [ 'home_companionship' , 'Companhia em casa'],
+      [ 'occupational_field' , 'Ramo de ocupação'],
+      [ 'email' , 'Email'],
     ]
   },
   data: () => ({
@@ -37,22 +44,6 @@ export default {
         this.$emit('change', data);
       }
     },
-  },
-  computed: { 
-    textFields() {
-      return [
-        [ 'first_name', 'Nome'],
-        [ 'last_name' , 'Sobrenome'],
-        [ 'home_companionship' , 'Companhia em casa'],
-        [ 'occupational_field' , 'Ramo de ocupação'],
-        [ 'email' , 'Email'],
-      ]
-    },
-    sliderFields() {
-      return [
-        [ 'schooling' , 'Anos de escolaridade']
-      ]
-    }
   }
 }
 </script>
@@ -61,7 +52,7 @@ v-form.ku-form(
     v-model='isValid'
   )
     v-text-field( 
-      v-for="([key, label], i) in textFields"
+      v-for="([key, label], i) in TEXT_FIELDS"
       v-model='form[key]'
       :class="`input-${key}`"
       :label='label'
