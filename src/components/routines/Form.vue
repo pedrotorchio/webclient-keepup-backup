@@ -6,6 +6,12 @@ import { dateFormats, now, fromTimestamp, toTimestamp } from '@/visualization/ut
 export default {
   name: 'Routine-Form',
   extends: Form,
+  constants: {
+    TEXT_FIELDS: [
+      [ 'title', 'Título*'],
+      [ 'comment' , 'Comentário'],
+    ]
+  },
   data: () => ({
     isValid: false,
     form: {
@@ -40,12 +46,6 @@ export default {
         this.form.date = fromTimestamp(value);
       }
     },
-    textFields() {
-      return [
-        [ 'title', 'Título*'],
-        [ 'comment' , 'Comentário'],
-      ]
-    },
     now
   }
 }
@@ -76,7 +76,7 @@ v-form.ku-form(
       scrollable )
         
   v-text-field( 
-    v-for="([key, label], i) in textFields"
+    v-for="([key, label], i) in TEXT_FIELDS"
     v-model='form[key]'
     :class="`input-${key}`"
     class="input"
