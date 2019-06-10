@@ -46,11 +46,6 @@ export default {
         [ 'comment' , 'Comentário'],
       ]
     },
-    dateFields() {
-      return [
-        [ 'date' , 'Data'],
-      ]
-    },
     now
   }
 }
