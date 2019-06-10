@@ -19,9 +19,11 @@ export default {
       return this.$route.name === 'RoutineNew'
     },
     async submitProcedure(data) {
-
-      let routine;
       
+      this.setGlobalLoading(true);
+      
+      let routine;
+
       if (this.isNewForm()) {
         
         routine = await createRoutine.bind(this)({ patientId: this.patientId, data});
@@ -38,6 +40,8 @@ export default {
         routine = await updateRoutine.bind(this)(data);
 
       }
+
+      this.setGlobalLoading(false);
 
       return routine;
     },
