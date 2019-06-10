@@ -7,6 +7,9 @@ export default {
   name: 'Routine-Form',
   extends: Form,
   constants: {
+    REQUIRED_FIELDS: [
+      'title'
+    ],
     TEXT_FIELDS: [
       [ 'title', 'Título*'],
       [ 'comment' , 'Comentário'],
@@ -82,7 +85,8 @@ v-form.ku-form(
     class="input"
     :label='label'
     @input="changed(key)"
-    required
+    :required="isRequiredField(key)"
+    :disabled="isCreation() && !isRequiredField(key)"
   )
 </template>
 <style lang="stylus" src='@/components/generic/form/styles.styl'></style>
