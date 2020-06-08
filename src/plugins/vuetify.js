@@ -1,6 +1,4 @@
-import Vue from 'vue'
-import 'vuetify/dist/vuetify.min.css';
-
+import Vue from 'vue';
 import Vuetify, {
   VApp,
   VForm,
@@ -18,7 +16,9 @@ import Vuetify, {
   VSelect
 } from "vuetify/lib";
 
-Vue.use(Vuetify, {
+Vue.use(Vuetify);
+
+export default new Vuetify({
   components: {
     VApp,
     VSlider,
@@ -36,16 +36,21 @@ Vue.use(Vuetify, {
     VSelect
   },
   theme: {
-    // Tangerine
-    primary: "#f19f4d",
-    secondary: "#4484ce",
-    grey: '#d9d9d9',
-    warning: "#F19F4D",
+      options: {
+        customProperties: true,
+      },
+    themes: {
+      light: {
+        primary: "#f19f4d",
+        secondary: "#4484ce",
+        grey: '#d9d9d9',
+        warning: "#F19F4D",
 
-    accent: "#82B1FF",
-    error: "#FF5252",
-    info: "#2196F3",
-    success: "#4CAF50",
-
-  }
+        accent: "#82B1FF",
+        error: "#FF5252",
+        info: "#2196F3",
+        success: "#4CAF50",
+      },
+    },
+  },
 });
