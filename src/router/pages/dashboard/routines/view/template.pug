@@ -1,0 +1,87 @@
+section#visualization-route
+
+  h2.no-tasks-message( v-if = "!hasTasks") 
+    router-link(
+      :to = "{ name: 'FormNew', params: { routineId } }"    
+    ) Crie 
+    | ou utilize formulários para preencher rotina 
+  nav#form-toggles( v-if = "hasForms" )
+    span.form-toggles-title Formulários
+    ul#toggles
+      li.toggle(
+        v-for = "( form, i ) in forms"
+        :key = "form.id"
+        :class = "{ on: form.visibility }"
+        :style = "{ borderColor: formsColorScale(i), backgroundColor: form.visibility ? formsColorScale(i) : 'transparent' }"
+        @click = "toggleForm(form.id)"
+      )
+        span(
+          :style = "{ color: form.visibility ? 'white' : formsColorScale(i) }"
+        ) {{ form.filler_name }}
+        ul.tooltip
+          li.edit-btn 
+            router-link(
+              @click.native.stop = "(() => ({}))"
+              :to = "{ name: 'FormEdit', params: { formId: form.id } }"
+            ) Editar/Compartilhar
+          li.filler_name {{ form.filler_name }}
+          li.pts(
+            v-if = "form.punctuation"
+          ) {{ form.punctuation }}
+          li.quote(
+            v-if = "form.comment"
+          ) {{ form.comment }}
+          li.tip Clique para {{ form.visibility ? 'esconder' : 'mostrar' }} atividades
+
+  
+  div#gantt-container.stylish-scrollbar(
+    :style = "{ paddingTop: `${rowHeight}px` }"
+  )
+    div#yAxis( v-if = "hasTasks")
+      h2.task-title(
+        v-for = "(title, i) in scales.titles"
+        :style = "rowStyle()"
+      ) {{ title }}
+
+    div#xAxis(
+        :style = "{ height: `${canvasHeight}px`, width: `${getCanvasWidth()}px` }"
+      )
+        div.hour-tick(
+          v-if = "doneScaling"
+          v-for = "hour in (hours)"
+          :style = "{ width: getHourTickWidth(hour) }"
+
+        ) {{ format(getNextHourTick(hour - 1)) }}
+
+
+    div#gantt( 
+      ref = "gantt"
+      v-if = 'hasTasks' )
+
+      div#rows
+        div.row(
+          v-for = "(title, i) in scales.titles"
+          :style = "rowStyle()"
+        )
+      div#columns
+        div.row(
+          v-for = "(title, i) in scales.titles"
+          :style = "rowStyle()"
+        )
+      
+      div#canvas( ref = "canvas" )
+        task(
+          v-for = '(task, i) in tasks'
+          ref = "tasks"
+          :key = 'task.id'
+          @click = "selected"
+          @change = 'onTaskChange'
+          :model = 'task'
+          :durationScale = 'scales.getDurationScale()'
+          :independencyScale = 'scales.getIndependencyScale()'
+          :momentScale = 'scales.getMomentScale()'
+          :heightScale = 'scales.getHeightScale()'
+          :categoryScale = 'scales.getCategoryScale()'
+          :typeScale = 'scales.getTypeScale()'
+        ) {{ scales.getDurationScale(task.duration) }}
+  

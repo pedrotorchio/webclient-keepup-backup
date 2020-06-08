@@ -1,0 +1,55 @@
+main#dashboard
+  header#dashboard-header.padded
+    nav
+      router-link(
+        :to="{ path: '/pacientes' }"
+      ) Pacientes
+    ul
+      li
+        a(@click.prevent='logout') Sair
+    h1(
+      v-text='userData.name'
+    )
+
+  div#panel( v-loading = "isLoading" )
+    
+    h2#message-warning(
+      class='error'
+    ) Você tem 9 novos avisos
+
+    div#workarea
+      //- aside#side-tabs
+      //-   ul
+      //-     router-link(
+      //-       :to="{ path: '/pacientes' }"
+      //-     ) 
+      //-       li.secondary.font-weight-bold Pacientes
+
+      section#workspace.padded
+
+        h2.ku-title( v-if = "pageTitle" v-text="pageTitle")
+        router-view.inner-route.dashboard-view.stylish-scrollbar
+
+      //- section#warning-cards.padded
+    
+    div.actions
+      
+      v-tooltip.floating-btn( 
+        v-for="(action, i) in allActions"
+        top
+      )
+        span(v-text='action.tip')
+        
+        v-btn(
+          fab dark large 
+          :disabled = "isLoading"
+          slot="activator"
+          
+          v-bind = "action.attrs"
+          v-on = "action.events"
+          
+        )
+          v-icon( 
+            dark
+              v-text='action.icon'
+            )

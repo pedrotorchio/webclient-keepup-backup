@@ -1,0 +1,47 @@
+main#tasks-form
+  v-progress-linear( v-if = "!form" )
+  div#main-container( v-else )
+    header#tasks-header.primary( )
+      h1
+        v-icon.routine-link( 
+          v-if = 'userData'
+          @click = "$router.push({ name: 'TasksView', params: { routineId: form.routine_id } })" ) event
+        span {{ patient.first_name }} {{ patient.last_name }}
+      div.filler
+        h2.name {{ fillerName }}
+        div.punctuation 
+          span.pts {{ points }}
+
+    p.comment( v-if = "form.comment" :key = "form.id" ) {{ form.comment }}
+    
+    div.list( v-if = "!hasTasks" )
+      p.tip Clique em ADICIONAR ATIVIDADE
+    transition-group.list( v-else
+      tag = "div"
+      @enter = "listEnter"
+    )
+
+      task(
+        v-for = "(task, i) in sortedTasks" 
+        :key = 'task.id'
+        :data-index = "i"
+        :task = "task"
+        @click = 'open(task)'
+        @remove = 'remove(task.uid)'
+      )
+      
+
+    button.new-task-btn.secondary(
+      @click = "show"
+    ) ADICIONAR ATIVIDADE
+
+    tasks-form(
+      ref = 'form'
+      :formUid = "formUid"
+      :task = 'currentTask'
+      :taskOptions = "taskOptions"
+      @created = 'hide'
+      @updated = 'hide'
+      @updateList = "form.tasks = $event"
+      @close = 'hide'
+    )

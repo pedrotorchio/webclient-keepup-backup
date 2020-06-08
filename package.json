@@ -1,0 +1,51 @@
+{
+  "name": "webclient_2",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "core-js": "^3.6.5",
+    "d3-array": "^2.4.0",
+    "d3-interpolate": "^1.4.0",
+    "d3-scale": "^3.2.1",
+    "debounce": "^1.2.0",
+    "gsap": "^3.3.1",
+    "media-query-mixins": "^3.1.0",
+    "moment": "^2.26.0",
+    "raw-loader": "^4.0.1",
+    "reset-css": "^5.0.1",
+    "vue": "^2.6.11",
+    "vue-constants": "^1.0.3",
+    "vue-number-input-spinner": "^2.2.0",
+    "vue-recaptcha": "^1.3.0",
+    "vue-router": "^3.2.0",
+    "vue-svgicon": "^3.2.6",
+    "vuetify": "^2.2.32",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.4.0",
+    "@vue/cli-plugin-router": "^4.4.0",
+    "@vue/cli-plugin-unit-jest": "^4.4.0",
+    "@vue/cli-plugin-vuex": "^4.4.0",
+    "@vue/cli-service": "^4.4.0",
+    "@vue/test-utils": "^1.0.3",
+    "deepmerge": "^4.2.2",
+    "fibers": "^5.0.0",
+    "less": "^3.0.4",
+    "less-loader": "^5.0.0",
+    "node-sass": "^4.14.1",
+    "pug": "^3.0.0",
+    "pug-plain-loader": "^1.0.0",
+    "sass": "^1.26.8",
+    "sass-loader": "^8.0.2",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue-template-compiler": "^2.6.11"
+  }
+}

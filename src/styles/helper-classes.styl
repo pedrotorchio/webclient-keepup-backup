@@ -1,0 +1,42 @@
+@import './colors';
+@import '~media-query-mixins/_mixins.styl'
+
+.floating
+  box-shadow: 0 0 30px lightGrey;
+
+base-size = 16px;
+.padded
+  +sm()  
+    padding: base-size !important;
+.padded-large
+  +sm()
+    padding: base-size*2 !important;
+
+.link
+  transition: color 500ms ease-in-out;
+  cursor: pointer;
+  &:hover
+    transition: color 100ms ease-in-out;
+    color:  orange;
+
+
+.quote
+  font-style italic
+  font-size .9em
+
+  &:before
+    content: '"'
+  &:after
+    content: '"'
+
+.pts
+  font-style italic
+
+  &:after
+    content: 'pts'
+    font-style italic
+    font-size .8em
+    margin-left 2px
+
+.text-center
+  text-align center
