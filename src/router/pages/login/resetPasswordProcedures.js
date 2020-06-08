@@ -6,6 +6,7 @@ export async function resetProcedure(data) {
     name: "UpdatePassword"
   });
   const passwordChangePageUrl = new URL(route.href, window.location.origin).href;
+
   return this.$store.dispatch('trigger-password-reset', {
     email: data.email,
     captcha: data.captcha,

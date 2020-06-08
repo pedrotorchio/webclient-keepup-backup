@@ -185,7 +185,7 @@ const passwordReset = {
 
 export default new Router({
   mode: "history",
-  base: process.env.BASE_FOLDER,
+  base: process.env.VUE_APP_BASE_FOLDER,
   routes: [
     {
       path: "/",

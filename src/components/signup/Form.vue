@@ -27,16 +27,16 @@ export default {
       this.$emit('submit', { ...this.formData, captcha });
     },
     lazyValidation() {
-      this.$refs.recaptcha.execute();
+      // this.$refs.recaptcha.execute();
     },
     resetCaptcha() {
-      this.$refs.recaptcha.reset();
+      // this.$refs.recaptcha.reset();
     }
   }
 }
 </script>
 <template lang="pug">
-  form#signup-form
+  form#signup-form( @submit.prevent="submit" )
     p( v-if="isType('reset')" ) Preencha com o email que você usa para acessar o KeepUp. Se a conta realmente existir, você receberá um link para alterar a senha.
     input(
       v-model='formData.name',
@@ -53,11 +53,7 @@ export default {
       type = "password"
       placeholder='Senha'
     )
-    recaptcha( ref = "recaptcha" sitekey = "6LdXPYQUAAAAANQOh_W1tC-D9Qei1dJy8T1aMyQ4"
-      @verify = "submit"
-      @expired = "resetCaptcha"
-    )
-      button#call.link {{ isType('reset') ? 'Enviar email' : 'Acesse o KeepUp' }}
+    button#call.link {{ isType('reset') ? 'Enviar email' : 'Acesse o KeepUp' }}
 
 
 </template>

@@ -10,7 +10,6 @@ import Vuetify, {
   VSlider,
   VDialog,
   VDatePicker,
-  transitions,
   VProgressLinear,
   VAutocomplete,
   VSelect
@@ -31,7 +30,6 @@ export default new Vuetify({
     VIcon,
     VDialog,
     VTooltip,
-    transitions,
     VProgressLinear,
     VSelect
   },

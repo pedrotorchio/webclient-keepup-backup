@@ -14,7 +14,7 @@ export default {
   }),
   computed: {
     topToggleText() {
-      if (this.tabSelected === 'signup') return 'Cadastrar Usuário';
+      if (this.tabSelected === 'login') return 'Cadastrar Usuário';
       return 'Acessar KeepUp';
     }
   },
@@ -23,6 +23,7 @@ export default {
       this.tabSelected = 'reset';
     },
     async submitProcedure(data) {
+
       this.isLoading = true;
 
       let shouldLogin = false;
@@ -35,6 +36,7 @@ export default {
       }
       if (this.tabSelected === 'reset') {
         await resetProcedure.bind(this)(data);
+        this.tabSelected = 'login';
       }
 
       if(!login) throw 'No login done';
@@ -49,7 +51,6 @@ export default {
       this.submitProcedure(data)
           .then(login => this.$router.push({ name: 'PatientsList' }))
           .catch(e => {
-            console.log(e);
             this.isLoading = false
           });
     },
@@ -64,5 +65,30 @@ export default {
   }
 }
 </script>
-<template lang="pug" src='./template.pug'></template>
+<template lang="pug">
+  div#signup-page.page
+
+    h1#title KeepUp
+
+    div#login-form-wrapper.floating.padded-large(
+      :class=`[
+        tabSelected
+      ]`
+      ref = "loadingContainer"
+      v-loading = "isLoading"
+    )
+      p#signup-btn
+        span.link(
+          @click='toggleLoginSignup()'
+          v-text="topToggleText"
+          :style = "{ visibility: isLoading? 'hidden' : 'visible' }"
+          ref = "toggle"
+        )
+
+      signup-form#signup-form(
+        @submit='submit'
+        :type='tabSelected'
+      )
+    a.reset-password-link( @click="resetPassword" ) Alterar senha
+</template>
 <style lang="stylus" src='./styles.styl'></style>
