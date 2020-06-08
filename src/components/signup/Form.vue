@@ -1,13 +1,11 @@
 <script>
-import Recaptcha from 'vue-recaptcha';
 
 export default {
   name: 'signup-form',
-  components: { Recaptcha },
   props: {
-    isLogin: {
-      type: Boolean,
-      default: true
+    type: {
+      type: String,
+      default: 'login'
     }
   },
   data: () => ({
@@ -18,6 +16,12 @@ export default {
     }
   }),
   methods: {
+    isType(t) {
+      return this.type === t;
+    },
+    isNotType(t) {
+      return this.type !== t;
+    },
     submit(captcha) {
       this.resetCaptcha();
       this.$emit('submit', { ...this.formData, captcha });
@@ -33,34 +37,36 @@ export default {
 </script>
 <template lang="pug">
   form#signup-form
+    p( v-if="isType('reset')" ) Preencha com o email que você usa para acessar o KeepUp. Se a conta realmente existir, você receberá um link para alterar a senha.
     input(
       v-model='formData.name',
-      placeholder='Apelido'
-      v-if='!isLogin'
+      placeholder='Nome'
+      v-if="isType('signup')"
     )
     input(
       v-model='formData.email',
       placeholder='Email'
     )
     input(
+      v-if="isNotType('reset')"
       v-model='formData.password',
       type = "password"
       placeholder='Senha'
     )
-    recaptcha( ref = "recaptcha" sitekey = "6LdXPYQUAAAAANQOh_W1tC-D9Qei1dJy8T1aMyQ4" 
-      @verify = "submit" 
+    recaptcha( ref = "recaptcha" sitekey = "6LdXPYQUAAAAANQOh_W1tC-D9Qei1dJy8T1aMyQ4"
+      @verify = "submit"
       @expired = "resetCaptcha"
     )
-      button#call.link Acesse o KeepUp
+      button#call.link {{ isType('reset') ? 'Enviar email' : 'Acesse o KeepUp' }}
 
-    
+
 </template>
 <style lang="stylus" scoped>
 #signup-form
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  justify-content: flex-start;  
+  justify-content: flex-start;
 
   input, button
     height: 2em;
@@ -76,7 +82,7 @@ export default {
 
   button
     border-bottom none
-    
+
   #call
     text-align: center;
     font-size: 24px;

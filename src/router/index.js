@@ -22,12 +22,12 @@ function lazyTemplate(template) {
  *      rotinas   [ GET /patients/{id}/routines ]
  *        (lista)
  *      nova-rotina
- *     
+ *
  *    rotina/{id} [ GET /routines/{id} ]
  *       (edição)
  *        atividades [ GET /routines/{id}/tasks]
  *
- 
+
  *    paciente/novo
  */
 
@@ -176,6 +176,13 @@ const tasksFill = {
   component: lazyTemplate("tasks-form"),
   props: true
 };
+const passwordReset = {
+  path: "/atualizar-senha",
+  name: 'UpdatePassword',
+  component: lazyTemplate("tasks-form"),
+  props: true
+};
+
 export default new Router({
   mode: "history",
   base: process.env.BASE_FOLDER,
@@ -197,6 +204,7 @@ export default new Router({
         tasksForm
       ]
     },
-    tasksFill
+    tasksFill,
+    passwordReset
   ]
 });

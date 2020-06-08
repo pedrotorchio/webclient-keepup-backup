@@ -4,6 +4,6 @@ const prodEnv = require('./prod.env')
 
 module.exports = merge(prodEnv, {
   NODE_ENV: '"development"',
-  ROOT_API: '"http://api.timediary.com.br/api"',
+  ROOT_API: '"http://localhost/api"',
   BASE_FOLDER: '"/"',
 })

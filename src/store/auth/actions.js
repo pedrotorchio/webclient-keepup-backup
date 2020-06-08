@@ -1,6 +1,9 @@
 import { api } from '@/api';
 
 export default {
+  async ["trigger-password-reset"]({ commit }, data) {
+    await api.post("auth/password-change-request", data);
+  },
   async signup({ commit }, data) {
     return api.signup(data);
   },
@@ -13,7 +16,7 @@ export default {
      * 1. CHECKS CREDENTIALS
      * 2. SETS USER LOCAL SESSION
      */
-    
+
     commit("reset");
 
     const login = await api.login(email, password);
@@ -55,20 +58,20 @@ export default {
      * 4. RETURNS FALSE IF ANYTHING FAILS, OTHERWISE TRUE
      */
 
-    const { 
-      hasSessionData, 
+    const {
+      hasSessionData,
       hasUserData,
       getUserSession,
       getUserData
     } = getters;
 
     let user;
-    
+
     if (hasSessionData()) {
-      
+
       const token = api.getTokenData();
       const sessn = getUserSession();
-      
+
       if (sessn.hash !== token.hash) {
         api.setAuthorizationToken(sessn);
       }
@@ -76,7 +79,7 @@ export default {
       user = await dispatch('getUserData');
 
     }
-    
+
     return Boolean(user);
   }
 }

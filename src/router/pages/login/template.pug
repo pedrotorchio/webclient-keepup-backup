@@ -1,23 +1,24 @@
 div#signup-page.page
-  
+
   h1#title KeepUp
 
   div#login-form-wrapper.floating.padded-large(
     :class=`[
-      isLogin? 'login' : 'signup'
+      tabSelected
     ]`
     ref = "loadingContainer"
     v-loading = "isLoading"
   )
     p#signup-btn
       span.link(
-        @click='isLogin=!isLogin'
-        v-text="isLogin? 'Cadastrar Usuário' : 'Acessar KeepUp'"
+        @click='toggleLoginSignup()'
+        v-text="topToggleText"
         :style = "{ visibility: isLoading? 'hidden' : 'visible' }"
         ref = "toggle"
       )
 
     signup-form#signup-form(
       @submit='submit'
-      :isLogin='isLogin'
+      :type='tabSelected'
     )
+  a.reset-password-link( @click="resetPassword" ) Alterar senha

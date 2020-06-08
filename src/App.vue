@@ -30,6 +30,8 @@ html, body, .application
 
 a
   text-decoration: none !important;
+  &:hover
+    color: orange
 
 .v-dialog
   box-shadow: none !important;
@@ -37,10 +39,10 @@ a
  .stylish-scrollbar
     &::-webkit-scrollbar
       width: .1em;
-    
+
     &::-webkit-scrollbar-track
       -webkit-box-shadow: inset 0 0 6px transparent;
-    
+
     &::-webkit-scrollbar-thumb
       background-color: orange;
       outline: 1px solid slategrey;
@@ -52,7 +54,7 @@ a
   &.loading
     & > .indeterminate-loading
       visibility: visible
-  
+
 #global-message
   width: 100%
   display: flex
@@ -70,8 +72,8 @@ a
   &.hidden
     transform: translateY(100px)
     transition: transform 1s ease-out
-  
 
-  
+
+
 
 </style>

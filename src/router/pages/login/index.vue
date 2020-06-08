@@ -1,7 +1,7 @@
 <script>
 import Page from '../Page';
 import SignupForm from '@/components/signup/form';
-import { loginProcedure, failedLogin, signupProcedure, failedSignup } from './procedures';
+import { loginProcedure, failedLogin, signupProcedure, failedSignup, resetProcedure } from './procedures';
 import { TimelineMax } from 'gsap'
 export default {
   name: 'LoginPage',
@@ -10,33 +10,48 @@ export default {
     SignupForm
   },
   data: () => ({
-    isLogin: true,
-    
+    tabSelected: 'login',
   }),
+  computed: {
+    topToggleText() {
+      if (this.tabSelected === 'signup') return 'Cadastrar Usuário';
+      return 'Acessar KeepUp';
+    }
+  },
   methods: {
+    resetPassword() {
+      this.tabSelected = 'reset';
+    },
     async submitProcedure(data) {
       this.isLoading = true;
-      
-      let shouldLogin = true;
+
+      let shouldLogin = false;
       let login = null;
-
-
-      if (!this.isLogin) {
+      if (this.tabSelected === 'signup') {
         shouldLogin = await signupProcedure.bind(this)(data)
-          .catch(failedSignup.bind(this));
       }
-
-      if (shouldLogin) {
+      if (this.tabSelected === 'login' || shouldLogin) {
         login = await loginProcedure.bind(this)(data)
-          .catch(failedLogin.bind(this));
+      }
+      if (this.tabSelected === 'reset') {
+        await resetProcedure.bind(this)(data);
       }
 
+      if(!login) throw 'No login done';
       return login;
+    },
+    toggleLoginSignup() {
+      if (this.tabSelected === 'login') return this.tabSelected = 'signup';
+      if (this.tabSelected === 'signup') return this.tabSelected = 'login';
+      this.tabSelected = 'login';
     },
     submit(data) {
       this.submitProcedure(data)
           .then(login => this.$router.push({ name: 'PatientsList' }))
-          .catch(login => this.isLoading = false);
+          .catch(e => {
+            console.log(e);
+            this.isLoading = false
+          });
     },
   },
   watch: {
