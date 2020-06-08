@@ -179,7 +179,7 @@ const tasksFill = {
 const passwordReset = {
   path: "/atualizar-senha",
   name: 'UpdatePassword',
-  component: lazyTemplate("tasks-form"),
+  component: lazyTemplate("password-change"),
   props: true
 };
 
