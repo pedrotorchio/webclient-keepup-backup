@@ -4,6 +4,9 @@ export default {
   async ["trigger-password-reset"]({ commit }, data) {
     await api.post("auth/password-change-request", data);
   },
+  async ["reset-password"]({ commit }, data) {
+    await api.post("auth/password-change", data);
+  },
   async signup({ commit }, data) {
     return api.signup(data);
   },

@@ -74,6 +74,37 @@ a
     transition: transform 1s ease-out
 
 
+p.tip
+  margin-bottom: .5em
+  font-size: 14px
+  font-weight: 100
 
+input, button
+  height: 2em;
+  margin: .2em 0;
+  font-size: 24px;
+  text-align: center;
+  display: block;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid lightgrey;
+  outline: none;
+  width 100%
+  color: inherit
 
+  transition: color ease-out .2s
+
+  &.no-border
+    border: none
+  &.call-to-action
+    margin-top: 1em
+    margin-bottom: 0;
+    text-align: center;
+
+  &:disabled
+    color: lightgrey
+input
+  font-size: 16px
+button
+  font-size: 18px
 </style>

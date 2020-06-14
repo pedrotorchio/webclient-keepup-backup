@@ -37,7 +37,7 @@ export default {
 </script>
 <template lang="pug">
   form#signup-form( @submit.prevent="submit" )
-    p( v-if="isType('reset')" ) Preencha com o email que você usa para acessar o KeepUp. Se a conta realmente existir, você receberá um link para alterar a senha.
+    p.tip( v-if="isType('reset')" ) Preencha com o email que você usa para acessar o KeepUp. Se a conta realmente existir, você receberá um link para alterar a senha.
     input(
       v-model='formData.name',
       placeholder='Nome'
@@ -53,7 +53,7 @@ export default {
       type = "password"
       placeholder='Senha'
     )
-    button#call.link {{ isType('reset') ? 'Enviar email' : 'Acesse o KeepUp' }}
+    button.link.no-border.call-to-action {{ isType('reset') ? 'Enviar email' : 'Acesse o KeepUp' }}
 
 
 </template>
@@ -63,25 +63,4 @@ export default {
   flex-direction: column;
   align-items: stretch;
   justify-content: flex-start;
-
-  input, button
-    height: 2em;
-    margin: .2em 0;
-    font-size: 24px;
-    text-align: center;
-    display: block;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid lightgrey;
-    outline: none;
-    width 100%
-
-  button
-    border-bottom none
-
-  #call
-    text-align: center;
-    font-size: 24px;
-    margin-top: 1em;
-    margin-bottom: 0;
 </style>
