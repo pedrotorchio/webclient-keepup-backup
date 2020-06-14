@@ -1,7 +1,7 @@
 <script>
 import { mapState } from 'vuex';
 import List from '@/components/patients/List';
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 import { mapActions } from 'vuex';
 
 export default {
@@ -23,7 +23,7 @@ export default {
     open(patient) {},
     async restore(id) {
       await this.restorePatient(id)
-      
+
       const i = this.archive.findIndex( p => p.id === id );
       this.archive.splice(i, 1);
 
@@ -48,7 +48,7 @@ export default {
                 });
               });
           this.setGlobalLoading(false)
-          
+
       }
     }
   }
@@ -63,5 +63,5 @@ div
 
       @open='open'
       @action='restore'
-    )  
+    )
 </template>

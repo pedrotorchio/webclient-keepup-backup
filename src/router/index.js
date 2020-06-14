@@ -7,7 +7,7 @@ import { requireAuth, anonymousOnly } from './guard';
 Vue.use(Router)
 
 function lazyTemplate(template) {
-  return lazy(`router/pages/${template}/index.vue`);
+  return lazy(`views/${template}/index.vue`);
 }
 
 /**

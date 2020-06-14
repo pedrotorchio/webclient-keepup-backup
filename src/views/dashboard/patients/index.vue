@@ -1,5 +1,5 @@
 <script>
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 import UserDataWatcher from '@/router/mixins/UserDataWatcher';
 
 export default {
@@ -22,11 +22,11 @@ div
 </template>
 <style lang="stylus" scoped>
 .Patients
-  .v-list  
+  .v-list
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    
+
   .v-list-tile
     padding-left: 0;
     padding-right: 0;

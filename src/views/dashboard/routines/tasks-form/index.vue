@@ -1,5 +1,5 @@
 <script>
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 import RoutineRoute from '@/router/mixins/RoutineRoute';
 import TasksFormRoute from '@/router/mixins/TasksFormRoute';
 import TasksForm from '@/components/tasks-form/Form';
@@ -18,7 +18,7 @@ export default {
       deleteTasksForm: 'deleteTasksForm'
     }),
     async submitProcedure(data) {
-      
+
       let form;
 
       if (this.tasksForm) {
@@ -28,10 +28,10 @@ export default {
 
       } else {
         const routineId = this.routineId;
-        
+
         form = await this.createTasksForm({
           routineId,
-          data  
+          data
         });
 
         this.$router.push({
@@ -48,9 +48,9 @@ export default {
       this.defineActions();
     },
     async deleteForm() {
-      
+
       await this.deleteTasksForm(this.tasksForm.id);
-      
+
       const routineId = this.tasksForm.routine_id;
       this.$router.push({
         name: 'TasksView',
@@ -62,33 +62,33 @@ export default {
     },
     defineActions() {
       let routineId;
-      
+
       if (this.routineId)
         routineId = this.routineId;
 
       else if (this.tasksForm) {
         routineId = this.tasksForm.routine_id;
         this.rootActions.push({
-          tip: 'Excluir', 
+          tip: 'Excluir',
           click: this.deleteForm,
-          color: 'error', 
-          icon: 'clear' 
+          color: 'error',
+          icon: 'clear'
         });
       }
 
       else
         return;
-      
+
       this.rootActions.push({
-        tip: 'Retornar', 
-        to: { 
+        tip: 'Retornar',
+        to: {
           name: 'TasksView',
           params: {
             routineId
           }
-        }, 
-        color: 'secondary', 
-        icon: 'arrow_back' 
+        },
+        color: 'secondary',
+        icon: 'arrow_back'
       });
     },
   },

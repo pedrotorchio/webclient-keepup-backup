@@ -1,6 +1,6 @@
 <script>
-import Patient from '@/router/pages/dashboard/patients/mixins/Patient.mixin';
-import Route from '@/router/pages/Route';
+import Patient from '@/views/dashboard/patients/mixins/Patient.mixin';
+import Route from '@/views/Route';
 
 export default {
   extends: Route,

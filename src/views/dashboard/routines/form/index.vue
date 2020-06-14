@@ -1,6 +1,6 @@
 <script>
 
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 import FormView from '@/components/generic/form/FormView.mixin';
 import PatientRoute from '@/router/mixins/PatientRoute';
 import RoutineRoute from '@/router/mixins/RoutineRoute';
@@ -11,7 +11,7 @@ export default {
   extends: Route,
   components: { RoutineForm },
   mixins: [ PatientRoute, RoutineRoute, FormView ],
-  name: 'Routine-Form', 
+  name: 'Routine-Form',
   methods: {
     ////// submit@FormView is called whenever form emits @change
     ///// submit calls submitProcedure
@@ -19,12 +19,12 @@ export default {
       return this.$route.name === 'RoutineNew'
     },
     async submitProcedure(data) {
-      
-      
+
+
       let routine;
 
       if (this.isNewForm()) {
-        
+
         routine = await createRoutine.bind(this)({ patientId: this.patientId, data});
         this.$router.push({
           name: 'RoutineEdit',
@@ -34,7 +34,7 @@ export default {
         });
 
       } else {
-        
+
         data.id = this.routine.id;
         routine = await updateRoutine.bind(this)(data);
 
@@ -52,9 +52,9 @@ export default {
           params: {
             patientId
           }
-        }, 
-        color: 'info', 
-        icon: 'list' 
+        },
+        color: 'info',
+        icon: 'list'
       });
 
     },
@@ -68,16 +68,16 @@ export default {
           params: {
             patientId
           }
-        }, 
-        color: 'info', 
-        icon: 'list' 
+        },
+        color: 'info',
+        icon: 'list'
       });
     }
   },
   created() {
-    
+
     if (!this.isNewForm()) {
-      this.rootActions.push({ 
+      this.rootActions.push({
         to: {
           name: 'TasksView',
           params: {
@@ -87,7 +87,7 @@ export default {
         color: 'secondary', icon: 'event', tip: 'Ver Atividades'
       });
     }
-  }  
+  }
 }
 </script>
 

@@ -1,6 +1,6 @@
 <script>
 
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 import { mapActions } from 'vuex';
 
 import TasksRoute from '@/router/mixins/TasksRoute';
@@ -29,7 +29,7 @@ export default {
       let elems = newElements;
 
       const len = newElements.length;
-      
+
       if (len === 1)
         state = true;
 
@@ -42,10 +42,10 @@ export default {
   methods: {
     onTaskChange(task) {
       const i = this.tasks.findIndex( t => t.id === task.id);
-      
+
       Object.entries( task ).forEach( ([key, value]) => {
         this.tasks[i][key] = value;
-      }); 
+      });
     }
   },
   created() {

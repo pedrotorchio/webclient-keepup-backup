@@ -3,7 +3,7 @@ import { mapState } from 'vuex';
 import { createPatient, updatePatient } from './procedures';
 import FormView from '@/components/generic/form/FormView.mixin';
 import PatientForm from '@/components/patients/Form';
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 import PatientRoute from '@/router/mixins/PatientRoute';
 
 export default {
@@ -13,13 +13,13 @@ export default {
   components: { PatientForm },
   methods: {
     async submitProcedure(data) {
-      
+
       let patient;
 
       if (this.patient) {
         data.id = this.patient.id;
         patient = await updatePatient.bind(this)(data);
-        
+
       } else {
 
         patient = await createPatient.bind(this)(data);
@@ -32,28 +32,28 @@ export default {
         });
 
       }
-      
+
       return patient;
     },
     onPatientLoaded() {
       const name = `${this.patient.first_name} ${this.patient.last_name}`;
       const tip = `Rotina de ${name}`;
-      
+
       this.rootActions.push({
-        tip: tip, 
+        tip: tip,
         to: {
           name: 'RoutinesList',
           params: {
             patientId: this.patientId
           }
-        }, 
-        color: 'info', 
-        icon: 'event' 
+        },
+        color: 'info',
+        icon: 'event'
       });
-    }  
+    }
   },
-  
-    
+
+
 }
 </script>
 
@@ -62,5 +62,5 @@ export default {
     :model='patient'
     @change='submit'
   )
- 
+
 </template>

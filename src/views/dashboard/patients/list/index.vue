@@ -1,7 +1,7 @@
 <script>
 import { mapState } from 'vuex';
 import List from '@/components/patients/List';
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 
 export default {
   name: 'Patients-List',
@@ -51,12 +51,12 @@ export default {
 
 <template lang="pug">
   div
-    h4.text-center( v-if = "patients.length === 0") Nenhum paciente cadastrado. Clique em 
+    h4.text-center( v-if = "patients.length === 0") Nenhum paciente cadastrado. Clique em
       v-btn(
         small icon
         :to = "{ name: 'PatientNew' }"
         color = "primary"
-      ) 
+      )
         v-icon add
     list(
       v-else

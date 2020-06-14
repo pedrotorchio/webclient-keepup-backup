@@ -1,6 +1,6 @@
 <script>
 import TasksFormRoute from '@/router/mixins/TasksFormRoute';
-import Route from '@/router/pages/Route';
+import Route from '@/views/Route';
 import { mapActions } from 'vuex';
 import Task from './Task';
 import TasksForm from './NewTaskForm';
@@ -49,9 +49,9 @@ export default {
     },
     hide() {
       this.$refs.form.hide();
-      
+
       this.resetDataValues( data => data.currentTask );
-      
+
     },
     open(task) {
 
@@ -70,7 +70,7 @@ export default {
     async fetchData() {
       this.setGlobalLoading(true)
       let fetchers = [this.fetchForm(this.formUid), this.fetchTaskOptions(this.formUid)]
-      
+
       const [ form, taskOptions ] = await Promise.all(fetchers);
 
       this.form = form;
@@ -78,7 +78,7 @@ export default {
       this.setGlobalLoading(false)
     },
     async remove(taskUid) {
-      
+
       this.form.tasks = await this.deleteTask({
         taskUid,
         formUid: this.formUid
@@ -89,7 +89,7 @@ export default {
     sortedTasks() {
       return [...this.form.tasks]
         .sort((a, b) => toInteger(a.time, 'h') - toInteger(b.time, 'h'));
-      
+
     },
     hasTasks() {
       return this.form && this.form.tasks.length > 0;
@@ -98,7 +98,7 @@ export default {
       return this.form.filler_name;
     },
     patient() {
-      
+
       return this.form.routine.patient;
     }
   },
